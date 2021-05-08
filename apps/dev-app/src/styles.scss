@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+.anticon svg {
+  vertical-align: text-top;
+}
+
+[nz-form] {
+  max-width: 960px;
+}
+
+// block py-2 -my-2
+a[nz-tab-link] {
+  @apply block py-2 -my-2;
+  color: inherit;
+}

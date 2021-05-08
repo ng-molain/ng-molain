@@ -79,7 +79,8 @@ npx npm install --save
 # devDependencies
 npx npm install --save-dev \
   @angular-builders/custom-webpack \
-  tailwindcss
+  tailwindcss \
+  polished \
 
 
 ----

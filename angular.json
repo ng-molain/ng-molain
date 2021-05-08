@@ -62,8 +62,11 @@
       "prefix": "ng-molain",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
+            "customWebpackConfig": {
+              "path": "extra-webpack.config.js"
+            },
             "outputPath": "dist/apps/dev-app",
             "index": "apps/dev-app/src/index.html",
             "main": "apps/dev-app/src/main.ts",
@@ -74,7 +77,11 @@
               "apps/dev-app/src/favicon.ico",
               "apps/dev-app/src/assets"
             ],
-            "styles": ["apps/dev-app/src/styles.scss"],
+            "styles": [
+              "apps/dev-app/src/styles/ng-zorro-antd.less",
+              "apps/dev-app/src/styles/tailwind.scss",
+              "apps/dev-app/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {

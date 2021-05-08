@@ -1,0 +1,14 @@
+
+@import "~tailwindcss/base";
+
+a {
+  @apply text-primary;
+}
+:focus {
+  @apply outline-none;
+}
+
+@import "~tailwindcss/components";
+@import "~tailwindcss/utilities";
+
+// $primary: #3450A1;
