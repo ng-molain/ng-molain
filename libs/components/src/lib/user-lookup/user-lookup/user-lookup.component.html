@@ -1,0 +1,51 @@
+<div class="ant-select-selection" [class.ant-select-selection--single]="!isMultiple"
+    [class.ant-select-selection--multiple]="isMultiple" tabindex="0">
+    <ng-container *ngIf="!isMultiple">
+        <div class="ant-select-selection__rendered">
+            <ng-container [ngTemplateOutlet]="placeholderTpl"></ng-container>
+
+            <div *ngIf="!isEmpty" class="ant-select-selection-selected-value"
+                [attr.title]="displayWith(selectedNodes[0])">
+                {{displayWith(selectedNodes[0])}}
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="isMultiple">
+        <ul class="ant-select-selection__rendered">
+            <ng-container [ngTemplateOutlet]="placeholderTpl"></ng-container>
+
+            <ng-container *ngFor="let item of selectedNodes | slice: 0 : maxTagCount; trackBy: trackNode">
+                <li [attr.title]="displayWith(item)" class="ant-select-selection__choice"
+                    [class.ant-select-selection__choice__disabled]="item.isDisabled">
+                    <span class="ant-select-selection__choice__content">{{ displayWith(item) }}</span>
+                    <span *ngIf="!item.isDisabled" class="ant-select-selection__choice__remove"
+                        (mousedown)="$event.preventDefault()" (click)="removeSelected(item, true, $event)">
+                        <i nz-icon nzType="close" class="ant-select-remove-icon"></i>
+                    </span>
+                </li>
+            </ng-container>
+            <li [@zoomMotion] *ngIf="selectedNodes.length > maxTagCount" class="ant-select-selection__choice">
+                <div class="ant-select-selection__choice__content">
+                    <ng-container *ngIf="maxTagPlaceholder">
+                        <ng-template [ngTemplateOutlet]="maxTagPlaceholder"
+                            [ngTemplateOutletContext]="{ $implicit: selectedNodes | slice: maxTagCount}">
+                        </ng-template>
+                    </ng-container>
+                    <ng-container *ngIf="!maxTagPlaceholder">
+                        + {{ selectedNodes.length - maxTagCount }} ...
+                    </ng-container>
+                </div>
+            </li>
+        </ul>
+    </ng-container>
+
+    <span class="ant-select-arrow">
+        <i nz-icon nzType="file-search" nzTheme="outline"></i>
+    </span>
+</div>
+
+<ng-template #placeholderTpl>
+    <div *ngIf="placeholder && isEmpty" class="ant-select-selection__placeholder" [class.d-none]="!isEmpty">
+        {{placeholder}}
+    </div>
+</ng-template>

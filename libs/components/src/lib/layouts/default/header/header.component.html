@@ -1,0 +1,94 @@
+<div class="header-logo">
+  <a [routerLink]="headerInfo.homeUrl" class="header-logo-link">
+    <img *ngIf="headerInfo.logo" [src]="headerInfo.logo" [attr.alt]="headerInfo.appName" class="header-logo-img header-logo-img-unfold inline"
+      style="max-height: 40px;">
+    <div *ngIf="!headerInfo.logo" class="h-10 text-center text-2xl text-white leading-10 mr-6">{{headerInfo.appName}}</div>
+  </a>
+</div>
+
+<nav class="navbar navbar-expand-lg flex">
+  <ul class="navbar-nav flex">
+    <li class="nav-item" (click)="toggleSidebar()">
+      <a class="nav-link">
+        <i nz-icon nzType="menu-fold" nzTheme="outline" [class.hidden]="layoutService.sidebarCollapsed"></i>
+        <i nz-icon nzType="menu-unfold" nzTheme="outline" [class.hidden]="!layoutService.sidebarCollapsed"></i>
+      </a>
+    </li>
+    <!-- <li class="nav-item">
+      <a href="javascript: void(0);" class="nav-link">
+        <i nz-icon nzType="appstore" nzTheme="outline"></i>
+      </a>
+    </li> -->
+    <li *ngFor="let item of mainMenu" class="nav-item">
+      <a class="nav-link" [routerLink]="item.link">
+        <span class="nav-link-text">{{item.text}}</span>
+      </a>
+    </li>
+  </ul>
+
+  <!-- search-form -->
+  <ul class="navbar-nav ml-auto navbar-nav-right flex">
+    <li class="nav-item">
+      <ml-header-site></ml-header-site>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" title="官网首页">
+<!--        <i nz-icon nzType="home" nzTheme="outline"></i>-->
+        <i class="fal fa-home"></i>
+      </a>
+    </li>
+    <li class="nav-item">
+      <ml-header-help></ml-header-help>
+    </li>
+
+    <li class="nav-item">
+      <ml-header-task></ml-header-task>
+    </li>
+
+    <li class="nav-item">
+      <ml-header-message></ml-header-message>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" title="设置" nz-dropdown [nzDropdownMenu]="settingsMenu" nzTrigger="hover"
+        nzPlacement="bottomRight">
+<!--        <i nz-icon nzType="setting" nzTheme="outline"></i>-->
+        <i class="fal fa-cogs"></i>
+      </a>
+      <nz-dropdown-menu #settingsMenu="nzDropdownMenu">
+        <ul nz-menu style="width: 180px;">
+          <!-- TODO: 存在样式问题, 不是样式冲突导致的，是浏览器默认样式导致的 -->
+          <!-- <li nz-menu-group nzTitle="管理">
+            <ul class="list-unstyled">
+              <li nz-menu-item class="pl-3">系统管理</li>
+            </ul>
+          </li> -->
+          <li nz-menu-item class="pl-3" [routerLink]="['/admin/system']">系统管理</li>
+          <li nz-menu-divider></li>
+          <li nz-menu-item>全屏</li>
+          <li nz-menu-item>清理本地缓存</li>
+          <li nz-menu-item>语言</li>
+        </ul>
+        <!-- <div nz-menu style="width:200px;">
+          <div nz-menu-item>
+            <!- <header-fullscreen></header-fullscreen> ->
+            全屏
+          </div>
+          <div nz-menu-item>
+            <!- <header-storage></header-storage> -
+            清理本地缓存
+          </div>
+          <div nz-menu-item>
+            <!- <header-i18n></header-i18n> ->
+            语言
+          </div>
+        </div> -->
+      </nz-dropdown-menu>
+    </li>
+
+    <li class="nav-item">
+      <ml-header-acount></ml-header-acount>
+    </li>
+    <!-- <i nz-icon nzType="lock" nzTheme="outline"></i> -->
+  </ul>
+</nav>

@@ -1,0 +1,32 @@
+<a class="nav-link nav-link-avatar" nz-dropdown [nzDropdownMenu]="avatarMenu" nzTrigger="hover" nzPlacement="bottomRight">
+  <nz-avatar [nzSize]="30" nzIcon="user"></nz-avatar>
+  <span class="ml-2">Tony</span>
+</a>
+
+<nz-dropdown-menu #avatarMenu="nzDropdownMenu">
+  <div nz-menu class="p-3" style="width: 280px;">
+    <div class="mb-4">
+      <nz-avatar [nzSize]="30" nzIcon="user"></nz-avatar>
+      <span class="ml-2">Tony</span>
+
+      <a [routerLink]="['/account']" class="float-right mt-1">个人中心</a>
+    </div>
+    <div class="flex justify-between text-center px-2 mb-4" style="line-height: 1;">
+      <a [routerLink]="['/account']">基本信息</a>
+      <nz-divider nzType="vertical"></nz-divider>
+      <a [routerLink]="['/account']">实名认证</a>
+      <nz-divider nzType="vertical"></nz-divider>
+      <a [routerLink]="['/account']">安全设置</a>
+    </div>
+    <nz-divider class="my-3"></nz-divider>
+    <ul class="account-submenu">
+      <li nz-menu-item [routerLink]="['/dashboard/workplace']"><i class="fal fa-desktop"></i> 我的工作台</li>
+      <li nz-menu-item [routerLink]="['/account']"><i class="fal fa-id-badge"></i> 账户许可</li>
+      <li nz-menu-item [routerLink]="['/account']"><i class="fal fa-sliders-v-square"></i> 偏好设置</li>
+      <li nz-menu-item [routerLink]="['/account']"><i class="fal fa-lock-alt"></i> 安全管控</li>
+      <li nz-menu-item [routerLink]="['/account']"><i class="fal fa-hourglass-half"></i> 访问控制</li>
+    </ul>
+    <nz-divider class="my-3"></nz-divider>
+    <button nz-button nzBlock (click)="signOut()"><i class="fal fa-sign-out-alt mr-2"></i> 退出管理控制台</button>
+  </div>
+</nz-dropdown-menu>

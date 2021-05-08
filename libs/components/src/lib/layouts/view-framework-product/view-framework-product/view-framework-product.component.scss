@@ -1,0 +1,41 @@
+//@import '~@ng-molain/common/style/theming.scss';
+
+:host {
+    display: block;
+    // margin: -24px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.layout-container {
+  flex: auto;
+  overflow: hidden;
+  height: 100%;
+}
+
+.layout-sider {
+  overflow-y: scroll;
+
+  li .fal {
+    margin-right: 10px;
+  }
+}
+
+.layout-content {
+  position: relative;
+
+  @apply p-6 overflow-y-auto;
+
+  &::ng-deep {
+    nz-page-header.ant-page-header {
+      @apply -m-6 mb-6 py-2;
+
+      &.has-footer {
+        @apply pb-0;
+      }
+    }
+  }
+}

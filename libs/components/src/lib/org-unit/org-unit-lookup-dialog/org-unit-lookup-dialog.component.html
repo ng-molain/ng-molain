@@ -1,0 +1,61 @@
+<div class="grid grid-cols-2 gap-6 -m-6 px-6 pt-4">
+  <div>
+    <div class="flex justify-between mb-2">
+      <h4 class="text-lg font-light">选择</h4>
+      <div>
+        <label nz-checkbox [nzDisabled]="mode === 'tree'" class="mr-0">全选</label>
+
+        <nz-divider nzType="vertical"></nz-divider>
+        <button nz-button nzType="link" nzSize="small" (click)="searchVisible = !searchVisible">
+          <i class="fal fa-search"></i>
+        </button>
+
+        <nz-divider nzType="vertical"></nz-divider>
+        <nz-radio-group [(ngModel)]="mode" nzSize="small">
+          <label nz-radio-button nzValue="tree">
+            <!--            <i nz-icon nzType="branches" nzTheme="outline" nzRotate="90"></i>-->
+            <i class="fal fa-folder-tree"></i>
+          </label>
+          <label nz-radio-button nzValue="list">
+            <!--            <i nz-icon nzType="unordered-list" nzTheme="outline"></i>-->
+            <i class="fal fa-list"></i>
+          </label>
+        </nz-radio-group>
+      </div>
+    </div>
+
+    <div class="h-96">
+      <system-ui-org-unit-tree [searchVisible]="searchVisible" [multipleSelect]="multipleSelect"
+                               (selectionChange)="select($event)"></system-ui-org-unit-tree>
+    </div>
+  </div>
+
+  <div>
+    <div class="flex justify-between mb-2">
+      <h4 class="text-lg font-light">已选</h4>
+      <div>
+        <span>已选择 {{selection.selected?.length || 0}} 项</span>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a>清除</a>
+      </div>
+    </div>
+
+    <div>
+      <div *ngIf="selection.isEmpty()">
+        请左侧选择部门！
+      </div>
+
+      <ul *ngIf="selection.hasValue()" class="selection-list list-unstyled">
+        <li *ngFor="let item of selection.selected" class="p-1 hover:bg-blue-100">
+            <span class="text-blue-500 mr-2">
+              <i class="fas fa-folder"></i>
+            </span>
+          <span>{{item.name}}</span>
+          <span class="cursor-pointer float-right inline-block px-1" (click)="selection.deselect(item)">
+              <i class="fal fa-times-circle"></i>
+            </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

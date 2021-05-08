@@ -1,0 +1,48 @@
+<nz-layout class="layout-container">
+  <nz-sider class="layout-sider" nzTheme="light">
+    <!--        <ml-sidenav [navItems]="menus"></ml-sidenav>-->
+    <ng-container *ngTemplateOutlet="sidenav; context: {$implicit: menus}"></ng-container>
+  </nz-sider>
+  <nz-content class="layout-content">
+      <router-outlet></router-outlet>
+  </nz-content>
+</nz-layout>
+
+
+<!-- 递归输出菜单 -->
+<ng-template #sidenav let-navItems>
+  <ul nz-menu nzTheme="light" [nzMode]="'inline'" [nzInlineCollapsed]="vfService?.collapsed">
+    <ng-container *ngTemplateOutlet="menuTpl; context: {$implicit: navItems}"></ng-container>
+    <!-- 递归生成菜单，需要手动指定 nzPaddingLeft，仅在 nzMode 为 inline 的模式，且 nzInlineCollapsed 为 false 的情况下有效。 -->
+    <!-- 追踪 Issue：https://github.com/angular/angular/issues/14842 -->
+    <ng-template #menuTpl let-menus>
+      <ng-container *ngFor="let menu of menus">
+        <ng-container [ngSwitch]="menu.type">
+          <ng-template ngSwitchCase="submenu">
+            <ng-container *ngIf="!!menu.children && menu.children.length > 0">
+              <li nz-submenu [nzTitle]="menu.name" [nzOpen]="menu.open" [nzPaddingLeft]="(menu.level + 1) * 24">
+                <ul>
+                  <ng-container *ngTemplateOutlet="menuTpl; context: {$implicit: menu.children}"></ng-container>
+                </ul>
+              </li>
+            </ng-container>
+          </ng-template>
+          <ng-template ngSwitchCase="group">
+            <ng-container *ngIf="!!menu.children && menu.children.length > 0">
+              <li nz-menu-group [nzTitle]="menu.name">
+                <ul>
+                  <ng-container *ngTemplateOutlet="menuTpl; context: {$implicit: menu.children}"></ng-container>
+                </ul>
+              </li>
+            </ng-container>
+          </ng-template>
+          <ng-template ngSwitchDefault>
+            <li nz-menu-item [nzPaddingLeft]="(menu.level + 1) * 24">
+              <a [routerLink]="menu.route" routerLinkActive="router-link-active">{{menu.name}}</a>
+            </li>
+          </ng-template>
+        </ng-container>
+      </ng-container>
+    </ng-template>
+  </ul>
+</ng-template>

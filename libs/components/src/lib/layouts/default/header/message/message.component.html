@@ -1,0 +1,54 @@
+<a class="nav-link" title="通知/消息" nz-dropdown [nzDropdownMenu]="messagesMenu" nzTrigger="click"
+  nzPlacement="bottomRight">
+  <!-- <nz-badge [nzCount]="5"> -->
+  <nz-badge [nzDot]="true">
+<!--    <i nz-icon nzType="bell" nzTheme="outline"></i>-->
+    <i class="fal fa-bell"></i>
+  </nz-badge>
+</a>
+
+<nz-dropdown-menu #messagesMenu="nzDropdownMenu">
+  <!-- <div class="bg-white rounded-sm shadow" style="width: 320px;"> -->
+  <!-- TODO：【问题】shadow 和 menu 的大小有出入，明显不一致 -->
+  <div nz-menu style="width: 320px;">
+    <nz-tabset nzTabBarGutter="16" [nzTabBarExtraContent]="toMessageManageTpl">
+      <ng-template #toMessageManageTpl>
+        <a href="javascript: void(0)" class="link-to-notice-manage">接收消息管理</a>
+      </ng-template>
+
+      <nz-tab nzTitle="通知">
+        <nz-list [nzDataSource]="notices" [nzRenderItem]="noticeListItem" style="margin-top: -8px;">
+          <ng-template #noticeListItem let-i>
+            <nz-list-item class="px-3">
+              <nz-list-item-meta [nzTitle]="i.title" [nzAvatar]="i.avatar" [nzDescription]="noticeItemDesc">
+                <ng-template #noticeItemDesc>
+                  <div>{{i.description}}</div>
+                  <div class="text-gray">{{i.datetime}}</div>
+                </ng-template>
+              </nz-list-item-meta>
+            </nz-list-item>
+          </ng-template>
+        </nz-list>
+        <nz-divider class="my-1"></nz-divider>
+        <button nz-button nzBlock="true" nzType="link" class="my-1" [routerLink]="['/account/notifications']">查看更多</button>
+      </nz-tab>
+
+      <nz-tab nzTitle="消息">
+        <nz-list [nzDataSource]="messages" [nzRenderItem]="noticeListItem" style="margin-top: -8px;">
+          <ng-template #noticeListItem let-i>
+            <nz-list-item class="px-3">
+              <nz-list-item-meta [nzTitle]="i.title" [nzAvatar]="i.avatar" [nzDescription]="noticeItemDesc">
+                <ng-template #noticeItemDesc>
+                  <div>{{i.description}}</div>
+                  <div class="text-gray">{{i.datetime}}</div>
+                </ng-template>
+              </nz-list-item-meta>
+            </nz-list-item>
+          </ng-template>
+        </nz-list>
+        <nz-divider class="my-1"></nz-divider>
+        <button nz-button nzBlock="true" nzType="link" class="my-1">查看更多</button>
+      </nz-tab>
+    </nz-tabset>
+  </div>
+</nz-dropdown-menu>

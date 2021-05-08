@@ -1,0 +1,48 @@
+<!-- <nz-layout class="full-fill"> -->
+<nz-layout style="margin: -16px;">
+    <nz-sider class="bg-white p-3 bg-blue-1" [nzWidth]="280">
+        <!-- <nz-card class="list-card bg-blue-1 ant-card__body-nopadding mb-0"> -->
+            <div class="mb-2">
+                <nz-input-group [nzSuffix]="suffixIconSearch">
+                    <input type="text" nz-input placeholder="输入名称或编码搜索" />
+                    <ng-template #suffixIconSearch>
+                        <i nz-icon nzType="search"></i>
+                    </ng-template>
+                </nz-input-group>
+            </div>
+            <div>
+                <nz-tree [nzData]="nodes" nzShowIcon></nz-tree>
+            </div>
+        <!-- </nz-card> -->
+
+        <div class="split">
+            <div class="split-resizer">
+                <i nz-icon nzType="more" nzTheme="outline"></i>
+            </div>
+            <div class="split-collapse">
+                <i nz-icon nzType="double-left" nzTheme="outline"></i>
+            </div>
+        </div>
+    </nz-sider>
+    <nz-content class="pl-4 pr-2 bg-white">
+        <ng-container [ngTemplateOutlet]="userSearchList"></ng-container>
+    </nz-content>
+</nz-layout>
+
+<ng-template #userSearchList>
+    <div class="py-2 d-flex">
+        <div class="simple-search">
+            <div class="d-inline-block">
+                <input nz-input placeholder="请输入用户名、姓名或邮箱" style="width: 16rem;">
+            </div>
+            <div class="d-inline-block ml-2">
+                <label nz-checkbox >包含下级组织</label>
+            </div>
+            <button nz-button nzType="primary" class="ml-2">搜索</button>
+        </div>
+    </div>
+
+    <div>
+        <ml-simple-table [columns]="columns" [data]="[]"></ml-simple-table>
+    </div>
+</ng-template>

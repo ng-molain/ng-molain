@@ -1,0 +1,20 @@
+<nz-button-group class="mr-3 site-select">
+  <button nz-button nzType="primary" [routerLink]="['/admin/domain']">
+<!--    <i nz-icon nzType="cluster" nzTheme="outline" style="font-size: 16px;"></i>-->
+    <i class="fal fa-sitemap mr-1"></i>
+    <span>根站点</span>
+  </button>
+  <button nz-button nzType="primary" nz-dropdown [nzDropdownMenu]="siteSelectMenu" nzPlacement="bottomRight"><i nz-icon
+      nzType="down"></i></button>
+  <nz-dropdown-menu #siteSelectMenu="nzDropdownMenu">
+    <ul nz-menu style="min-width: 180px;">
+      <li *ngFor="let item of sites" nz-menu-item>{{item.name}}</li>
+      <li nz-menu-divider></li>
+      <li nz-menu-item>全部站点</li>
+      <li nz-menu-item>管理站点</li>
+      <!-- <li nz-menu-divider></li>
+      <li nz-menu-item>学员主页</li>
+      <li nz-menu-item>教辅管理</li> -->
+    </ul>
+  </nz-dropdown-menu>
+</nz-button-group>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {MenuItem} from "@ng-molain/components";
 
 @Component({
   selector: 'ng-molain-root',
@@ -7,4 +8,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'dev-app';
+
+  mainMenu: MenuItem[] = [
+    {
+      link: '/components',
+      text: '组件'
+    },
+    {
+      link: '/documents',
+      text: '文档'
+    }
+  ];
 }

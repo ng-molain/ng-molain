@@ -51,7 +51,7 @@
 |
 |
 
-|fontasome
+|FontAwesome
 |
 |
 |
@@ -74,16 +74,31 @@
 npm add ng-zorro-antd
 
 # dependencies
-npx npm install --save
+npx npm install --save \
+  lodash-es \
+  @ngx-translate/core \
 
 # devDependencies
 npx npm install --save-dev \
   @angular-builders/custom-webpack \
   tailwindcss \
   polished \
-
+  lodash @types/lodash-es \
 
 ----
+
+----
+"fontawesome-web": "^5.15.0",   # 这个是私有的
+----
+
+== 使用
+
+.创建一个可发布的lib
+----
+npx ng g lib common --prefix ml --style scss --publishable --importPath @ng-molain/common
+
+----
+
 
 == 参考
 

@@ -1,0 +1,31 @@
+
+
+.ant-select-arrow {
+    font-size: 14px;
+    color: gray;
+}
+
+:host.ant-select {
+    
+    &.ant-select-lg {
+        
+    }
+    
+    &.ant-select-sm {
+
+    }
+
+    &.ant-select-enabled {
+
+    }
+
+    &.ant-select-disabled {
+        
+    }
+
+    &.ant-select-allow-clear {
+
+    }
+
+    &.ant-select-open {}
+}

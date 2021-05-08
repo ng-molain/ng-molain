@@ -1,0 +1,84 @@
+:host {
+    display: flex;
+    // border-bottom: 1px solid rgba($color: #000000, $alpha: 0.1);
+    box-shadow: 0 1px 4px rgba(0,21,41,.08);
+
+    // fix antd header layout
+    //margin: 0 -50px;
+    line-height: 1;
+}
+
+.header-logo {
+    // height: 54px;
+    // line-height: 54px;
+    //height: 64px;
+    //line-height: 64px;
+    //padding: 0 12px;
+}
+
+.navbar {
+    flex: auto 1;
+    //padding: 0.875rem;
+    color: white;
+
+    a {
+        color: white;
+    }
+
+    .navbar-nav::ng-deep {
+        a {
+            color: white;
+        }
+
+        .nav-item .nav-link {
+            display: block;
+            line-height: 1;
+            padding: 0.625rem 0.75rem;
+            cursor: pointer;
+            transition: background 0.3s;
+
+
+            &:hover {
+                background: rgba($color: #ffffff, $alpha: 0.25);
+                border-radius: 2px;
+            }
+
+            i.anticon, i.fal {
+              font-size: 16px;
+              color: white;
+              line-height: 1.125rem;
+            }
+
+            .nav-link-text {
+                line-height: 1.125rem;
+            }
+        }
+
+        &.navbar-nav-right {
+            .nav-item .nav-link{
+                padding: 0.625rem 0.5rem;
+            }
+        }
+
+        nz-button-group.site-select {
+
+            > button {
+                background: rgba($color: #ffffff, $alpha: 0.125);
+                border-color: rgba($color: #ffffff, $alpha: 0.125);
+
+                box-shadow: none;
+                height: 38px;
+
+                &:hover {
+                    background: rgba($color: #ffffff, $alpha: 0.25);
+                    border-color: rgba($color: #ffffff, $alpha: 0.25);
+                }
+            }
+
+            // &:hover > button {
+            //     background: rgba($color: #ffffff, $alpha: 0.25);
+            //     border-color: rgba($color: #ffffff, $alpha: 0.25);
+            // }
+        }
+    }
+}

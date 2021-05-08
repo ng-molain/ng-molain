@@ -1,0 +1,68 @@
+<div class="h-full flex flex-col overflow-hidden">
+  <div class="mb-3 flex-none" [ngClass]="{'hidden': !searchVisible}">
+    <nz-input-group [nzSuffix]="suffixIconSearch">
+      <input type="text" nz-input placeholder="输入名称或编码搜索"/>
+      <ng-template #suffixIconSearch>
+        <i nz-icon nzType="search"></i>
+      </ng-template>
+    </nz-input-group>
+  </div>
+
+  <div class="flex-grow overflow-y-scroll -mr-5 pr-1">
+    <nz-tree-view *ngIf="dataSource" [nzTreeControl]="treeControl" [nzDataSource]="dataSource" [nzDirectoryTree]="true">
+
+      <nz-tree-node *nzTreeNodeDef="let node" nzTreeNodePadding nzTreeNodePaddingIndent="16"
+                    style="padding-top: 2px; padding-bottom: 6px;">
+        <nz-tree-node-toggle nzTreeNodeNoopToggle class="w-4"></nz-tree-node-toggle>
+        <nz-tree-node-checkbox
+          *ngIf="checkboxVisible"
+          [nzDisabled]="node.disabled"
+          [nzChecked]="selection.isSelected(node)"
+          (nzClick)="leafItemSelectionToggle(node)"
+        ></nz-tree-node-checkbox>
+        <nz-tree-node-option
+          [nzDisabled]="node.disabled"
+          [nzSelected]="selection.isSelected(node)"
+          (click)="toggleSelection(node, $event)"
+          class="truncate ..."
+        >
+          <i class="text-blue-500 fas fa-folder"></i>
+          <span>{{ node.name }}</span>
+        </nz-tree-node-option>
+      </nz-tree-node>
+
+      <nz-tree-node *nzTreeNodeDef="let node; when: hasChildren" nzTreeNodePadding nzTreeNodePaddingIndent="16"
+                    style="padding-top: 2px; padding-bottom: 6px;">
+        <nz-tree-node-toggle class="w-4">
+          <!--      <i nz-icon nzType="caret-down" nzTreeNodeToggleRotateIcon></i>-->
+          <i class="fas fa-caret-right transform" [ngClass]="{'rotate-45': treeControl.isExpanded(node)}"></i>
+        </nz-tree-node-toggle>
+        <nz-tree-node-checkbox
+          *ngIf="checkboxVisible"
+          [nzDisabled]="node.disabled"
+          [nzChecked]="descendantsAllSelected(node)"
+          [nzIndeterminate]="descendantsPartiallySelected(node)"
+          (nzClick)="itemSelectionToggle(node)"
+        ></nz-tree-node-checkbox>
+        <nz-tree-node-option
+          [nzDisabled]="node.disabled"
+          [nzSelected]="selection.isSelected(node)"
+          (click)="toggleSelection(node, $event)"
+          (dblclick)="toggleExpanded(node, $event)"
+          class="truncate ..."
+          style="margin: -2px 0; padding: 2px 0;"
+        >
+          <!--      (nzClick)="selection.toggle(node)"-->
+          <!--      (dblclick)="treeControl.toggle(node)"-->
+          <!--    >-->
+
+          <i class="text-blue-500 fas w-4"
+             [ngClass]="{'fa-folder': !treeControl.isExpanded(node), 'fa-folder-open': treeControl.isExpanded(node)}"
+             [class]="node.type ? 'node-type__' + node.type : ''"></i>
+          <span>{{ node.name }}</span>
+        </nz-tree-node-option>
+      </nz-tree-node>
+
+    </nz-tree-view>
+  </div>
+</div>

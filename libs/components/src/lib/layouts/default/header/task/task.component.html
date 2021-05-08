@@ -1,0 +1,48 @@
+<a class="nav-link" title="待办" nz-dropdown [nzDropdownMenu]="taskMenu" nzTrigger="click" nzPlacement="bottomRight">
+  <!-- <nz-badge [nzCount]="5"> -->
+  <nz-badge [nzDot]="true">
+<!--    <i nz-icon nzType="exception" nzTheme="outline"></i>-->
+    <i class="fal fa-tasks"></i>
+  </nz-badge>
+</a>
+
+<nz-dropdown-menu #taskMenu="nzDropdownMenu">
+  <!-- <nz-card nz-menu nzTitle="待办事项" style="width: 320px;">
+    </nz-card> -->
+  <div nz-menu style="width: 320px;">
+    <nz-tabset nzTabBarGutter="16" [nzTabBarExtraContent]="toTaskManageTpl">
+      <ng-template #toTaskManageTpl>
+         <a href="javascript: void(0)" class="mr-3">待办设置</a>
+      </ng-template>
+
+      <nz-tab nzTitle="待办">
+        <nz-list [nzDataSource]="tasks" [nzRenderItem]="taskListItem" style="margin-top: -8px;">
+          <ng-template #taskListItem let-i>
+            <nz-list-item class="px-3" [nzExtra]="taskItemExtra">
+              <nz-list-item-meta [nzTitle]="taskItemTitle" [nzAvatar]="i.avatar" [nzDescription]="taskItemDesc">
+                <ng-template #taskItemTitle>
+                  {{i.title}}
+                  <div *ngIf="i.extra" class="float-right">
+                    <nz-tag [nzColor]="i.color" class="mr-0">{{i.extra}}</nz-tag>
+                  </div>
+                </ng-template>
+                <ng-template #taskItemDesc>
+                  <div>{{i.description}}</div>
+                  <div class="text-gray">{{i.datetime}}</div>
+                </ng-template>
+              </nz-list-item-meta>
+
+              <ng-template #taskItemExtra>
+                <!-- <div *ngIf="i.extra">
+                    <nz-tag [nzColor]="i.color">{{i.extra}}</nz-tag>
+                </div> -->
+              </ng-template>
+            </nz-list-item>
+          </ng-template>
+        </nz-list>
+        <nz-divider class="my-1"></nz-divider>
+        <button nz-button nzBlock="true" nzType="link" class="my-1">查看更多</button>
+      </nz-tab>
+    </nz-tabset>
+  </div>
+</nz-dropdown-menu>

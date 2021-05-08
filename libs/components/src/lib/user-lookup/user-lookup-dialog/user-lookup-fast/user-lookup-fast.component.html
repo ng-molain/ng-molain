@@ -1,0 +1,26 @@
+<textarea nz-input [nzAutosize]="{minRows: 3, maxRows: 8}" placeholder="请输入一组用户名，点击‘开始校验’"></textarea>
+
+<div class="my-3">
+    <button nz-button nzType="primary">开始校验</button>
+</div>
+<!-- 延迟自动校验 -->
+
+<nz-alert nzType="info" nzShowIcon [nzMessage]="infoMessageTpl" class="my-3">
+    <ng-template #infoMessageTpl>
+        <p class="mb-0">
+            请输入一组用户名后，点击 “<span class="text-primary">开始校验</span>”。
+            校验无误后点击 “<span class="text-primary">确定</span>” 完成操作。
+        </p>
+    </ng-template>
+</nz-alert>
+
+<nz-alert nzType="warning" nzShowIcon [nzMessage]="warningMessageTpl" class="mt-3">
+    <ng-template #warningMessageTpl>
+        <h4 style="line-height: 21px;">注意事项</h4>
+        <ul class="list-unstyled mb-0">
+            <li>1. 该功能只支持按用户名添加</li>
+            <li>2. 用户名可以用如下字符分割 ',' ';' ':'</li>
+            <li>3. 不要输入大量的用户名，最好不要超过200条</li>
+        </ul>
+    </ng-template>
+</nz-alert>

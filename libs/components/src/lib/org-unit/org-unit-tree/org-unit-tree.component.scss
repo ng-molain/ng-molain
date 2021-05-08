@@ -1,0 +1,21 @@
+
+::ng-deep {
+  .ant-tree.ant-tree-directory .ant-tree-treenode-selected:hover,
+  .ant-tree.ant-tree-directory .ant-tree-treenode-selected {
+    & * {
+      @apply text-primary;
+    }
+
+    &::before {
+      @apply bg-gray-300;
+    }
+  }
+}
+
+
+.node-type__SITE_VIRTUAL_ROOT:before {
+  //content: "\f0e8";
+  //content: "\f19c";
+  //content: "\f594";
+  content: "\f015";
+}

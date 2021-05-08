@@ -1,0 +1,26 @@
+//@import "~@ng-molain/common/style/theming.scss";
+
+.list-card {
+  height: 360px;
+  max-height: 480px;
+}
+
+
+ul.selection-list {
+  li {
+    cursor: pointer;
+
+    .selection-list__remove-icon {
+      //color: $gray-500;
+      color: #cccccc;
+    }
+
+    &:hover {
+      //background: lighten($primary, 32%);
+
+      .selection-list__remove-icon {
+        //color: $gray-700;
+      }
+    }
+  }
+}

@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@ng-molain/common": ["libs/common/src/index.ts"],
+      "@ng-molain/components": ["libs/components/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
