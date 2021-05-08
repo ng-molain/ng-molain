@@ -1,0 +1,89 @@
+= NG-MOLAIN
+
+一个基于 Antd 中后台前端解决方案，提供更多通用性业务模块，让开发者更加专注于业务。
+
+== 快速上手
+
+== 链接
+
+== 特性
+
+== 技术栈
+
+技术栈罗列依赖的一级依赖和重要的传递依赖。
+
+.技术栈
+|===
+|名称 |版本 |说明 |相关文档
+
+|Angular
+|
+|
+|
+
+|NX
+|
+|
+|
+
+|RxJS
+|
+|
+|
+
+|WebPack
+|
+|
+|
+
+|ng-zorro
+|
+|
+|
+
+|@angular/cdk
+|
+|
+|
+
+|tailwindcss
+|
+|
+|
+
+|fontasome
+|
+|
+|
+
+|mockjs
+|
+|
+|
+
+|Lodash[-es]
+|
+|
+|
+|===
+
+
+.批量安装脚本
+----
+# use add
+npm add ng-zorro-antd
+
+# dependencies
+npx npm install --save
+
+# devDependencies
+npx npm install --save-dev \
+  @angular-builders/custom-webpack \
+  tailwindcss
+
+
+----
+
+== 参考
+
+ng-alain.com
