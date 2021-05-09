@@ -27,14 +27,21 @@
 .layout-content {
   position: relative;
 
-  @apply p-6 overflow-y-auto;
+  //@apply p-6 overflow-y-auto;
+  padding: 1.5rem;
+  overflow-y: auto;
 
   &::ng-deep {
     nz-page-header.ant-page-header {
-      @apply -m-6 mb-6 py-2;
+      //@apply -m-6 mb-6 py-2;
+      margin: -1.5rem;
+      margin-bottom: 1.5rem;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
 
       &.has-footer {
-        @apply pb-0;
+        //@apply pb-0;
+        padding-bottom: 0;
       }
     }
   }
