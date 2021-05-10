@@ -11,7 +11,7 @@ import {OrgUnitLoader} from "../org-unit-loader";
 import {isEmpty} from "lodash-es";
 
 @Component({
-  selector: 'system-ui-org-unit-tree',
+  selector: 'ml-org-unit-tree',
   templateUrl: './org-unit-tree.component.html',
   styleUrls: ['./org-unit-tree.component.scss']
 })
