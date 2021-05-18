@@ -1,5 +1,5 @@
 
-::ng-deep {
+:host ::ng-deep {
   .ant-tree.ant-tree-directory .ant-tree-treenode-selected:hover,
   .ant-tree.ant-tree-directory .ant-tree-treenode-selected {
     & * {

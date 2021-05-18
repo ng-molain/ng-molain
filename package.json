@@ -27,7 +27,7 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help",
     "common:build": "ng build common --prod",
-    "components:build": "ng build components --prod",
+    "components:build": "ng build components --prod && ts-node -P ./tools/build/tsconfig.json ./tools/build/components.build",
     "libs:build": "npm run common:build && npm run components:build",
     "libs:publish": "tools/publish/libs.publish.sh"
   },
@@ -73,6 +73,8 @@
     "ng-packagr": "^11.0.0",
     "polished": "^4.1.2",
     "prettier": "2.2.1",
+    "sass": "^1.32.13",
+    "scss-bundle": "^3.1.2",
     "tailwindcss": "^2.1.2",
     "ts-jest": "26.5.5",
     "ts-node": "~9.1.1",

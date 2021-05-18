@@ -24,7 +24,8 @@
           [nzDisabled]="node.disabled"
           [nzSelected]="selection.isSelected(node)"
           (click)="toggleSelection(node, $event)"
-          class="truncate ..."
+          class="truncate"
+          style="margin: -2px 0; padding: 2px 0;"
         >
           <i class="text-blue-500 fas fa-folder"></i>
           <span>{{ node.name }}</span>
@@ -49,7 +50,7 @@
           [nzSelected]="selection.isSelected(node)"
           (click)="toggleSelection(node, $event)"
           (dblclick)="toggleExpanded(node, $event)"
-          class="truncate ..."
+          class="truncate"
           style="margin: -2px 0; padding: 2px 0;"
         >
           <!--      (nzClick)="selection.toggle(node)"-->

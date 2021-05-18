@@ -4,7 +4,6 @@
     <ml-layout-header [headerInfo]="headerInfo" [mainMenu]="mainMenu" class="layout-default-header"></ml-layout-header>
   </nz-header>
   <nz-layout>
-    <!-- <nz-sider class="bg-white ml-sider" nzCollapsible [nzCollapsed]="layoutServcie.sidebarCollapsed" [nzTrigger]="null" nzCollapsedWidth="64"> -->
     <nz-sider class="bg-white ml-sider" [ngClass]="{'hidden': sidebarCollapsed}">
       <ml-layout-sidebar class="layout-default-sidebar"></ml-layout-sidebar>
     </nz-sider>
