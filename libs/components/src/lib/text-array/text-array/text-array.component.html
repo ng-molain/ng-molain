@@ -1,7 +1,7 @@
 <div [formGroup]="form">
   <ng-container formArrayName="formArray">
-    <div *ngFor="let item of formArray.controls; index as i" class="flex">
-      <input type="text" [formControlName]="i" placeholder="">
+    <div *ngFor="let item of formArray.controls; index as i" class="flex w-full">
+      <input type="text" nz-input [formControlName]="i" placeholder="">
       <a (click)="remove(i)"><i class="far fa-trash-alt"></i></a>
     </div>
     <button nz-button nzType="dashed" nzBlock (click)="add()">
