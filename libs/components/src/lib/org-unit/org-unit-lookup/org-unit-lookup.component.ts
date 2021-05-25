@@ -20,9 +20,11 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
   styleUrls: ['./org-unit-lookup.component.scss'],
   providers: [{
     provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => OrgUnitLookupComponent), multi: true
-  }]
+  }],
 })
 export class OrgUnitLookupComponent implements OnInit, ControlValueAccessor {
+  @HostBinding('class.org-unit-lookup')
+  __hostStyle = true;
 
   @Input() isMultiple: boolean = false;
   @Input() allowClear: boolean;

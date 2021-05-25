@@ -1,0 +1,32 @@
+.org-unit-lookup {
+  &.ng-dirty.ng-invalid {
+    .selector, .selector:hover {
+      @apply border-red-500;
+    }
+  }
+
+  .selector {
+    @apply border py-1 px-3 rounded-sm;
+
+    &:hover {
+      @apply border-primary;
+    }
+
+    &.selector-single {
+
+    }
+
+    &.selector-multiple {
+
+    }
+
+    .placeholder {
+      @apply text-gray-400;
+    }
+  }
+
+  .ant-select-arrow {
+    font-size: 14px;
+    color: gray;
+  }
+}
