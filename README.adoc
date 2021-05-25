@@ -2,6 +2,16 @@
 
 一个基于 Antd 中后台前端解决方案，提供更多通用性业务模块，让开发者更加专注于业务。
 
+== 发布
+
+
+
+```
+npm version 0.8.0-beta.7 -m "Release version %s"
+npm run libs:build
+npm run libs:publish
+```
+
 == 快速上手
 
 == 链接
