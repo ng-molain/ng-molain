@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Optional, Output} from '@angular/core';
 import {SelectionModel} from "@angular/cdk/collections";
 import {OrgUnitFlatNode, OrgUnitNode, transformer} from "../org-unit.typings";
 import {FlatTreeControl} from "@angular/cdk/tree";
@@ -57,7 +57,7 @@ export class OrgUnitTreeComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() keepSelection: boolean = false;
   @Input() searchVisible: boolean = false;
 
-  constructor(private orgUnitLoader: OrgUnitLoader) {
+  constructor(@Optional() private orgUnitLoader: OrgUnitLoader) {
     this._updateSelectionMode(false);
   }
 
@@ -67,7 +67,7 @@ export class OrgUnitTreeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit(): void {
     // this.dataSource.setData(OUS);
-    if (!this.dataSource) {
+    if (!this.dataSource && this.orgUnitLoader) {
       this._updateDataSource(this.orgUnitLoader.loadChildren);
     }
 

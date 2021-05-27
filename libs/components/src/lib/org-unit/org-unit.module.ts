@@ -25,6 +25,7 @@ import {
 } from "@ant-design/icons-angular/icons";
 import {IconDefinition} from "@ant-design/icons-angular";
 import {OrgUnitLoader} from "./org-unit-loader";
+import {OrgUnitLookupService} from "./org-unit-lookup.service";
 
 const icons: IconDefinition[] = [
   CloseOutline,
@@ -70,7 +71,8 @@ const icons: IconDefinition[] = [
     OrgUnitLookupDialogComponent
   ],
   providers: [
-    OrgUnitLoader
+    OrgUnitLoader,
+    OrgUnitLookupService
   ]
 })
 export class OrgUnitModule { }

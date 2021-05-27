@@ -25,8 +25,11 @@
     </div>
 
     <div class="h-96">
-      <ml-org-unit-tree [searchVisible]="searchVisible" [multipleSelect]="multipleSelect"
-                               (selectionChange)="select($event)"></ml-org-unit-tree>
+      <ml-org-unit-tree [searchVisible]="searchVisible"
+                        [multipleSelect]="multipleSelect"
+                        [loadChildrenFn]="loadChildrenFn"
+                        (selectionChange)="select($event)">
+      </ml-org-unit-tree>
     </div>
   </div>
 

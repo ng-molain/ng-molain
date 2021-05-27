@@ -3,6 +3,7 @@ import {SelectionModel} from "@angular/cdk/collections";
 import {OrgUnitFlatNode} from "../org-unit.typings";
 import {isArray} from "lodash-es";
 import {NzModalRef} from "ng-zorro-antd/modal";
+import {OrgUnitLoadChildrenFn} from "..";
 
 @Component({
   selector: 'ml-org-unit-lookup-dialog',
@@ -17,6 +18,7 @@ export class OrgUnitLookupDialogComponent implements OnInit {
   searchVisible: boolean = false;
 
   @Input() multipleSelect: boolean = false;
+  @Input() loadChildrenFn: OrgUnitLoadChildrenFn;
 
   constructor(private modalRef: NzModalRef,) { }
 
