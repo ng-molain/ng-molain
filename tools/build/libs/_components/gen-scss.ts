@@ -58,20 +58,6 @@ function afterBundle(paths: string[]) {
 
     compileSass();
 
-    readFile(path.join(projectDistRootPath, '_components.css'), (err, css) => {
-      postcss([require("tailwindcss")("./tailwind.config.js")])
-        .process(css, {from: path.join(projectDistRootPath, '_components.css'), to: path.join(projectDistRootPath, 'components.css')})
-        .then(result => {
-          writeFile(path.join(projectDistRootPath, 'components.css'), result.css, () => true)
-          if ( result.map ) {
-            writeFile(path.join(projectDistRootPath, 'components.css.map'), result.map.toString(), () => true)
-          }
-        }).catch((reason) => {
-          console.error("Error:", reason);
-          log.error(reason);
-      })
-    });
-
     return 0;
   }).catch(error => {
     console.error('Sass bundling failed');
@@ -122,6 +108,23 @@ function compileSass() {
 
     writeFileSync(path.join(projectDistRootPath, '_components.css'), result.css);
     log.success(`Compiled saas file ${result.stats.entry} in ${result.stats.duration / 1000}s.`)
+
+    compileCss();
   });
 }
 
+function compileCss() {
+  readFile(path.join(projectDistRootPath, '_components.css'), (err, css) => {
+    postcss([require("tailwindcss")("./tailwind.config.js")])
+      .process(css, {from: path.join(projectDistRootPath, '_components.css'), to: path.join(projectDistRootPath, 'components.css')})
+      .then(result => {
+        writeFile(path.join(projectDistRootPath, 'components.css'), result.css, () => true)
+        if ( result.map ) {
+          writeFile(path.join(projectDistRootPath, 'components.css.map'), result.map.toString(), () => true)
+        }
+      }).catch((reason) => {
+      console.error("Error:", reason);
+      log.error(reason);
+    })
+  });
+}
