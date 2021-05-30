@@ -1,0 +1,10 @@
+<form nz-form [formGroup]="form" (ngSubmit)="submitForm(form.value, $event)">
+
+  <nz-form-item>
+    <nz-form-label nzSm="6">单个组织</nz-form-label>
+    <nz-form-control nzSm="14">
+      <ml-org-unit-lookup formControlName="ouSingle"></ml-org-unit-lookup>
+    </nz-form-control>
+  </nz-form-item>
+
+</form>
