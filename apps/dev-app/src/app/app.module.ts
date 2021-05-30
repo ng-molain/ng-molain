@@ -4,15 +4,15 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
 import {ConsoleLayoutsModule} from "@ng-molain/components";
 import {TranslateModule} from "@ngx-translate/core";
-import {RouterModule} from "@angular/router";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {AppRoutingModule} from "./app-routing.module";
 
 @NgModule({
   imports: [
     BrowserModule,
     TranslateModule.forRoot(),
     ConsoleLayoutsModule,
-    RouterModule.forRoot([]),
+    AppRoutingModule,
     BrowserAnimationsModule,
   ],
   declarations: [AppComponent],

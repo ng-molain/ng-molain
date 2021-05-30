@@ -4,15 +4,18 @@ import {
   forwardRef,
   HostBinding,
   HostListener,
-  Input,
+  Input, OnChanges,
   OnInit,
-  Renderer2,
-  TemplateRef
+  Renderer2, SimpleChanges,
+  TemplateRef,
+  ViewEncapsulation
 } from '@angular/core';
 import {NzModalRef} from "ng-zorro-antd/modal";
 import {isArray, isEmpty as _isEmpty} from "lodash-es";
 import {OrgUnitLookupService} from "../org-unit-lookup.service";
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
+import {SelectionModel} from "@angular/cdk/collections";
+import {InputBoolean} from "ng-zorro-antd/core/util";
 
 @Component({
   selector: 'ml-org-unit-lookup',
@@ -21,12 +24,13 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
   providers: [{
     provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => OrgUnitLookupComponent), multi: true
   }],
+  encapsulation: ViewEncapsulation.None
 })
-export class OrgUnitLookupComponent implements OnInit, ControlValueAccessor {
+export class OrgUnitLookupComponent implements OnInit, OnChanges, ControlValueAccessor {
   @HostBinding('class.org-unit-lookup')
   __hostStyle = true;
 
-  @Input() isMultiple: boolean = false;
+  @Input() @InputBoolean() isMultiple: boolean = false;
   @Input() allowClear: boolean;
   @Input() size: 'large' | 'small';
   @Input() maxTagCount: number;
@@ -43,9 +47,8 @@ export class OrgUnitLookupComponent implements OnInit, ControlValueAccessor {
   }
   private _disabled: boolean;
 
-  value;
-
-  selectedNodes: any[] = [];
+  _initialValue: any;
+  selection = new SelectionModel<any>(false);
 
   private _modalRef: NzModalRef;
 
@@ -79,8 +82,7 @@ export class OrgUnitLookupComponent implements OnInit, ControlValueAccessor {
   }
 
   get isEmpty(): boolean {
-    // return _isEmpty(this.value);
-    return _isEmpty(this.selectedNodes);
+    return this.selection.isEmpty();
   }
 
 
@@ -95,9 +97,35 @@ export class OrgUnitLookupComponent implements OnInit, ControlValueAccessor {
     private userGroupLookupService: OrgUnitLookupService
   ) {
     this.renderer.addClass(this.elementRef.nativeElement, 'ant-select');
+    this._updateSelectionModel();
   }
 
   ngOnInit() {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const isMultipleChange = changes['isMultiple'];
+    if (isMultipleChange) {
+      this._updateSelectionModel();
+    }
+  }
+
+  _updateSelectionModel() {
+    const preSelection = this.selection;
+    if (!!preSelection && !!this.isMultiple === preSelection.isMultipleSelection()) {
+      return ;
+    }
+    this.selection = new SelectionModel<any>(this.isMultiple);
+    this.selection.select(...preSelection.selected);
+    preSelection.changed.complete();
+
+    this.selection.changed.subscribe(
+      (selectionChange) => {
+        const {source, added, removed} = selectionChange;
+        const value = this.isMultiple ? source.selected : (source.hasValue() ? source.selected[0] : null);
+        this.onChange(value);
+      }
+    );
   }
 
   displayWith(item?: any) {
@@ -115,15 +143,10 @@ export class OrgUnitLookupComponent implements OnInit, ControlValueAccessor {
     const modalRef = this._modalRef = this.userGroupLookupService.openLookup({
       isMultiple: this.isMultiple,
       onOk: (_result) => {
-        this.selectedNodes = _isEmpty(_result) ? [] : (isArray(_result) ? [..._result] : [_result]);
+        const selectedNodes = _isEmpty(_result) ? [] : (isArray(_result) ? [..._result] : [_result]);
 
-        if (this.isMultiple) {
-          this.onChange(this.selectedNodes);
-        } else if (!_isEmpty(this.selectedNodes)){
-          this.onChange(this.selectedNodes[0]);
-        } else {
-          this.onChange(null);
-        }
+        this.selection.clear();
+        this.selection.select(...selectedNodes);
       }
     });
     modalRef.afterClose.subscribe((_) => {
@@ -144,8 +167,13 @@ export class OrgUnitLookupComponent implements OnInit, ControlValueAccessor {
   }
 
   setDisabledState(isDisabled: boolean): void {
+    this._disabled = isDisabled;
   }
 
   writeValue(obj: any): void {
+    const value = this._initialValue = obj;
+    if (!_isEmpty(value)) {
+      this.selection.select(...(isArray(value) ? value : [value]));
+    }
   }
 }

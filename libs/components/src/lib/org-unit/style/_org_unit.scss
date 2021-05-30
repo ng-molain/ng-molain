@@ -1,4 +1,6 @@
 .org-unit-lookup {
+  @apply bg-white;
+
   &.ng-dirty.ng-invalid {
     .selector, .selector:hover {
       @apply border-red-500;
