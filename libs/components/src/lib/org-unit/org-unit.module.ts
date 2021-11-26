@@ -26,6 +26,7 @@ import {
 import {IconDefinition} from "@ant-design/icons-angular";
 import {OrgUnitLoader} from "./org-unit-loader";
 import {OrgUnitLookupService} from "./org-unit-lookup.service";
+import {NzModalModule} from "ng-zorro-antd/modal";
 
 const icons: IconDefinition[] = [
   CloseOutline,
@@ -59,6 +60,7 @@ const icons: IconDefinition[] = [
     NzSelectModule,
     NzIconModule.forChild(icons),
     NzButtonModule,
+    NzModalModule,
   ],
   declarations: [
     OrgUnitTreeComponent,

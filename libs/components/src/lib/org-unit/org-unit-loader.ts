@@ -29,7 +29,7 @@ export class OrgUnitLoader {
       }));
   };
 
-  private getNodes(parentId: string): Observable<OrgUnitNode[]> {
+  protected getNodes(parentId: string): Observable<OrgUnitNode[]> {
     const params: any = {};
     if (parentId) {
       params.parentId = parentId;
