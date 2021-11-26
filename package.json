@@ -1,6 +1,6 @@
 {
   "name": "ng-molain",
-  "version": "0.11.10",
+  "version": "0.11.11",
   "license": "MIT",
   "scripts": {
     "ng": "nx",
