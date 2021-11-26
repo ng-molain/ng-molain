@@ -13,6 +13,7 @@ import {NzAlertModule} from "ng-zorro-antd/alert";
 import {NzLayoutModule} from "ng-zorro-antd/layout";
 import {NzTreeModule} from "ng-zorro-antd/tree";
 import {NzModalModule} from "ng-zorro-antd/modal";
+import {UserLookupService} from "./user-lookup.service";
 
 
 @NgModule({
@@ -36,6 +37,9 @@ import {NzModalModule} from "ng-zorro-antd/modal";
   exports: [
     UserLookupComponent,
     UserInputComponent,
+  ],
+  providers: [
+    UserLookupService,
   ],
   entryComponents: [UserLookupDialogComponent]
 })

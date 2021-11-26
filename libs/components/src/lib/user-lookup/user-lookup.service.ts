@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { UserLookupDialogComponent } from './user-lookup-dialog/user-lookup-dialog.component';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class UserLookupService {
 
     constructor(
