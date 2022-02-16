@@ -1,5 +1,8 @@
 const appName = require('./package.json').name;
 
+console.log("Custom webpack config.....")
+const primaryColor = '#4169E1';
+
 module.exports = {
   module: {
     rules: [
@@ -30,7 +33,8 @@ module.exports = {
         options: {
           lessOptions: {
             modifyVars: { // 修改主题变量
-              'primary-color': '#3450A1',
+              // 'primary-color': '#3450A1',
+              'primary-color': primaryColor,
             },
             javascriptEnabled: true
           }
@@ -46,9 +50,9 @@ module.exports = {
   },
 
   // TODO 要改为支持 Sub Project
-  output: {
-    library: `${appName}-[name]`,
-    libraryTarget: 'umd',
-    jsonpFunction: `webpackJsonp_${appName}`,
-  },
+  // output: {
+  //   library: `${appName}-[name]`,
+  //   libraryTarget: 'umd',
+  //   jsonpFunction: `webpackJsonp_${appName}`,
+  // },
 };

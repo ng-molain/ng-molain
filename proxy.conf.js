@@ -1,78 +1,46 @@
 const _ = require('lodash');
 
+const GLOBAL_PROXY_ITEM_CONFIG = {
+  "changeOrigin": true,
+  "secure": false,
+  "bypass": function (req, res, proxyOptions) {
+    req.headers["Origin"] = "http://" + req.headers['host'];
+  },
+  "logLevel": "debug"
+};
+
 const PROXY_CONFIGS = {
-  // yapi: {
-  //   "/api": {
-  //     "target": "http://yapi.parim.net",
-  //     "secure": false,
-  //     "pathRewrite": {
-  //       "^/api": "/mock/15/api"
-  //     }
-  //   }
-  // },
-  // dev: {
-  //   "/api": {
-  //     "target": "http://dev.torhea.qimooc.net",
-  //     "secure": false,
-  //     "pathRewrite": {
-  //       "^/api": "/api"
-  //     }
-  //   }
-  // },
   local: {
-    "/uims": {
-      "target": "http://localhost:7200",
-      "secure": false,
+    "/api/report-native": {
+      "target": "http://localhost:7091",
       "pathRewrite": {
-        "^/uims": "/uims"
+        "^/api/report-native": "/report-native"
       }
     },
-    "/system": {
-      "target": "http://localhost:7003",
-      "secure": false,
-      "pathRewrite": {
-        "^/system": "/system"
-      }
+    "/api": {
+      "target": "http://localhost:8085"
     },
-    "/v2/resources": {
-      "target": "http://localhost:7004",
-      "secure": false,
-      "pathRewrite": {
-        "^/v2/resources": "/v2/resources"
-      }
-    }
+    "/content": {
+      "target": "http://localhost:8085"
+    },
   }
 };
 
-_.forEach(PROXY_CONFIGS, (value) => {
-  _.assign(value['/uims'], {
-    "changeOrigin": true,
-    "bypass": function (req, res, proxyOptions) {
-      req.headers["Origin"] = "http://" + req.headers['host'];
-    },
-    "logLevel": "debug"
-  });
-  _.assign(value['/system'], {
-    "changeOrigin": true,
-    "bypass": function (req, res, proxyOptions) {
-      req.headers["Origin"] = "http://" + req.headers['host'];
-    },
-    "logLevel": "debug"
-  });
-  _.assign(value['/resources'], {
-    "changeOrigin": true,
-    "bypass": function (req, res, proxyOptions) {
-      req.headers["Origin"] = "http://" + req.headers['host'];
-    },
-    "logLevel": "debug"
-  });
+_.forEach(PROXY_CONFIGS, (conf, env) => {
+  _.forEach(conf, (item, path) => {
+    const defaultPathRewrite = {};
+    _.set(defaultPathRewrite, ['pathRewrite', `^${path}`], `${path}`);
+
+    conf[path] = _.assign({}, GLOBAL_PROXY_ITEM_CONFIG, (_.has(item, 'pathRewrite') ? {} : defaultPathRewrite), item);
+  })
 });
+// console.log(PROXY_CONFIGS)
 
 const PROXY_CONFIG_DEFAULT = PROXY_CONFIGS['local'];
 const proxyTarget = process.env['NG_PROXY_TARGET'];
 
 const proxyConfig = _.get(PROXY_CONFIGS, proxyTarget, PROXY_CONFIG_DEFAULT);
 
-console.log("当前代理目标：", _.get(proxyConfig, ['/uims', 'target']));
+console.log("当前代理目标：\n", _.map(proxyConfig, (value, key) => `${key}:${value.target}`));
 
 module.exports = proxyConfig;
