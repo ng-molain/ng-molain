@@ -11,10 +11,10 @@ import { isEmpty as _isEmpty } from "lodash-es";
 export class UserLookupComponent implements OnInit {
 
   @Input() isMultiple: boolean = false;
-  @Input() allowClear: boolean;
-  @Input() size: 'large' | 'small';
-  @Input() maxTagCount: number;
-  @Input() maxTagPlaceholder: TemplateRef<{$implicit: any[]}>;
+  @Input() allowClear: boolean = false;
+  @Input() size: 'large' | 'small' = 'small';
+  @Input() maxTagCount: number = 3;
+  @Input() maxTagPlaceholder?: TemplateRef<{$implicit: any[]}>;
   @Input() placeholder: string = "请选择用户";
 
   @Input()
@@ -24,13 +24,13 @@ export class UserLookupComponent implements OnInit {
   get disabled(): boolean {
     return this._disabled;
   }
-  private _disabled: boolean;
+  private _disabled: boolean = false;
 
-  value;
+  value?: any;
 
   selectedNodes: any[] = [];
 
-  private _modalRef: NzModalRef;
+  private _modalRef?: NzModalRef;
 
 
   @HostBinding('class.ant-select-enabled')
@@ -95,7 +95,7 @@ export class UserLookupComponent implements OnInit {
     }
     const modalRef = this._modalRef = this.userLookupService.openLookup();
     modalRef.afterClose.subscribe(() => {
-      this._modalRef = null;
+      this._modalRef = undefined;
     });
   }
 

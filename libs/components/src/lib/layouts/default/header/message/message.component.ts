@@ -10,8 +10,8 @@ export class MessageComponent implements OnInit {
 
   loading: boolean = false;
 
-  notices = [];
-  messages = [];
+  notices: any[] = [];
+  messages: any[] = [];
 
   constructor(
     // private cdr: ChangeDetectorRef

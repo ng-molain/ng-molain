@@ -30,6 +30,7 @@
     "echarts": "^5.3.0",
     "fontawesome-web": "^5.15.1",
     "lodash-es": "^4.17.21",
+    "moment": "^2.29.1",
     "ng-zorro-antd": "^13.0.1",
     "rxjs": "~7.4.0",
     "tslib": "^2.0.0",

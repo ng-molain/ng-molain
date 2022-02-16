@@ -17,10 +17,10 @@ import {isEmpty} from "lodash-es";
 })
 export class OrgUnitTreeComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  private _nodeClickSubject = new Subject<{node: OrgUnitFlatNode, $event: MouseEvent}>();
+  private _nodeClickSubject = new Subject<{node: OrgUnitFlatNode, $event?: MouseEvent}>();
 
   transformer = transformer;
-  selection: SelectionModel<OrgUnitFlatNode>;
+  selection!: SelectionModel<OrgUnitFlatNode>;
   treeControl = new FlatTreeControl<OrgUnitFlatNode>(
     node => node.level,
     node => node.expandable
@@ -47,11 +47,13 @@ export class OrgUnitTreeComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  @Output() selectionChange = new EventEmitter<OrgUnitFlatNode | OrgUnitFlatNode[]>();
+  @Output() selectionChange = new EventEmitter<OrgUnitFlatNode | OrgUnitFlatNode[] | null>();
 
-  dataSource: OrgUnitDataSource;
-  @Input() set loadChildrenFn(loadChildrenFn: OrgUnitLoadChildrenFn) {
-    this._updateDataSource(loadChildrenFn);
+  dataSource!: OrgUnitDataSource;
+  @Input() set loadChildrenFn(loadChildrenFn: OrgUnitLoadChildrenFn | undefined) {
+    if (loadChildrenFn) {
+      this._updateDataSource(loadChildrenFn);
+    }
   }
 
   @Input() keepSelection: boolean = false;

@@ -5,14 +5,14 @@ import { HelpDialogComponent } from './help-dialog.component';
 @Injectable()
 export class HelpDialogService {
 
-    modalRef: NzModalRef;
+    modalRef?: NzModalRef;
 
     constructor(
         private modalService: NzModalService
     ) { }
 
     open() {
-        this.modalService.create({
+        this.modalRef = this.modalService.create({
             nzMask: false,
             nzContent: HelpDialogComponent,
             nzStyle: {
@@ -25,6 +25,8 @@ export class HelpDialogService {
     }
 
     close() {
+      if (this.modalRef) {
         this.modalRef.close();
+      }
     }
 }

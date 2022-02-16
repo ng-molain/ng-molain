@@ -1,5 +1,5 @@
 
-@import "~tailwindcss/base";
+
 
 a {
   @apply text-primary;
@@ -7,6 +7,9 @@ a {
 :focus {
   @apply outline-none;
 }
+
+//@import "~tailwindcss/components";
+//@import "~tailwindcss/utilities";
 
 @import "~tailwindcss/components";
 @import "~tailwindcss/utilities";

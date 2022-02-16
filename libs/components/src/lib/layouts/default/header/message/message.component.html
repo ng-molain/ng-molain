@@ -11,7 +11,7 @@
   <!-- <div class="bg-white rounded-sm shadow" style="width: 320px;"> -->
   <!-- TODO：【问题】shadow 和 menu 的大小有出入，明显不一致 -->
   <div nz-menu style="width: 320px;">
-    <nz-tabset nzTabBarGutter="16" [nzTabBarExtraContent]="toMessageManageTpl">
+    <nz-tabset [nzTabBarGutter]="16" [nzTabBarExtraContent]="toMessageManageTpl">
       <ng-template #toMessageManageTpl>
         <a href="javascript: void(0)" class="link-to-notice-manage">接收消息管理</a>
       </ng-template>

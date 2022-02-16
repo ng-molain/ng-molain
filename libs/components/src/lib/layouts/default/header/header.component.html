@@ -1,8 +1,8 @@
 <div class="header-logo">
-  <a [routerLink]="headerInfo.homeUrl" class="header-logo-link">
-    <img *ngIf="headerInfo.logo" [src]="headerInfo.logo" [attr.alt]="headerInfo.appName" class="header-logo-img header-logo-img-unfold inline"
+  <a [routerLink]="headerInfo?.homeUrl || '/'" class="header-logo-link">
+    <img *ngIf="headerInfo?.logo" [src]="headerInfo?.logo" [attr.alt]="headerInfo?.appName" class="header-logo-img header-logo-img-unfold inline"
       style="max-height: 40px;">
-    <div *ngIf="!headerInfo.logo" class="h-10 text-center text-2xl text-white leading-10 mr-6">{{headerInfo.appName}}</div>
+    <div *ngIf="!headerInfo?.logo" class="h-10 text-center text-2xl text-white leading-10 mr-6">{{headerInfo?.appName || ''}}</div>
   </a>
 </div>
 

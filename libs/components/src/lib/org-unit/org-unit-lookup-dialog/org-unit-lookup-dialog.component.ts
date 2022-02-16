@@ -18,14 +18,14 @@ export class OrgUnitLookupDialogComponent implements OnInit {
   searchVisible: boolean = false;
 
   @Input() multipleSelect: boolean = false;
-  @Input() loadChildrenFn: OrgUnitLoadChildrenFn;
+  @Input() loadChildrenFn?: OrgUnitLoadChildrenFn;
 
   constructor(private modalRef: NzModalRef,) { }
 
   ngOnInit() {
   }
 
-  select($event: OrgUnitFlatNode | OrgUnitFlatNode[]) {
+  select($event: OrgUnitFlatNode | OrgUnitFlatNode[] | null) {
     this.selection.clear();
     if (isArray($event)) {
       this.selection.select(...$event);

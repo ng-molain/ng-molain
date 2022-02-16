@@ -4,7 +4,7 @@ import {Injectable} from "@angular/core";
 @Injectable()
 export class ComponentsDemoMenusService implements ViewFrameworkProductService{
 
-  collapsed: boolean;
+  collapsed: boolean = false;
 
   getMenus() {
     return [

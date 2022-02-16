@@ -16,7 +16,7 @@ const statusColor = {
 export class TaskComponent implements OnInit {
 
   loading: boolean = false;
-  tasks = [];
+  tasks: any[] = [];
 
   constructor() { }
 
@@ -25,7 +25,7 @@ export class TaskComponent implements OnInit {
     setTimeout(() => {
       this.loading = false;
       this.tasks = TASKS.map((it: any) => {
-        it.color = statusColor[it.status];
+        it.color = (statusColor as any)[it.status];
         return it;
       });
     }, 1000);

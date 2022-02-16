@@ -4,7 +4,7 @@ import {BehaviorSubject, merge, Observable} from "rxjs";
 import {TreeControl} from "@angular/cdk/tree";
 import {map, tap} from "rxjs/operators";
 
-export type OrgUnitLoadChildrenFn = (node: OrgUnitFlatNode) => Observable<OrgUnitFlatNode[]>;
+export type OrgUnitLoadChildrenFn = (node?: OrgUnitFlatNode | null) => Observable<OrgUnitFlatNode[]>;
 
 export class OrgUnitDataSource implements DataSource<OrgUnitFlatNode>{
   private flattenedData: BehaviorSubject<OrgUnitFlatNode[]>;
@@ -16,7 +16,7 @@ export class OrgUnitDataSource implements DataSource<OrgUnitFlatNode>{
   }
 
   connect(collectionViewer: CollectionViewer): Observable<OrgUnitFlatNode[] | ReadonlyArray<OrgUnitFlatNode>> {
-    const  changes = [
+    const  changes: any[] = [
       collectionViewer.viewChange,
       this.treeControl.expansionModel.changed.pipe(tap(change => this.handleExpansionChange(change))),
       this.flattenedData

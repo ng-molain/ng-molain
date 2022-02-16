@@ -17,7 +17,7 @@ export interface OrgUnitFlatNode {
   loading?: boolean;
 }
 
-export const transformer = (node: OrgUnitNode, level): OrgUnitFlatNode => {
+export const transformer = (node: OrgUnitNode, level: any): OrgUnitFlatNode => {
   return {
     id: node.id,
     name: node.name,

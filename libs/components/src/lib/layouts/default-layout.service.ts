@@ -7,7 +7,7 @@ import { startWith } from 'rxjs/operators';
 })
 export class DefaultLayoutService {
     sidebarCollapsed: boolean = false;
-    
+
     private _sidebarMenus: any[] = [];
     sidebarMenus: Observable<any[]>;
 
@@ -29,7 +29,7 @@ export class DefaultLayoutService {
         this.sidebarCollapsed = true;
     }
 
-    public setSidebarMenus(menus) {
+    public setSidebarMenus(menus: any[]) {
         this._sidebarMenus = menus;
         this._sidebarMenus$.next(this._sidebarMenus);
     }

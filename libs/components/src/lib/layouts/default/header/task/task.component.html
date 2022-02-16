@@ -10,7 +10,7 @@
   <!-- <nz-card nz-menu nzTitle="待办事项" style="width: 320px;">
     </nz-card> -->
   <div nz-menu style="width: 320px;">
-    <nz-tabset nzTabBarGutter="16" [nzTabBarExtraContent]="toTaskManageTpl">
+    <nz-tabset [nzTabBarGutter]="16" [nzTabBarExtraContent]="toTaskManageTpl">
       <ng-template #toTaskManageTpl>
          <a href="javascript: void(0)" class="mr-3">待办设置</a>
       </ng-template>

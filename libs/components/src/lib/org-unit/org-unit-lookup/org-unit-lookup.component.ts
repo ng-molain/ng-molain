@@ -31,10 +31,10 @@ export class OrgUnitLookupComponent implements OnInit, OnChanges, ControlValueAc
   __hostStyle = true;
 
   @Input() @InputBoolean() isMultiple: boolean = false;
-  @Input() allowClear: boolean;
-  @Input() size: 'large' | 'small';
-  @Input() maxTagCount: number;
-  @Input() maxTagPlaceholder: TemplateRef<{$implicit: any[]}>;
+  @Input() allowClear: boolean = false;
+  @Input() size: 'large' | 'small' = 'small';
+  @Input() maxTagCount: number = 3;
+  @Input() maxTagPlaceholder?: TemplateRef<{$implicit: any[]}>;
   @Input() placeholder: string = "请选择组织";
   @Input() pickId: boolean = true;
 
@@ -45,15 +45,15 @@ export class OrgUnitLookupComponent implements OnInit, OnChanges, ControlValueAc
   get disabled(): boolean {
     return this._disabled;
   }
-  private _disabled: boolean;
+  private _disabled: boolean = false;
 
   _initialValue: any;
   selection = new SelectionModel<any>(false);
 
-  private _modalRef: NzModalRef;
+  private _modalRef?: NzModalRef;
 
-  onChange = (_) => {};
-  onTouched = (_) => {};
+  onChange = (_: any) => {};
+  onTouched = (_: any) => {};
 
 
   @HostBinding('class.ant-select-enabled')
@@ -150,7 +150,7 @@ export class OrgUnitLookupComponent implements OnInit, OnChanges, ControlValueAc
       }
     });
     modalRef.afterClose.subscribe((_) => {
-      this._modalRef = null;
+      this._modalRef = undefined;
     });
   }
 

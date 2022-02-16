@@ -14,7 +14,7 @@ export class OrgUnitLoader {
   loadChildren: OrgUnitLoadChildrenFn = (node) => {
     const {id, level} = !!node ? node : {id: null, level: -1};
 
-    return this.getNodes(id)
+    return this.getNodes(id!)
       .pipe(map(results => {
         return results.map(ou => {
           return {

@@ -25,6 +25,6 @@ export class HeaderInfo {
 }
 
 export class MenuItem {
-  link: string;
-  text: string;
+  link!: string;
+  text!: string;
 }

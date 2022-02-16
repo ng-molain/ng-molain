@@ -34,6 +34,7 @@
           }
         ],
         "styles": [
+          "apps/dev-app/src/styles/tailwind-base.scss",
           "apps/dev-app/src/styles/ng-zorro-antd.less",
           "apps/dev-app/src/styles/tailwind.scss",
           "apps/dev-app/src/styles.scss"

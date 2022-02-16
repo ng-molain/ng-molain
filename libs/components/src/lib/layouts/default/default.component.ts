@@ -9,7 +9,7 @@ import {HeaderInfo, MenuItem} from "./header/header.typings";
 })
 export class LayoutDefaultComponent implements OnInit {
 
-  @Input() headerInfo: HeaderInfo;
+  @Input() headerInfo!: HeaderInfo;
   @Input() mainMenu: MenuItem[] = [];
 
   constructor(public readonly layoutService: DefaultLayoutService) { }

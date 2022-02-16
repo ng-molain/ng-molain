@@ -11,12 +11,12 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 })
 export class PasswordComponent implements ControlValueAccessor {
   passwordVisible: boolean = false;
-  value: string;
+  value?: string;
   disabled: boolean = false;
   @Input() placeholder: string = 'Input password'
 
-  onChange = (...args) => {};
-  onTouched = (...args) => {};
+  onChange = (args: any) => {};
+  onTouched = (args: any) => {};
 
   constructor() { }
 

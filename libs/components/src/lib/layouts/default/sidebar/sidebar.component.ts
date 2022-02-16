@@ -14,7 +14,7 @@ import {get, has, isArray, isEmpty, isFunction} from "lodash-es";
 export class LayoutSidebarComponent implements OnInit, OnDestroy {
 
   menus: any = [];
-  menusSubscription: Subscription;
+  menusSubscription?: Subscription;
 
   constructor(
     // private applicationContext: ApplicationContext,

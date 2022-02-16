@@ -8,7 +8,7 @@ export class FromNowPipe implements PipeTransform {
 
   transform(value: string | Date, format?: string): string | Date{
     if (!value) {
-      return ;
+      return value;
     }
 
     moment.locale('zh-cn');
