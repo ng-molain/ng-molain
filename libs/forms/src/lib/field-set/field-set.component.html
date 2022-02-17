@@ -1,0 +1,6 @@
+<fieldset>
+  <legend *ngIf="legend">{{legend}}</legend>
+  <ng-container *ngFor="let item of formItems">
+    <ml-form-item [formItem]="item"></ml-form-item>
+  </ng-container>
+</fieldset>

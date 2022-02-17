@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@ng-molain/common": ["libs/common/src/index.ts"],
-      "@ng-molain/components": ["libs/components/src/index.ts"]
+      "@ng-molain/components": ["libs/components/src/index.ts"],
+      "@ng-molain/forms": ["libs/forms/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

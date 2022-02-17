@@ -1,9 +1,10 @@
 {
   "version": 2,
   "projects": {
+    "common": "libs/common",
+    "components": "libs/components",
     "dev-app": "apps/dev-app",
     "dev-app-e2e": "apps/dev-app-e2e",
-    "common": "libs/common",
-    "components": "libs/components"
+    "forms": "libs/forms"
   }
 }

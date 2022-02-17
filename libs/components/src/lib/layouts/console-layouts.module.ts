@@ -29,7 +29,6 @@ import {IconDefinition} from "@ant-design/icons-angular";
 import {MenuFoldOutline, MenuUnfoldOutline, UserOutline} from "@ant-design/icons-angular/icons";
 import {CommonModule} from "@angular/common";
 import {HelpDialogModule} from "../help-dialog";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
 
 const icons: IconDefinition[] = [
@@ -41,7 +40,6 @@ const icons: IconDefinition[] = [
 @NgModule({
   imports: [
     CommonModule,
-    BrowserAnimationsModule,
     HttpClientModule,
     RouterModule,
     HelpDialogModule,

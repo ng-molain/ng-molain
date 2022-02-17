@@ -5,10 +5,8 @@
   "prefix": "ng-molain",
   "targets": {
     "build": {
-      "builder": "@angular-builders/custom-webpack:browser",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "executor": "@angular-builders/custom-webpack:browser",
+      "outputs": ["{options.outputPath}"],
       "options": {
         "customWebpackConfig": {
           "path": "extra-webpack.config.js"
@@ -106,9 +104,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/apps/dev-app"
-      ],
+      "outputs": ["coverage/apps/dev-app"],
       "options": {
         "jestConfig": "apps/dev-app/jest.config.js",
         "passWithNoTests": true

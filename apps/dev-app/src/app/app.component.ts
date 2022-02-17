@@ -11,12 +11,16 @@ export class AppComponent {
 
   mainMenu: MenuItem[] = [
     {
-      link: '/components',
+      link: '/demo/components',
       text: '组件'
     },
     {
       link: '/documents',
       text: '文档'
+    },
+    {
+      link: '/demo/forms',
+      text: '表单'
     }
   ];
 }
