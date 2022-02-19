@@ -1,46 +1,33 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { TextWidgetComponent } from './text-widget/text-widget.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {VerticalLayoutComponent} from './vertical-layout/vertical-layout.component';
+import {HorizontalLayoutComponent} from './horizontal-layout/horizontal-layout.component';
+import {FieldsetComponent} from './fieldset/fieldset.component';
+import {FormWidgetRendererComponent} from "./form-widget-renderer.component";
+import {FormItemComponent} from "./form-item/form-item.component";
 import {NzFormModule} from "ng-zorro-antd/form";
-import {NzInputModule} from "ng-zorro-antd/input";
-import { SwitchWidgetComponent } from './switch-widget/switch-widget.component';
-import {NzSwitchModule} from "ng-zorro-antd/switch";
-import { NzFormControlsComponent } from './nz-form-controls/nz-form-controls.component';
-import {FormControlDirective} from "./nz-form-controls/form-control.directive";
-import {ReactiveFormsModule} from "@angular/forms";
-import {NzSelectModule} from "ng-zorro-antd/select";
-import {NzAutocompleteModule} from "ng-zorro-antd/auto-complete";
-import {NzCascaderModule} from "ng-zorro-antd/cascader";
-import {NzCheckboxModule} from "ng-zorro-antd/checkbox";
-import {NzDatePickerModule} from "ng-zorro-antd/date-picker";
-import {NzInputNumberModule} from "ng-zorro-antd/input-number";
-
+import {FormControlsModule} from "../controls/form-controls.module";
 
 
 @NgModule({
   declarations: [
-    TextWidgetComponent,
-    SwitchWidgetComponent,
-    NzFormControlsComponent,
-    FormControlDirective,
+    FormWidgetRendererComponent,
+    VerticalLayoutComponent,
+    HorizontalLayoutComponent,
+    FieldsetComponent,
+    FormItemComponent,
   ],
   imports: [
     CommonModule,
     NzFormModule,
-    NzInputModule,
-    NzSwitchModule,
-    ReactiveFormsModule,
-    NzSelectModule,
-    NzAutocompleteModule,
-    NzCascaderModule,
-    NzCheckboxModule,
-    NzDatePickerModule,
-    NzInputNumberModule
+    FormControlsModule,
   ],
   exports: [
-    TextWidgetComponent,
-    SwitchWidgetComponent,
-    NzFormControlsComponent,
+    VerticalLayoutComponent,
+    HorizontalLayoutComponent,
+    FieldsetComponent,
+    FormWidgetRendererComponent,
+    FormItemComponent,
   ]
 })
 export class FormWidgetsModule { }

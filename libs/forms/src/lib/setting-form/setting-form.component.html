@@ -1,32 +1,32 @@
-<form nz-form [nzLayout]="nzLayout" (ngSubmit)="submitForm($event)" [nzNoColon]="true">
-  <ng-container *ngFor="let item of formItems">
-    <ng-container *ngIf="item.type === 'fieldset'; else exactItemTpl"
-                  [ngTemplateOutlet]="fieldsetTpl"
-                  [ngTemplateOutletContext]="{$implicit: item}"></ng-container>
-    <ng-template #exactItemTpl>
-      <ng-container *ngTemplateOutlet="formItemTpl; context: {$implicit: item}"></ng-container>
-    </ng-template>
-  </ng-container>
-<!--  <nz-form-item>-->
-<!--    <nz-form-control nzOffset="6">-->
-<!--      <ng-content></ng-content>-->
-<!--    </nz-form-control>-->
-<!--  </nz-form-item>-->
-</form>
+<!--<form nz-form [nzLayout]="nzLayout" (ngSubmit)="submitForm($event)" [nzNoColon]="true">-->
+<!--  <ng-container *ngFor="let item of formItems">-->
+<!--    <ng-container *ngIf="item.type === 'fieldset'; else exactItemTpl"-->
+<!--                  [ngTemplateOutlet]="fieldsetTpl"-->
+<!--                  [ngTemplateOutletContext]="{$implicit: item}"></ng-container>-->
+<!--    <ng-template #exactItemTpl>-->
+<!--      <ng-container *ngTemplateOutlet="formItemTpl; context: {$implicit: item}"></ng-container>-->
+<!--    </ng-template>-->
+<!--  </ng-container>-->
+<!--&lt;!&ndash;  <nz-form-item>&ndash;&gt;-->
+<!--&lt;!&ndash;    <nz-form-control nzOffset="6">&ndash;&gt;-->
+<!--&lt;!&ndash;      <ng-content></ng-content>&ndash;&gt;-->
+<!--&lt;!&ndash;    </nz-form-control>&ndash;&gt;-->
+<!--&lt;!&ndash;  </nz-form-item>&ndash;&gt;-->
+<!--</form>-->
 
-<ng-template #formItemTpl let-item>
-  <ml-form-item [formItem]="item"></ml-form-item>
-</ng-template>
+<!--<ng-template #formItemTpl let-item>-->
+<!--  <ml-form-item [fieldSchema]="item"></ml-form-item>-->
+<!--</ng-template>-->
 
-<ng-template #itemGroupTpl let-items>
-  <ng-container *ngFor="let item of items">
-    <ng-container *ngTemplateOutlet="formItemTpl; context: {$implicit: item}"></ng-container>
-  </ng-container>
-</ng-template>
+<!--<ng-template #itemGroupTpl let-items>-->
+<!--  <ng-container *ngFor="let item of items">-->
+<!--    <ng-container *ngTemplateOutlet="formItemTpl; context: {$implicit: item}"></ng-container>-->
+<!--  </ng-container>-->
+<!--</ng-template>-->
 
-<ng-template #fieldsetTpl let-fieldSet>
-  <fieldset [ngClass]="{'collapsed': fieldSet.$collapsed}">
-    <legend *ngIf="fieldSet.legend" (click)="fieldSet.$collapsed = !fieldSet.$collapsed">{{fieldSet.legend}}</legend>
-    <ng-container *ngTemplateOutlet="itemGroupTpl; context: {$implicit: fieldSet.items}"></ng-container>
-  </fieldset>
-</ng-template>
+<!--<ng-template #fieldsetTpl let-fieldSet>-->
+<!--  <fieldset [ngClass]="{'collapsed': fieldSet.$collapsed}">-->
+<!--    <legend *ngIf="fieldSet.legend" (click)="fieldSet.$collapsed = !fieldSet.$collapsed">{{fieldSet.legend}}</legend>-->
+<!--    <ng-container *ngTemplateOutlet="itemGroupTpl; context: {$implicit: fieldSet.items}"></ng-container>-->
+<!--  </fieldset>-->
+<!--</ng-template>-->

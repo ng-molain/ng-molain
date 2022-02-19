@@ -1,0 +1,23 @@
+<nz-form-item>
+  <nz-form-label *ngIf="label"
+                 [nzNoColon]="get('ui.labelOptions.nzNoColon', false)"
+                 [nzTooltipIcon]="get('ui.labelOptions.nzTooltipIcon')"
+                 [nzTooltipTitle]="get('ui.labelOptions.nzTooltipIcon')"
+                 [nzRequired]="required"
+                 [nzSm]="6"
+  >
+    <span>{{label}}</span>
+  </nz-form-label>
+  <nz-form-control [nzExtra]="get('ui.controlWrapperOptions.nzExtra')">
+    <ml-control-renderer [mlContext]="{
+                            type: controlType,
+                            formControl: formControl,
+                            fieldSchema: fieldSchema,
+                            attrs: get('ui.controlOptions')}"
+    ></ml-control-renderer>
+  </nz-form-control>
+</nz-form-item>
+
+<ng-template #arrayProperty>
+
+</ng-template>

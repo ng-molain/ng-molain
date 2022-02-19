@@ -1,25 +1,51 @@
 
-export interface FormSchema {
-  properties: FormProperties
+export interface FormSchema extends ObjectProperty{
   rules: any;
 }
 
 export interface FormProperties {
-  [key: string]: FormProperty
+  [key: string]: ObjectProperty | ArrayProperty | FieldProperty;
 }
 
 export interface FormProperty {
   // array: arrayOfPrimitives | arrayOfObjects | arrayOfEnums
   // oneOf: oneOf(Const | ‘title’) | oneOf | allOf | anyOf
-  type: 'string' | 'boolean' | 'number' | 'bigint' | 'array' | 'object' | 'enum' | 'date' | 'time' | 'dataTime';
+  type: 'object' | 'array' | 'string' | 'boolean' | 'number' | 'bigint' | 'enum' | 'date' | 'time' | 'dataTime' |
+        'oneOf';
+  name?: string;
+  ui?: any;
+}
+
+export interface ObjectProperty extends FormProperty{
+  type: 'object';
+  properties: FormProperties
+}
+
+export interface ArrayProperty extends FormProperty {
+  type: "array",
+  items: FormProperty;
+  enum?: string[];
+}
+
+export interface FieldProperty extends FormProperty {
+  type: 'string' | 'boolean' | 'number' | 'bigint' | 'enum' | 'date' | 'time' | 'dataTime' | 'oneOf';
+  enum?: string[];
 }
 
 // type:  VerticalLayout | HorizontalLayout | Categorization | Group | Label
 // Options
 // Rules: 表单项之间的关联验证，如开始/结束时间
-export interface FormUISchema {
+export type FormUISchema = UIContainerSchema;
+
+export interface UISchema {
   type: string;
-  elements: any[];
-  scope: string; // ref to property
 }
 
+export interface UIContainerSchema extends UISchema {
+  elements: (UIContainerSchema | FormItemSchema)[];
+}
+
+export interface FormItemSchema extends UISchema {
+  $ref: string;
+  controlType?: string;
+}

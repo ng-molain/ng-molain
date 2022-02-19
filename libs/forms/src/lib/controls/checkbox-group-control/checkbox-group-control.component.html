@@ -1,0 +1,8 @@
+
+<!--<nz-checkbox-group []>-->
+
+<nz-checkbox-wrapper (nzOnChange)="formControl.setValue($event)">
+  <label *ngFor="let item of items" nz-checkbox
+         [nzValue]="item"
+         [nzDisabled]="formControl.disabled">{{item}}</label>
+</nz-checkbox-wrapper>
