@@ -39,11 +39,11 @@ fixLibsVersion() {
 fixLibsVersion
 
 # 4. publish on registry
- publishToRigistry() {
-     (cd ${ROOT}; for p in `ls .`; do npm publish $p --registry http://[your.registry]; done)
- }
+publishToRigistry() {
+   (cd ${ROOT}; for p in `ls .`; do npm publish $p --registry http://[your.registry]; done)
+}
 
- publishToRigistry
+publishToRigistry
 
 # 5. publish on npmjs
 #publishToNpmjs() {

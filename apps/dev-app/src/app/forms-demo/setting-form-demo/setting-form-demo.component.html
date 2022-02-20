@@ -1,5 +1,14 @@
 <h1 class="mb-6 text-red-500">Setting Form Demo</h1>
 
-<ml-setting-form>
+<div class="bg-white p-4 mb-6">
+  <nz-radio-group [(ngModel)]="size">
+    <label nz-radio-button nzValue="small">小（边栏）</label>
+    <label nz-radio-button nzValue="default">常规</label>
+  </nz-radio-group>
+</div>
 
-</ml-setting-form>
+<div class="bg-white py-6 border shadow-lg"
+     [ngClass]="{'w-72': size === 'small'}">
+  <ml-simple-form [schema]="schema" [mlMode]="'setting'">
+  </ml-simple-form>
+</div>

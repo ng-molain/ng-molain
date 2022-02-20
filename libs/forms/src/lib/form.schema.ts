@@ -39,6 +39,9 @@ export type FormUISchema = UIContainerSchema;
 
 export interface UISchema {
   type: string;
+  options?: {
+    [key: string]: any
+  }
 }
 
 export interface UIContainerSchema extends UISchema {

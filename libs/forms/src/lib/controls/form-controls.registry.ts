@@ -4,6 +4,7 @@ import {InputNumberControlComponent} from "./input-number-control/input-number-c
 import {RadioGroupControlComponent} from "./radio-group-control/radio-group-control.component";
 import {SelectControlComponent} from "./select-control/select-control.component";
 import {CheckboxGroupControlComponent} from "./checkbox-group-control/checkbox-group-control.component";
+import {SwitchControlComponent} from "./switch-control/switch-control.component";
 
 
 export class FormControlsRegistry {
@@ -13,6 +14,7 @@ export class FormControlsRegistry {
     formWidgetRegistry.register('radioGroup', RadioGroupControlComponent);
     formWidgetRegistry.register('select', SelectControlComponent);
     formWidgetRegistry.register('checkboxGroup', CheckboxGroupControlComponent);
+    formWidgetRegistry.register('switch', SwitchControlComponent);
 
     formWidgetRegistry.registerAlias('multiSelect', {name: 'select', config: {mode: 'multiple'}})
     formWidgetRegistry.registerAlias('anyOf', {name: 'select', config: {mode: 'multiple'}})

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SettingFormComponent } from './setting-form.component';
+import { ObjectControlComponent } from './object-control.component';
 
-describe('SettingFormComponent', () => {
-  let component: SettingFormComponent;
-  let fixture: ComponentFixture<SettingFormComponent>;
+describe('ObjectControlComponent', () => {
+  let component: ObjectControlComponent;
+  let fixture: ComponentFixture<ObjectControlComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SettingFormComponent ]
+      declarations: [ ObjectControlComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SettingFormComponent);
+    fixture = TestBed.createComponent(ObjectControlComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

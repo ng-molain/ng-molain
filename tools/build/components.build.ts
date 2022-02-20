@@ -1,8 +1,8 @@
-import { genScss } from './libs/_components/gen-scss';
+// import { genScss } from './libs/_components/gen-scss';
 
 
 export function build() {
-  genScss();
+  // genScss();
 }
 
 build();

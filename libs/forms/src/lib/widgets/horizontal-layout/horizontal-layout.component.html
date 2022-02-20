@@ -1,1 +1,5 @@
-<p>horizontal-layout works!</p>
+<div class="flex flex-row">
+  <ng-container *ngFor="let item of elements">
+    <ml-widget-renderer [uiSchema]="item"></ml-widget-renderer>
+  </ng-container>
+</div>

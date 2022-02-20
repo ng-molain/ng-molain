@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormWidgetFactory} from "./form-widget.factory";
 import {SimpleFormComponent} from './simple-form/simple-form.component';
-import {SettingFormComponent} from './setting-form/setting-form.component';
 import {NzFormModule} from "ng-zorro-antd/form";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FormWidgetRegistry} from "./form-widget.registry";
@@ -22,7 +21,6 @@ import {FormControlsRegistry} from "./controls/form-controls.registry";
   ],
   declarations: [
     SimpleFormComponent,
-    SettingFormComponent,
   ],
   providers: [
     FormWidgetFactory,
@@ -31,7 +29,6 @@ import {FormControlsRegistry} from "./controls/form-controls.registry";
   ],
   exports: [
     SimpleFormComponent,
-    SettingFormComponent,
   ]
 })
 export class NgMolainFormsModule {}

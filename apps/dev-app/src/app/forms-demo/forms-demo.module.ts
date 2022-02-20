@@ -6,6 +6,8 @@ import { SimpleFormDemoComponent } from './simple-form-demo/simple-form-demo.com
 import {NgMolainFormsModule} from "@ng-molain/forms";
 import {NzButtonModule} from "ng-zorro-antd/button";
 import { SettingFormDemoComponent } from './setting-form-demo/setting-form-demo.component';
+import {NzRadioModule} from "ng-zorro-antd/radio";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { SettingFormDemoComponent } from './setting-form-demo/setting-form-demo.
     CommonModule,
     FormsDemoRoutingModule,
     NgMolainFormsModule,
-    NzButtonModule
+    NzButtonModule,
+    NzRadioModule,
+    FormsModule
   ]
 })
 export class FormsDemoModule { }

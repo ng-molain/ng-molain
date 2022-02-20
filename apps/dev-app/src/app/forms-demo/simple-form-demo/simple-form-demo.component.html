@@ -1,6 +1,15 @@
 <h1 class="mb-6 text-red-500">Simple Form Demo</h1>
 
-<ml-simple-form>
+<div class="p-4 bg-white mb-6">
+  <nz-radio-group [(ngModel)]="nzLayout">
+    <label nz-radio-button [nzValue]="'horizontal'">水平</label>
+    <label nz-radio-button [nzValue]="'vertical'">垂直</label>
+    <label nz-radio-button [nzValue]="'inline'" [nzDisabled]="true">行内</label>
+  </nz-radio-group>
+</div>
+
+<ml-simple-form [schema]="{formSchema: formSchema, uiSchema: undefined}"
+[nzLayout]="nzLayout">
 
   <div class="space-x-4">
     <button type="submit" nz-button nzType="primary">提交</button>

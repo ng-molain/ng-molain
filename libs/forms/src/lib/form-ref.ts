@@ -15,6 +15,7 @@ export class FormRef {
   readonly rootControl: FormGroup;
   public uiSchema!: FormUISchema;
   public formSchema!: FormSchema;
+  public mode: 'setting' | 'simple' | 'search' = 'simple';
 
 
   // constructor(public readonly formSchema: FormSchema,

@@ -1,23 +1,45 @@
-<nz-form-item>
-  <nz-form-label *ngIf="label"
-                 [nzNoColon]="get('ui.labelOptions.nzNoColon', false)"
-                 [nzTooltipIcon]="get('ui.labelOptions.nzTooltipIcon')"
-                 [nzTooltipTitle]="get('ui.labelOptions.nzTooltipIcon')"
-                 [nzRequired]="required"
-                 [nzSm]="6"
-  >
-    <span>{{label}}</span>
-  </nz-form-label>
-  <nz-form-control [nzExtra]="get('ui.controlWrapperOptions.nzExtra')">
-    <ml-control-renderer [mlContext]="{
+
+<ng-container *ngIf="formMode === 'setting'; else defaultItemTpl">
+  <ng-container *ngTemplateOutlet="settingFormItemTpl"></ng-container>
+</ng-container>
+
+<ng-template #defaultItemTpl>
+  <nz-form-item>
+    <nz-form-label *ngIf="label"
+                   [nzNoColon]="get('ui.labelOptions.nzNoColon', false)"
+                   [nzTooltipIcon]="get('ui.labelOptions.nzTooltipIcon')"
+                   [nzTooltipTitle]="get('ui.labelOptions.nzTooltipIcon')"
+                   [nzRequired]="required"
+                   [nzSm]="6"
+    >
+      <span>{{label}}</span>
+    </nz-form-label>
+    <nz-form-control [nzExtra]="get('ui.controlWrapperOptions.nzExtra')">
+      <ng-container *ngTemplateOutlet="controlRendererTpl"></ng-container>
+    </nz-form-control>
+  </nz-form-item>
+</ng-template>
+
+<ng-template #settingFormItemTpl>
+  <div class="flex items-center justify-between py-1 px-4 border-b h-10">
+    <div *ngIf="label">
+      {{label}}
+    </div>
+    <div class="">
+      <ng-container *ngTemplateOutlet="controlRendererTpl"></ng-container>
+    </div>
+  </div>
+<!--  TODO && not custom control-->
+  <div *ngIf="formRef.isObjectSchema(fieldSchema)">
+<!--    <ml-widget-renderer [uiSchema]="uiSchema"></ml-widget-renderer>-->
+  </div>
+</ng-template>
+
+<ng-template #controlRendererTpl>
+  <ml-control-renderer [mlContext]="{
                             type: controlType,
                             formControl: formControl,
                             fieldSchema: fieldSchema,
                             attrs: get('ui.controlOptions')}"
-    ></ml-control-renderer>
-  </nz-form-control>
-</nz-form-item>
-
-<ng-template #arrayProperty>
-
+  ></ml-control-renderer>
 </ng-template>

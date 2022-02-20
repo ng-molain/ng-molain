@@ -1,6 +1,6 @@
 {
   "name": "ng-molain",
-  "version": "0.11.11",
+  "version": "0.13.2",
   "license": "Apache License",
   "scripts": {
     "ng": "nx",
@@ -11,7 +11,8 @@
     "test": "ng test",
     "common:build": "ng build common --prod",
     "components:build": "ng build components --prod && ts-node -P ./tools/build/tsconfig.json ./tools/build/components.build",
-    "libs:build": "npm run common:build && npm run components:build",
+    "forms:build": "ng build forms --prod",
+    "libs:build": "npm run common:build && npm run components:build && npm run forms:build",
     "libs:publish": "tools/publish/libs.publish.sh"
   },
   "private": false,

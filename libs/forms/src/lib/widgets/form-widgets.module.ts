@@ -7,6 +7,7 @@ import {FormWidgetRendererComponent} from "./form-widget-renderer.component";
 import {FormItemComponent} from "./form-item/form-item.component";
 import {NzFormModule} from "ng-zorro-antd/form";
 import {FormControlsModule} from "../controls/form-controls.module";
+import { ObjectControlComponent } from './object-control/object-control.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import {FormControlsModule} from "../controls/form-controls.module";
     HorizontalLayoutComponent,
     FieldsetComponent,
     FormItemComponent,
+    ObjectControlComponent,
   ],
   imports: [
     CommonModule,
@@ -28,6 +30,7 @@ import {FormControlsModule} from "../controls/form-controls.module";
     FieldsetComponent,
     FormWidgetRendererComponent,
     FormItemComponent,
+    ObjectControlComponent,
   ]
 })
 export class FormWidgetsModule { }
