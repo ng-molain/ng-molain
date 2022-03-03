@@ -1,0 +1,28 @@
+<div [formGroup]="formGroup" class="flex gap-1 items-center">
+  <nz-input-number formControlName="size" [nzMin]="14" [nzMax]="72"  [nzSize]="mlSize" class="w-14"></nz-input-number>
+  <ml-color-picker formControlName="color" [mlSize]="mlSize" [handleContent]="handlerTpl">
+    <ng-template #handlerTpl let-color>
+      <button type="button" nz-button nzType="text" [nzSize]="mlSize">
+        <div class="leading-none border-b-2 -mb-px" [style.border-color]="color || 'black'">
+          <i class="fal fa-font"></i>
+          <!--        <i class="fas fa-font"></i>-->
+        </div>
+      </button>
+    </ng-template>
+  </ml-color-picker>
+
+  <button type="button" nz-button [nzType]="isBold ? 'primary' : 'text'" [nzGhost]="isBold"
+          [nzSize]="mlSize" (click)="toggle('bold')">
+    <i class="fa-bold" [ngClass]="{'fas': isBold, 'fal': !isBold}"></i>
+  </button>
+
+  <button type="button" nz-button [nzType]="isItalic ? 'primary' : 'text'" [nzGhost]="isItalic"
+          [nzSize]="mlSize" (click)="toggle('italic')">
+    <i class="fa-italic" [ngClass]="{'fas': isItalic, 'fal': !isItalic}"></i>
+  </button>
+
+  <button type="button" nz-button [nzType]="isUnderline ? 'primary' : 'text'" [nzGhost]="isUnderline"
+          [nzSize]="mlSize" (click)="toggle('underline')">
+    <i class="fa-underline" [ngClass]="{'fas': isUnderline, 'fal': !isUnderline}"></i>
+  </button>
+</div>

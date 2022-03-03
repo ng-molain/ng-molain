@@ -9,6 +9,7 @@ import {
 } from "./form.schema";
 import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {each, get, has, isArray, isEmpty, isEqual, isString, map, size, toLower} from "lodash-es";
+import {NzSizeLDSType} from "ng-zorro-antd/core/types";
 
 export class FormRef {
 
@@ -16,6 +17,7 @@ export class FormRef {
   public uiSchema!: FormUISchema;
   public formSchema!: FormSchema;
   public mode: 'setting' | 'simple' | 'search' = 'simple';
+  public controlSize: NzSizeLDSType = 'default';
 
 
   // constructor(public readonly formSchema: FormSchema,

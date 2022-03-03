@@ -1,0 +1,10 @@
+<ng-container *ngIf="formControl">
+  <nz-upload [nzAction]="action">
+    <button type="button" nz-button
+            [nzType]="formRef.mode == 'setting' ? 'link' : 'default'"
+            [nzSize]="formRef.controlSize"
+            [ngClass]="{'-mx-4': formRef.mode === 'setting' && formRef.controlSize === 'default',
+            '-mx-2': formRef.mode === 'setting' && formRef.controlSize === 'small'}"
+    >选择文件</button>
+  </nz-upload>
+</ng-container>

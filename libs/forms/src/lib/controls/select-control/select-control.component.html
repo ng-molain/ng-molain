@@ -1,3 +1,3 @@
-<nz-select [formControl]="formControl" [nzAllowClear]="true" [nzMode]="mode">
+<nz-select [formControl]="formControl" [nzAllowClear]="true" [nzMode]="mode" [nzSize]="formRef.controlSize">
   <nz-option *ngFor="let item of items" [nzValue]="item" [nzLabel]="item"></nz-option>
 </nz-select>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormSchema} from "../../../../../../libs/forms/src/lib/form.schema";
+import {FormSchema} from "@ng-molain/forms";
+
 
 @Component({
   selector: 'ng-molain-setting-form-demo',
@@ -11,6 +12,10 @@ export class SettingFormDemoComponent implements OnInit {
   size: 'small' | 'default' = 'small';
 
   schema: any;
+
+  value = {
+    qIsSwitch: true
+  };
 
   constructor() { }
 
@@ -43,6 +48,35 @@ export class SettingFormDemoComponent implements OnInit {
               ui: {
                 controlType: 'switch'
               }
+            },
+            color1: {
+              type: 'string',
+              name: '颜色选择',
+              ui: {
+                controlType: 'colorPicker'
+              }
+            },
+            file1: {
+              type: 'string',
+              name: '颜色文件',
+              ui: {
+                controlType: 'upload'
+              }
+            },
+            image1: {
+              type: 'string',
+              name: '颜色图片',
+              ui: {
+                controlType: 'image'
+              }
+            },
+            fontStyle1: {
+              type: 'string', // 实际是一个object
+              name: '颜色图片',
+              ui: {
+                controlType: 'fontStyle'
+              },
+              // properties: []
             }
           },
           ui: {

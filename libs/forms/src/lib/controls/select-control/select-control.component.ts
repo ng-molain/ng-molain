@@ -19,7 +19,7 @@ export class SelectControlComponent implements OnInit {
   defaultConfig: any;
 
   constructor(private controlRef: FormControlRef,
-              private formRef: FormRef) {
+              public readonly formRef: FormRef) {
     const {context} = controlRef;
     this.formControl = context.formControl as FormControl;
     this.attrs = context.attrs;

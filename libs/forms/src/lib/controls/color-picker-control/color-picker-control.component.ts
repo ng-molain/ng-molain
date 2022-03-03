@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl} from "@angular/forms";
-import {FormControlRef} from "../form-control-ref";
-import {FormRef} from "../../form-ref";
+import {FormControlRef, FormRef} from "@ng-molain/forms";
 
 @Component({
-  selector: 'ml-switch-control',
-  templateUrl: './switch-control.component.html',
-  styleUrls: ['./switch-control.component.scss']
+  selector: 'ml-color-picker-control',
+  templateUrl: './color-picker-control.component.html',
+  styleUrls: ['./color-picker-control.component.scss']
 })
-export class SwitchControlComponent implements OnInit {
+export class ColorPickerControlComponent implements OnInit {
 
   formControl: FormControl;
   attrs: any;
@@ -22,7 +21,6 @@ export class SwitchControlComponent implements OnInit {
     this.fieldSchema = context.fieldSchema;
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
-
 }

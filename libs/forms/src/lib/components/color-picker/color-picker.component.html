@@ -1,0 +1,37 @@
+
+
+
+<div nz-popover
+     nzPopoverTitle="选择颜色"
+     nzPopoverTrigger="click"
+     [nzPopoverContent]="popoverPickerTpl"
+>
+  <ng-container *ngTemplateOutlet="handleContent || defaultHandleContent; context: {$implicit: value}"></ng-container>
+</div>
+<!--TODO 能设置透明度？-->
+
+<ng-template #defaultHandleContent>
+  <!--  TODO 显示无色状态 无设置-->
+  <div class="border border-gray-500 cursor-pointer"
+       [ngClass]="{'h-6 w-6': mlSize !== 'small', 'h-5 w-5': mlSize === 'small'}"
+       style="padding: 1px;">
+    <div *ngIf="value" class=""
+         [ngClass]="{'h-5 w-5': mlSize !== 'small', 'h-4 w-4': mlSize === 'small'}"
+         [style.background-color]="value"></div>
+    <div *ngIf="!value" class="h-5 w-5">无</div>
+  </div>
+</ng-template>
+
+<ng-template #popoverPickerTpl>
+  <ul class="flex flex-wrap w-56 gap-1">
+    <li *ngFor="let item of colorOptions"
+        class="w-5 h-5 border" style="padding: 1px;"
+        [ngClass]="{'border-primary': selection.isSelected(item)}"
+        (click)="selection.select(item)"
+    >
+      <div class="w-4 h-4" [style.background-color]="item"></div>
+    </li>
+  </ul>
+<!--  TODO 输入自定义颜色-->
+</ng-template>
+

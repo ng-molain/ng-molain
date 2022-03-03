@@ -1,0 +1,6 @@
+<ng-container *ngIf="formControl">
+  <div [ngClass]="{'-mx-2': formRef.mode === 'setting' && formRef.controlSize === 'default',
+            '-mx-1': formRef.mode === 'setting' && formRef.controlSize === 'small'}">
+    <ml-font-style [formControl]="formControl" [mlSize]="formRef.controlSize"></ml-font-style>
+  </div>
+</ng-container>

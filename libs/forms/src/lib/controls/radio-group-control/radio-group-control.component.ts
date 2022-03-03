@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormControl} from "@angular/forms";
-import {get} from "lodash-es";
+import {get, has} from "lodash-es";
 import {FormControlRef} from "../form-control-ref";
+import {FormRef} from "../../form-ref";
 
 @Component({
   selector: 'ml-radio-group-control',
@@ -14,11 +15,19 @@ export class RadioGroupControlComponent implements OnInit {
   attrs: any;
   fieldSchema: any;
 
-  constructor(private controlRef: FormControlRef) {
+  type: 'radio' | 'button' = 'radio';
+
+  constructor(private controlRef: FormControlRef,
+              public readonly formRef: FormRef) {
     const {context} = controlRef;
     this.formControl = context.formControl as FormControl;
     this.attrs = context.attrs;
     this.fieldSchema = context.fieldSchema;
+
+    const defaultConfig = get(context, 'config');
+    if (has(defaultConfig, 'type')) {
+      this.type = get(defaultConfig, 'type');
+    }
   }
 
   ngOnInit(): void {

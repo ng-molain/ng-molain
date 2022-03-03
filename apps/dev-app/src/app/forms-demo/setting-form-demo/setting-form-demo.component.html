@@ -9,6 +9,8 @@
 
 <div class="bg-white py-6 border shadow-lg"
      [ngClass]="{'w-72': size === 'small'}">
-  <ml-simple-form [schema]="schema" [mlMode]="'setting'">
+  <ml-simple-form [schema]="schema" [mlMode]="'setting'" [mlSize]="size" [(value)]="value">
   </ml-simple-form>
 </div>
+
+{{value | json}}

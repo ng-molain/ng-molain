@@ -12,7 +12,8 @@
   </div>
 </div>
 
-<div class="items-wrapper overflow-hidden pl-4 bg-gray-100" [ngClass]="{'h-0': !expanded}">
+<!--<div class="items-wrapper overflow-hidden pl-4 bg-gray-100" [ngClass]="{'h-0': !expanded}">-->
+<div class="items-wrapper overflow-hidden bg-gray-100" [ngClass]="{'h-0': !expanded}">
   <div class="flex flex-col bg-white bg-opacity-50">
     <ng-container *ngFor="let item of elements">
       <ml-widget-renderer [uiSchema]="item"></ml-widget-renderer>

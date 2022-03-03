@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl} from "@angular/forms";
-import {FormControlRef} from "../form-control-ref";
-import {FormRef} from "../../form-ref";
+import {FormControlRef, FormRef} from "@ng-molain/forms";
 
 @Component({
-  selector: 'ml-switch-control',
-  templateUrl: './switch-control.component.html',
-  styleUrls: ['./switch-control.component.scss']
+  selector: 'ml-font-style-control',
+  templateUrl: './font-style-control.component.html',
+  styleUrls: ['./font-style-control.component.scss']
 })
-export class SwitchControlComponent implements OnInit {
+export class FontStyleControlComponent implements OnInit {
 
   formControl: FormControl;
   attrs: any;

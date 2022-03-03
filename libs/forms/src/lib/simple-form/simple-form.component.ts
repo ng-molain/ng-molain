@@ -1,9 +1,10 @@
-import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, forwardRef, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {NzFormLayoutType} from "ng-zorro-antd/form";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {ArrayProperty, FieldProperty, FormItemSchema, FormSchema, FormUISchema, ObjectProperty} from "../form.schema";
 import {FormRef} from "../form-ref";
 import {forEach, get, map, size} from "lodash-es";
+import {NzSizeLDSType} from "ng-zorro-antd/core/types";
 
 @Component({
   selector: 'ml-simple-form',
@@ -13,7 +14,9 @@ import {forEach, get, map, size} from "lodash-es";
     {provide: FormRef, useExisting: forwardRef(() => SimpleFormComponent)}
   ]
 })
-export class SimpleFormComponent extends FormRef implements OnInit {
+export class SimpleFormComponent extends FormRef implements OnInit, OnChanges {
+  @Input() value: any;
+  @Output() valueChange = new EventEmitter<any>();
   @Input() nzLayout: NzFormLayoutType = 'horizontal';
   @Output() formSubmit = new EventEmitter<any>();
 
@@ -27,6 +30,9 @@ export class SimpleFormComponent extends FormRef implements OnInit {
 
   @Input("mlMode")
   override mode: 'setting' | 'simple' | 'search' = 'simple';
+
+  @Input("mlSize")
+  override controlSize: NzSizeLDSType = "default";
 
 
   constructor(protected override readonly fb: FormBuilder) {
@@ -46,6 +52,25 @@ export class SimpleFormComponent extends FormRef implements OnInit {
     uiSchema = this.generateUiSchema(formSchema, []) as any;
 
     this.onInit((uiSchema as any), formSchema);
+
+    this.rootControl.valueChanges.subscribe((value) => {
+      this.valueChange.emit(value);
+    });
+
+    if (this.value) {
+      // this.rootControl.markAsPending()
+      this.rootControl.reset(this.value);
+      // this.rootControl.markAsPristine()
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    const {value: valueChange} = changes;
+    // if (valueChange && !valueChange.firstChange && !!valueChange.currentValue) {
+    if (valueChange && !!valueChange.currentValue) {
+      // console.log("form value input!")
+      this.rootControl.reset(valueChange.currentValue);
+    }
   }
 
   private generateUiSchema(p: ObjectProperty | ArrayProperty | FieldProperty,
