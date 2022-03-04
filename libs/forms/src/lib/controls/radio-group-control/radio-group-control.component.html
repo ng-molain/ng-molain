@@ -1,13 +1,24 @@
-<nz-radio-group [formControl]="formControl" [nzSize]="formRef.controlSize">
-  <ng-template [ngIf]="type === 'button'" [ngIfThen]="radioButtonListTpl" [ngIfElse]="radioListTpl"></ng-template>
-</nz-radio-group>
+<!--<nz-radio-group [formControl]="formControl" [nzSize]="formRef.controlSize">-->
+<!--  <ng-template [ngIf]="type === 'button'" [ngIfThen]="radioButtonListTpl" [ngIfElse]="radioListTpl"></ng-template>-->
+<!--</nz-radio-group>-->
 
 
+<!--<ng-template #radioListTpl>-->
+<!--  <label *ngFor="let item of items" nz-radio [nzValue]="item">{{item}}</label>-->
+<!--</ng-template>-->
 
-<ng-template #radioListTpl>
-  <label *ngFor="let item of items" nz-radio [nzValue]="item">{{item}}</label>
-</ng-template>
+<!--<ng-template #radioButtonListTpl>-->
+<!--    <label *ngFor="let item of items" nz-radio-button [nzValue]="item">{{item}}</label>-->
+<!--</ng-template>-->
 
-<ng-template #radioButtonListTpl>
+<ng-container *ngIf="type === 'button'">
+  <nz-radio-group [formControl]="formControl" [nzSize]="formRef.controlSize">
     <label *ngFor="let item of items" nz-radio-button [nzValue]="item">{{item}}</label>
-</ng-template>
+  </nz-radio-group>
+</ng-container>
+
+<ng-container *ngIf="type !== 'button'">
+  <nz-radio-group [formControl]="formControl" [nzSize]="formRef.controlSize">
+    <label *ngFor="let item of items" nz-radio [nzValue]="item">{{item}}</label>
+  </nz-radio-group>
+</ng-container>

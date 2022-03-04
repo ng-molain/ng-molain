@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {FormControlRef} from "../form-control-ref";
+import {FormRef} from "../../form-ref";
 
 @Component({
   selector: 'ml-input-number-control',
@@ -13,7 +14,8 @@ export class InputNumberControlComponent implements OnInit {
   attrs: any;
   fieldSchema: any;
 
-  constructor(private controlRef: FormControlRef) {
+  constructor(private controlRef: FormControlRef,
+              public readonly formRef: FormRef) {
     const {context} = controlRef;
     this.formControl = context.formControl as FormControl;
     this.attrs = context.attrs;

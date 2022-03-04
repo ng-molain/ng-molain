@@ -9,3 +9,4 @@ export * from './lib/simple-form/simple-form.component';
 
 export * from './lib/widgets/index';
 export * from './lib/controls/index';
+export * from './lib/components/index';

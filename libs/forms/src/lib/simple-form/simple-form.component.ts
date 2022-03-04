@@ -15,8 +15,8 @@ import {NzSizeLDSType} from "ng-zorro-antd/core/types";
   ]
 })
 export class SimpleFormComponent extends FormRef implements OnInit, OnChanges {
-  @Input() value: any;
-  @Output() valueChange = new EventEmitter<any>();
+  // @Input() value: any;
+  // @Output() valueChange = new EventEmitter<any>();
   @Input() nzLayout: NzFormLayoutType = 'horizontal';
   @Output() formSubmit = new EventEmitter<any>();
 
@@ -53,24 +53,24 @@ export class SimpleFormComponent extends FormRef implements OnInit, OnChanges {
 
     this.onInit((uiSchema as any), formSchema);
 
-    this.rootControl.valueChanges.subscribe((value) => {
-      this.valueChange.emit(value);
-    });
+    // this.rootControl.valueChanges.subscribe((value) => {
+    //   this.valueChange.emit(value);
+    // });
 
-    if (this.value) {
+    // if (this.value) {
       // this.rootControl.markAsPending()
-      this.rootControl.reset(this.value);
+      // this.rootControl.reset(this.value);
       // this.rootControl.markAsPristine()
-    }
+    // }
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    const {value: valueChange} = changes;
+    // const {value: valueChange} = changes;
     // if (valueChange && !valueChange.firstChange && !!valueChange.currentValue) {
-    if (valueChange && !!valueChange.currentValue) {
+    // if (valueChange && !!valueChange.currentValue) {
       // console.log("form value input!")
-      this.rootControl.reset(valueChange.currentValue);
-    }
+      // this.rootControl.reset(valueChange.currentValue);
+    // }
   }
 
   private generateUiSchema(p: ObjectProperty | ArrayProperty | FieldProperty,

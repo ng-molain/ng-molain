@@ -1,4 +1,8 @@
 <ng-container *ngIf="formControl">
-  <nz-input-number type="text" nz-input [formControl]="formControl" [nzPlaceHolder]="attrs?.placeholder || ''"></nz-input-number>
+  <nz-input-number type="text" nz-input
+                   [formControl]="formControl"
+                   [nzPlaceHolder]="attrs?.placeholder || ''"
+                   [nzSize]="formRef.controlSize"
+  ></nz-input-number>
 </ng-container>
 

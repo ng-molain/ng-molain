@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl} from "@angular/forms";
-import {FormControlRef, FormRef} from "@ng-molain/forms";
+import {FormControlRef} from "../../controls/form-control-ref";
+import {FormRef} from "../../form-ref";
+
 
 @Component({
   selector: 'ml-font-style-control',
