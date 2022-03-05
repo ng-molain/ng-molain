@@ -11,6 +11,8 @@ import { ObjectControlComponent } from './object-control/object-control.componen
 import { GroupLayoutComponent } from './group-layout/group-layout.component';
 import {NzDividerModule} from "ng-zorro-antd/divider";
 import {FormItemDirective} from "./form-item/form-item.directive";
+import {NzToolTipModule} from "ng-zorro-antd/tooltip";
+import {NzPopoverModule} from "ng-zorro-antd/popover";
 
 
 @NgModule({
@@ -29,6 +31,8 @@ import {FormItemDirective} from "./form-item/form-item.directive";
     NzFormModule,
     FormControlsModule,
     NzDividerModule,
+    NzToolTipModule,
+    NzPopoverModule,
   ],
   exports: [
     VerticalLayoutComponent,

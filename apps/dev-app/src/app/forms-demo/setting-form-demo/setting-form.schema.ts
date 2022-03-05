@@ -115,8 +115,15 @@ export const uiSchema: FormUISchema = {
           },
           elements: [
             {type: 'control', $ref: 'qType', controlType: 'select'},
-            {type: 'control', $ref: 'qIsSwitch', controlType: 'switch'},
-            {type: 'control', $ref: 'qObject.file1', controlType: 'custom'},
+            {type: 'control', $ref: 'qIsSwitch', controlType: 'switch', options: {
+              // tip: {text: null, link: 'https://parim.net/', linkText: '查看帮助'},
+              // tip: {text: "一些帮助说明个"},
+              tip: {text: "一些帮助说明个", link: 'https://parim.net/', linkText: '查看帮助'},
+                extra: "这是一些说明包含一个 <a href='https://parim.net target='_blank'>链接</a>"
+              }},
+            {type: 'control', $ref: 'qObject.file1', controlType: 'custom', options: {
+              extra: "这是一些说明包含一个 <a href='https://parim.net target='_blank'>链接</a>"
+              }},
           ]
         }
       ]

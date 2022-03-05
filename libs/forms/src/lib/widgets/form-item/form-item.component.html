@@ -1,4 +1,3 @@
-
 <!--<ng-container *ngIf="formMode === 'setting'; else defaultItemTpl">-->
 <!--  <ng-container *ngTemplateOutlet="settingFormItemTpl"></ng-container>-->
 <!--</ng-container>-->
@@ -24,18 +23,38 @@
 </ng-template>
 
 <ng-template #settingFormItemTpl>
-  <div class="flex items-center justify-between py-1 px-4 border-b h-10">
-    <div *ngIf="label">
-      {{label}}
+  <div class="border-b">
+    <div class="flex items-center justify-between py-1 px-4 h-10">
+      <div *ngIf="label">
+        <span>{{label}}</span>
+        <ng-container *ngIf="tip && formRef.controlSize != 'small'">
+          <a *ngIf="tip.link && !tip.text" class="ml-2" [attr.href]="tip.link" target="_blank"
+             nz-tooltip [nzTooltipTitle]="tip.linkText || '点击查看帮助'">
+            <i class="far fa-question-circle"></i>
+          </a>
+          <a *ngIf="!tip.link && tip.text" class="ml-2" nz-tooltip [nzTooltipTitle]="tip.text">
+            <i class="far fa-question-circle"></i>
+          </a>
+          <a *ngIf="tip.link && tip.text" class="ml-2" nz-popover [nzPopoverContent]="tipPopover">
+            <i class="far fa-question-circle"></i>
+          </a>
+          <ng-template #tipPopover>
+            <p class="mb-0">{{tip.text}}</p>
+            <a [attr.href]="tip.link" target="_blank">{{tip.linkText || '查看帮助'}}</a>
+          </ng-template>
+        </ng-container>
+      </div>
+      <div class="">
+        <ng-container *ngTemplateOutlet="controlRendererTpl"></ng-container>
+      </div>
     </div>
-    <div class="">
-      <ng-container *ngTemplateOutlet="controlRendererTpl"></ng-container>
-    </div>
+    <div *ngIf="safeExtra" [innerHTML]="safeExtra" class="px-4 pb-1 text-gray-400"></div>
   </div>
+
 <!--  TODO && not custom control-->
-  <div *ngIf="formRef.isObjectSchema(fieldSchema)">
+<!--  <div *ngIf="formRef.isObjectSchema(fieldSchema)">-->
 <!--    <ml-widget-renderer [uiSchema]="uiSchema"></ml-widget-renderer>-->
-  </div>
+<!--  </div>-->
 </ng-template>
 
 <ng-template #controlRendererTpl>

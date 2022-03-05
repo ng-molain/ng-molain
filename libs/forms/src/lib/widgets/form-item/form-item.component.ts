@@ -5,6 +5,7 @@ import {NzTSType} from "ng-zorro-antd/core/types";
 import {AbstractControl, NgModel, Validators} from "@angular/forms";
 import {FormRef} from "../../form-ref";
 import {merge, mergeMap, mergeMapTo} from "rxjs";
+import {DomSanitizer, SafeHtml} from "@angular/platform-browser";
 
 
 
@@ -41,7 +42,8 @@ export class FormItemComponent implements OnInit {
 
 
   constructor(public readonly formRef: FormRef,
-              private ngZone: NgZone) {
+              private ngZone: NgZone,
+              private domSanitizer: DomSanitizer) {
     this.formMode = formRef.mode;
     // console.log(formRef.customItemTemplates)
     this.formRef.customItems?.changes
@@ -63,6 +65,19 @@ export class FormItemComponent implements OnInit {
   get required(): boolean {
     const formControl = this.formControl;
     return (formControl && formControl.hasValidator(Validators.required));
+  }
+
+  get safeExtra(): SafeHtml | null {
+    const extraText = this.get('ui.options.extra');
+    if (!extraText) {
+      return null;
+    }
+
+    return this.domSanitizer.bypassSecurityTrustHtml(extraText);
+  }
+
+  get tip(): any {
+    return this.get('ui.options.tip', null)
   }
 
   get(key: string | string[], defaultValue?: any): any {
