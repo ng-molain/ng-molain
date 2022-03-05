@@ -1,10 +1,21 @@
-import {Component, EventEmitter, forwardRef, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  forwardRef,
+  Input,
+  NgZone,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges
+} from '@angular/core';
 import {NzFormLayoutType} from "ng-zorro-antd/form";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormGroup} from "@angular/forms";
 import {ArrayProperty, FieldProperty, FormItemSchema, FormSchema, FormUISchema, ObjectProperty} from "../form.schema";
 import {FormRef} from "../form-ref";
 import {forEach, get, map, size} from "lodash-es";
 import {NzSizeLDSType} from "ng-zorro-antd/core/types";
+import {debounceTime} from "rxjs";
 
 @Component({
   selector: 'ml-simple-form',
@@ -35,7 +46,8 @@ export class SimpleFormComponent extends FormRef implements OnInit, OnChanges {
   override controlSize: NzSizeLDSType = "default";
 
 
-  constructor(protected override readonly fb: FormBuilder) {
+  constructor(protected override readonly fb: FormBuilder,
+              private ngZone: NgZone) {
     super(fb);
   }
 
@@ -49,13 +61,19 @@ export class SimpleFormComponent extends FormRef implements OnInit, OnChanges {
     // };
     let {uiSchema, formSchema} = this.schema;
 
-    uiSchema = this.generateUiSchema(formSchema, []) as any;
+    if (!uiSchema) {
+      uiSchema = this.generateUiSchema(formSchema, []) as any;
+    }
 
     this.onInit((uiSchema as any), formSchema);
 
-    // this.rootControl.valueChanges.subscribe((value) => {
-    //   this.valueChange.emit(value);
-    // });
+    this.rootControl.valueChanges.pipe(debounceTime(100)).subscribe((value) => {
+      // this.valueChange.emit(value);
+      // console.log("form value:", value);
+      this.ngZone.run(() => {
+        this.rootControl.patchValue(value, {emitEvent: false})
+      })
+    });
 
     // if (this.value) {
       // this.rootControl.markAsPending()

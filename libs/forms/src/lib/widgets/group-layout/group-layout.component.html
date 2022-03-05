@@ -1,0 +1,13 @@
+<div class="flex"
+     *ngIf="name && (level === 0 || formRef.controlSize != 'small')"
+     [ngClass]="{'px-4': formRef.controlSize == 'small'}"
+>
+  <h3 [id]="name" [ngClass]="{'text-gray-500 font-light': (level > 0 || formRef.controlSize == 'small')}">{{name}}</h3>
+</div>
+<!--<nz-divider *ngIf="!name || level > 0"></nz-divider>-->
+<div [ngClass]="{'bg-white': !hasChildGroup, 'rounded-sm shadow-lg': formRef.controlSize !== 'small'}" class="mb-6">
+  <ng-container *ngFor="let item of elements">
+    <ml-widget-renderer [uiSchema]="item"></ml-widget-renderer>
+  </ng-container>
+</div>
+
