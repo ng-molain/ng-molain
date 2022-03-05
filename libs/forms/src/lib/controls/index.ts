@@ -14,3 +14,6 @@ export * from './switch-control/switch-control.component';
 export * from './color-picker-control/color-picker-control.component';
 export * from './file-upload-control/file-upload-control.component';
 export * from './font-style-control/font-style-control.component';
+export * from './ciphertext-control/ciphertext-control.component';
+export * from './date-picker-control/date-picker-control.component';
+export * from './limit-in-duration-control/limit-in-duration-control.component';

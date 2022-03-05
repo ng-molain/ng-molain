@@ -1,6 +1,9 @@
 
-<ng-container *ngIf="formMode === 'setting'; else defaultItemTpl">
-  <ng-container *ngTemplateOutlet="settingFormItemTpl"></ng-container>
+<!--<ng-container *ngIf="formMode === 'setting'; else defaultItemTpl">-->
+<!--  <ng-container *ngTemplateOutlet="settingFormItemTpl"></ng-container>-->
+<!--</ng-container>-->
+<ng-container *ngIf="customTemplate; else (formMode === 'setting' ? settingFormItemTpl : defaultItemTpl)">
+  <ng-container *ngTemplateOutlet="customTemplate; context: {$implicit: implicit}"></ng-container>
 </ng-container>
 
 <ng-template #defaultItemTpl>

@@ -12,7 +12,6 @@ import {NzDatePickerModule} from "ng-zorro-antd/date-picker";
 import {NzInputNumberModule} from "ng-zorro-antd/input-number";
 import {FormControlRenderer} from "./form-control-renderer.component";
 import {InputControlComponent} from './input-control/input-control.component';
-import {FormControlsRegistry} from "./form-controls.registry";
 import {InputNumberControlComponent} from './input-number-control/input-number-control.component';
 import {SelectControlComponent} from './select-control/select-control.component';
 import {SwitchControlComponent} from './switch-control/switch-control.component';
@@ -26,7 +25,10 @@ import {ColorPickerControlComponent} from './color-picker-control/color-picker-c
 import {NzUploadModule} from "ng-zorro-antd/upload";
 import {NzButtonModule} from "ng-zorro-antd/button";
 import {FontStyleControlComponent} from './font-style-control/font-style-control.component';
-import {ColorPickerModule, FontStyleModule} from "../components";
+import {CiphertextModule, ColorPickerModule, FontStyleModule, LimitInDurationModule} from "../components";
+import { LimitInDurationControlComponent } from './limit-in-duration-control/limit-in-duration-control.component';
+import { CiphertextControlComponent } from './ciphertext-control/ciphertext-control.component';
+import { DatePickerControlComponent } from './date-picker-control/date-picker-control.component';
 
 
 @NgModule({
@@ -42,7 +44,10 @@ import {ColorPickerModule, FontStyleModule} from "../components";
     CheckboxGroupControlComponent,
     FileUploadControlComponent,
     ColorPickerControlComponent,
-    FontStyleControlComponent
+    FontStyleControlComponent,
+    LimitInDurationControlComponent,
+    CiphertextControlComponent,
+    DatePickerControlComponent,
   ],
   exports: [
     FormControlRenderer,
@@ -56,7 +61,10 @@ import {ColorPickerModule, FontStyleModule} from "../components";
     CheckboxGroupControlComponent,
     FileUploadControlComponent,
     ColorPickerControlComponent,
-    FontStyleControlComponent
+    FontStyleControlComponent,
+    LimitInDurationControlComponent,
+    CiphertextControlComponent,
+    DatePickerControlComponent,
   ],
   imports: [
     CommonModule,
@@ -74,7 +82,9 @@ import {ColorPickerModule, FontStyleModule} from "../components";
     ColorPickerModule,
     NzUploadModule,
     NzButtonModule,
-    FontStyleModule
+    FontStyleModule,
+    LimitInDurationModule,
+    CiphertextModule
   ]
 })
 export class FormControlsModule {

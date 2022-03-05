@@ -7,3 +7,5 @@ export * from './horizontal-layout/horizontal-layout.component';
 export * from './object-control/object-control.component';
 export * from './form-item/form-item.component';
 export * from './fieldset/fieldset.component';
+export * from './form-item/form-item.directive';
+export * from './group-layout/group-layout.component';

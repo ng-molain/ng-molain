@@ -8,6 +8,9 @@ import {SwitchControlComponent} from "./switch-control/switch-control.component"
 import {ColorPickerControlComponent} from "./color-picker-control/color-picker-control.component";
 import {FileUploadControlComponent} from "./file-upload-control/file-upload-control.component";
 import {FontStyleControlComponent} from "./font-style-control/font-style-control.component";
+import {LimitInDurationControlComponent} from "./limit-in-duration-control/limit-in-duration-control.component";
+import {CiphertextControlComponent} from "./ciphertext-control/ciphertext-control.component";
+import {DatePickerControlComponent} from "./date-picker-control/date-picker-control.component";
 
 
 export class FormControlsRegistry {
@@ -21,6 +24,9 @@ export class FormControlsRegistry {
     formWidgetRegistry.register('colorPicker', ColorPickerControlComponent);
     formWidgetRegistry.register('upload', FileUploadControlComponent);
     formWidgetRegistry.register('fontStyle', FontStyleControlComponent);
+    formWidgetRegistry.register('limitInDuration', LimitInDurationControlComponent);
+    formWidgetRegistry.register('ciphertext', CiphertextControlComponent);
+    formWidgetRegistry.register('datePicker', DatePickerControlComponent);
 
     formWidgetRegistry.registerAlias('radioGroupButton', {name: 'radioGroup', config: {type: 'button'}});
     formWidgetRegistry.registerAlias('multiSelect', {name: 'select', config: {mode: 'multiple'}});
@@ -28,6 +34,7 @@ export class FormControlsRegistry {
     formWidgetRegistry.registerAlias('tags', {name: 'select', config: {mode: 'tags'}});
     formWidgetRegistry.registerAlias('boolean', {name: 'switch', config: {}});
     formWidgetRegistry.registerAlias('image', {name: 'upload', config: {}});
+    formWidgetRegistry.registerAlias('password', {name: 'ciphertext', config: {}});
 
     // this.setDefault();
   }

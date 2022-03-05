@@ -38,21 +38,21 @@ export const formSchema: FormSchema = {
         },
         file1: {
           type: 'string',
-          name: '颜色文件',
+          name: '选择文件',
           ui: {
             controlType: 'upload'
           }
         },
         image1: {
           type: 'string',
-          name: '颜色图片',
+          name: '选择图片',
           ui: {
             controlType: 'image'
           }
         },
         fontStyle1: {
           type: 'string', // 实际是一个object
-          name: '颜色图片',
+          name: '字体样式',
           ui: {
             controlType: 'fontStyle'
           },
@@ -76,8 +76,8 @@ export const uiSchema: FormUISchema = {
         name: 'GroupA'
       },
       elements: [
-        {type: 'control', $ref: 'qType', controlType: 'select'},
-        {type: 'control', $ref: 'qIsSwitch', controlType: 'switch'},
+        {type: 'control', $ref: 'qType', controlType: 'limitInDuration'},
+        {type: 'control', $ref: 'qIsSwitch', controlType: 'password'},
       ]
     },
     {
@@ -116,6 +116,7 @@ export const uiSchema: FormUISchema = {
           elements: [
             {type: 'control', $ref: 'qType', controlType: 'select'},
             {type: 'control', $ref: 'qIsSwitch', controlType: 'switch'},
+            {type: 'control', $ref: 'qObject.file1', controlType: 'custom'},
           ]
         }
       ]

@@ -10,6 +10,7 @@ import {FormControlsModule} from "../controls/form-controls.module";
 import { ObjectControlComponent } from './object-control/object-control.component';
 import { GroupLayoutComponent } from './group-layout/group-layout.component';
 import {NzDividerModule} from "ng-zorro-antd/divider";
+import {FormItemDirective} from "./form-item/form-item.directive";
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import {NzDividerModule} from "ng-zorro-antd/divider";
     FormItemComponent,
     ObjectControlComponent,
     GroupLayoutComponent,
+    FormItemDirective,
   ],
   imports: [
     CommonModule,
@@ -36,6 +38,7 @@ import {NzDividerModule} from "ng-zorro-antd/divider";
     FormItemComponent,
     ObjectControlComponent,
     GroupLayoutComponent,
+    FormItemDirective,
   ]
 })
 export class FormWidgetsModule { }

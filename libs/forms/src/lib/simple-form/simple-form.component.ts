@@ -1,21 +1,24 @@
 import {
-  Component,
+  AfterContentInit,
+  Component, ContentChildren,
   EventEmitter,
   forwardRef,
   Input,
   NgZone,
   OnChanges,
   OnInit,
-  Output,
+  Output, QueryList,
   SimpleChanges
 } from '@angular/core';
 import {NzFormLayoutType} from "ng-zorro-antd/form";
 import {AbstractControl, FormBuilder, FormGroup} from "@angular/forms";
 import {ArrayProperty, FieldProperty, FormItemSchema, FormSchema, FormUISchema, ObjectProperty} from "../form.schema";
 import {FormRef} from "../form-ref";
-import {forEach, get, map, size} from "lodash-es";
+import {forEach, get, keyBy, map, size} from "lodash-es";
 import {NzSizeLDSType} from "ng-zorro-antd/core/types";
 import {debounceTime} from "rxjs";
+import {FormItemDirective} from "../widgets/form-item/form-item.directive";
+import {generateUiSchema} from "../schema-converter";
 
 @Component({
   selector: 'ml-simple-form',
@@ -25,9 +28,9 @@ import {debounceTime} from "rxjs";
     {provide: FormRef, useExisting: forwardRef(() => SimpleFormComponent)}
   ]
 })
-export class SimpleFormComponent extends FormRef implements OnInit, OnChanges {
-  // @Input() value: any;
-  // @Output() valueChange = new EventEmitter<any>();
+export class SimpleFormComponent extends FormRef implements OnInit, OnChanges, AfterContentInit {
+  @Input() value: any;
+  @Output() valueChange = new EventEmitter<any>();
   @Input() nzLayout: NzFormLayoutType = 'horizontal';
   @Output() formSubmit = new EventEmitter<any>();
 
@@ -45,6 +48,8 @@ export class SimpleFormComponent extends FormRef implements OnInit, OnChanges {
   @Input("mlSize")
   override controlSize: NzSizeLDSType = "default";
 
+  @ContentChildren(FormItemDirective) override customItems?: QueryList<FormItemDirective>;
+
 
   constructor(protected override readonly fb: FormBuilder,
               private ngZone: NgZone) {
@@ -52,76 +57,50 @@ export class SimpleFormComponent extends FormRef implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    // const uiSchema: FormUISchema = {
-    //   type: 'vertical-layout',
-    //   elements: [
-    //     {type: 'control', $ref: 'title'},
-    //     {type: 'control', $ref: 'alias'}
-    //   ]
-    // };
     let {uiSchema, formSchema} = this.schema;
 
     if (!uiSchema) {
-      uiSchema = this.generateUiSchema(formSchema, []) as any;
+      uiSchema = generateUiSchema(formSchema, []) as any;
     }
 
     this.onInit((uiSchema as any), formSchema);
 
     this.rootControl.valueChanges.pipe(debounceTime(100)).subscribe((value) => {
-      // this.valueChange.emit(value);
+      this.value = value;
+      this.valueChange.emit(value);
       // console.log("form value:", value);
       this.ngZone.run(() => {
         this.rootControl.patchValue(value, {emitEvent: false})
       })
     });
 
-    // if (this.value) {
-      // this.rootControl.markAsPending()
-      // this.rootControl.reset(this.value);
-      // this.rootControl.markAsPristine()
-    // }
+    if (this.value) {
+      this.rootControl.reset(this.value, {emitEvent: false});
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    // const {value: valueChange} = changes;
-    // if (valueChange && !valueChange.firstChange && !!valueChange.currentValue) {
-    // if (valueChange && !!valueChange.currentValue) {
-      // console.log("form value input!")
-      // this.rootControl.reset(valueChange.currentValue);
-    // }
+    const {value: valueChange} = changes;
+    if (valueChange && !valueChange.firstChange && !!valueChange.currentValue) {
+      if (valueChange && !!valueChange.currentValue) {
+        // console.log("form value input!")
+        this.rootControl.reset(valueChange.currentValue, {emitEvent: false});
+      }
+    }
   }
 
-  private generateUiSchema(p: ObjectProperty | ArrayProperty | FieldProperty,
-                           path: string[]): FormUISchema | FormItemSchema | undefined {
-    if (this.isObjectSchema(p)) {
-      const properties = (p as ObjectProperty).properties;
-      const elements = map(properties, (v, k) => this.generateUiSchema(v, [...path, k]))
-        .filter(it => it !== undefined) as any;
-      return (size(path) === 0 ? {
-        type: 'vertical-layout',
-        elements: elements
-
-      } : {
-        type: 'object',
-        $ref: path.join('.'),
-        options: {
-          layout: 'vertical-layout'
-        },
-        elements: elements
-      });
+  ngAfterContentInit() {
+    console.log("不用做订阅！！", this.customItems)
+    if (this.customItems) {
+    //   this.customItems.changes.subscribe(() => {
+    //     this.customItemTemplates.clear();
+    //     // keyBy(this.customItems, 'name');
+    //     console.log(this.customItems)
+        this.customItems?.forEach((item) => {
+          this.customItemTemplates.set(item.key, item.templateRef);
+        })
+    //   })
     }
-
-    // TODO isArrayOfObject ...
-
-    if (this.isFieldSchema(p) || this.isArrayOfPrimitivesSchema(p)) {
-      return ({
-        type: 'control',
-        $ref: path.join('.'),
-        controlType: get(p, 'ui.controlType', undefined)
-      });
-    }
-
-    return;
   }
 
   submitForm($event: any) {

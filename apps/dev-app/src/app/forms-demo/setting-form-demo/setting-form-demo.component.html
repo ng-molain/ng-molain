@@ -9,7 +9,16 @@
 
 <div class=" py-6  "
      [ngClass]="{'w-72 bg-white border shadow-lg': size === 'small'}">
-  <ml-simple-form [schema]="schema" [mlMode]="'setting'" [mlSize]="size">
+  <ml-simple-form [schema]="schema"
+                  [mlMode]="'setting'"
+                  [mlSize]="size"
+                  [(value)]="value"
+  >
+    <ng-template mlFormItem="qObject.file1">
+      <div class="px-4 py-1 h-10">
+        这是自定义组件
+      </div>
+    </ng-template>
   </ml-simple-form>
 </div>
 

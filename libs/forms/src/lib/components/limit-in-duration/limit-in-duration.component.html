@@ -1,0 +1,9 @@
+
+<div [formGroup]="formGroup" class="flex items-center space-x-2">
+  <nz-select formControlName="duration" [nzSize]="mlSize" style="width: 6.25rem;">
+    <nz-option *ngFor="let item of durationOptions" [nzValue]="item.value" [nzLabel]="item.label"></nz-option>
+  </nz-select>
+  <span>{{actionName}}</span>
+  <nz-input-number formControlName="limit" [nzSize]="mlSize" [nzMin]="0" style="width: 3.25rem;"></nz-input-number>
+  <span>次</span>
+</div>

@@ -10,6 +10,15 @@ import {
 import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {each, get, has, isArray, isEmpty, isEqual, isString, map, size, toLower} from "lodash-es";
 import {NzSizeLDSType} from "ng-zorro-antd/core/types";
+import {
+  isArrayOfPrimitivesSchema,
+  isArraySchema,
+  isEnumSchema,
+  isObjectSchema,
+  surmiseControlType
+} from "./schema-assert";
+import {QueryList, TemplateRef} from "@angular/core";
+import {FormItemDirective} from "./widgets/form-item/form-item.directive";
 
 export class FormRef {
 
@@ -19,6 +28,8 @@ export class FormRef {
   public mode: 'setting' | 'simple' | 'search' = 'simple';
   public controlSize: NzSizeLDSType = 'default';
 
+  public customItems?: QueryList<FormItemDirective>;
+  public customItemTemplates = new Map<string, TemplateRef<any>>();
 
   // constructor(public readonly formSchema: FormSchema,
   //             public readonly uiSchema: FormUISchema,
@@ -107,51 +118,27 @@ export class FormRef {
   }
 
   isObjectSchema(schema: FormProperty): boolean {
-    const {type} = schema;
-    return type === 'object';
+    return isObjectSchema(schema);
   }
 
   isArraySchema(schema: FormProperty): boolean {
-    const {type} = schema;
-    return type === 'array';
+    return isArraySchema(schema);
   }
 
   isFieldSchema(schema: FormProperty): boolean {
-    const {type} = schema;
-    return type !== 'array' && type !== 'object';
+    return isEnumSchema(schema);
   }
 
   isEnumSchema(schema: FormProperty): boolean {
-    return has(schema, 'enum') && isArray(get(schema, 'enum'));
+    return isEnumSchema(schema);
   }
 
   isArrayOfPrimitivesSchema(schema: FormProperty) {
-    if (!this.isArraySchema(schema)) {
-      return ;
-    }
-    const items = get(schema, 'items');
-    return this.isFieldSchema(items);
+    return isArrayOfPrimitivesSchema(schema);
   }
 
   surmiseControlType(schema: FormProperty): string {
-    if (!this.isFieldSchema(schema) && !this.isArrayOfPrimitivesSchema(schema)) {
-      return get(schema, 'type');
-    }
-
-    if (this.isArrayOfPrimitivesSchema(schema)) {
-      if (this.isEnumSchema(schema)) {
-        const items = get(schema, 'enum');
-        return size(items) >= 5 ? 'anyOf' : 'checkboxGroup';
-      }
-    }
-
-    if (this.isEnumSchema(schema)) {
-      const items = get(schema, 'enum');
-      return size(items) >= 5 ? 'select' : 'radioGroup';
-    }
-
-
-    return get(schema, 'type');
+    return surmiseControlType(schema);
   }
 
 }

@@ -1,13 +1,36 @@
-<div class="flex"
-     *ngIf="name && (level === 0 || formRef.controlSize != 'small')"
-     [ngClass]="{'px-4': formRef.controlSize == 'small'}"
->
-  <h3 [id]="name" [ngClass]="{'text-gray-500 font-light': (level > 0 || formRef.controlSize == 'small')}">{{name}}</h3>
-</div>
-<!--<nz-divider *ngIf="!name || level > 0"></nz-divider>-->
-<div [ngClass]="{'bg-white': !hasChildGroup, 'rounded-sm shadow-lg': formRef.controlSize !== 'small'}" class="mb-6">
-  <ng-container *ngFor="let item of elements">
-    <ml-widget-renderer [uiSchema]="item"></ml-widget-renderer>
-  </ng-container>
-</div>
+<ng-container *ngIf="formRef.mode === 'setting' && formRef.controlSize === 'small'; else defaultGroup">
+  <ng-container *ngTemplateOutlet="smallSettingGroup"></ng-container>
+</ng-container>
 
+<ng-template #defaultGroup>
+  <div class="flex" *ngIf="name">
+    <h3 [id]="name" [ngClass]="{'text-gray-500 font-light': (level > 0)}">{{name}}</h3>
+  </div>
+  <div [ngClass]="{'bg-white rounded-sm shadow-lg': !hasChildGroup}" class="mb-6">
+    <ng-container *ngFor="let item of elements">
+      <ml-widget-renderer [uiSchema]="item"></ml-widget-renderer>
+    </ng-container>
+  </div>
+</ng-template>
+
+
+<ng-template #smallSettingGroup>
+  <div class="flex items-center justify-between py-1 px-4 border-b h-10 cursor-pointer"
+       (click)="expanded = !expanded">
+    <div *ngIf="name">
+      <i *ngIf="icon" class="far w-6 text-center" [class]="icon"></i>
+      <span>{{name}}</span>
+    </div>
+    <div class="">
+      <i class="far fa-chevron-right" [ngClass]="{'fa-rotate-90': expanded}"></i>
+    </div>
+  </div>
+
+  <div class="items-wrapper overflow-hidden bg-gray-100" [ngClass]="{'h-0': !expanded}">
+    <div class="flex flex-col bg-white bg-opacity-50">
+      <ng-container *ngFor="let item of elements">
+        <ml-widget-renderer [uiSchema]="item"></ml-widget-renderer>
+      </ng-container>
+    </div>
+  </div>
+</ng-template>

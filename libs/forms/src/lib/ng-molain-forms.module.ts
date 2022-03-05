@@ -29,6 +29,7 @@ import {FormControlsRegistry} from "./controls/form-controls.registry";
   ],
   exports: [
     SimpleFormComponent,
+    FormWidgetsModule,
   ]
 })
 export class NgMolainFormsModule {}
