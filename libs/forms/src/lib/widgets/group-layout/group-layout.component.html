@@ -4,7 +4,7 @@
 
 <ng-template #defaultGroup>
   <div class="flex" *ngIf="name">
-    <h3 [id]="name" [ngClass]="{'text-gray-500 font-light': (level > 0)}">{{name}}</h3>
+    <h3 [id]="name" class="text-base" [ngClass]="{'text-gray-500 font-light': (level > 0)}">{{name}}</h3>
   </div>
   <div [ngClass]="{'bg-white rounded-sm shadow-lg': !hasChildGroup}" class="mb-6">
     <ng-container *ngFor="let item of elements">

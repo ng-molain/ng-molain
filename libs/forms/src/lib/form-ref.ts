@@ -27,6 +27,7 @@ export class FormRef {
   public formSchema!: FormSchema;
   public mode: 'setting' | 'simple' | 'search' = 'simple';
   public controlSize: NzSizeLDSType = 'default';
+  public hiddenItemWhenDisabled: boolean = false;
 
   public customItems?: QueryList<FormItemDirective>;
   public customItemTemplates = new Map<string, TemplateRef<any>>();
@@ -40,6 +41,14 @@ export class FormRef {
 
   constructor(protected fb: FormBuilder) {
     this.rootControl = fb.group({});
+  }
+
+  get isSmall() {
+    return this.controlSize === 'small';
+  }
+
+  get isSetting() {
+    return this.mode === 'setting';
   }
 
   protected onInit(uiSchema: FormUISchema, formSchema: FormSchema) {

@@ -1,5 +1,5 @@
 <nz-input-group [nzSuffix]="toggleDisplayIcon" [nzSize]="mlSize">
-  <input [attr.type]="inputType" [formControl]="formControl" nz-input [placeholder]="mlPlaceholder">
+  <input [attr.type]="inputType" [formControl]="formControl" nz-input [placeholder]="mlPlaceholder || ''">
   <ng-template #toggleDisplayIcon>
     <i class="fal text-gray-400" [ngClass]="{'fa-eye': !displayText, 'fa-eye-slash': displayText}" (click)="displayText = !displayText"></i>
   </ng-template>

@@ -9,10 +9,11 @@
 
 <div class=" py-6  "
      [ngClass]="{'w-72 bg-white border shadow-lg': size === 'small'}">
-  <ml-simple-form [schema]="schema"
+  <ml-simple-form #demoForm [schema]="schema"
                   [mlMode]="'setting'"
                   [mlSize]="size"
                   [(value)]="value"
+                  [mlHiddenItemWhenDisabled]="true"
   >
     <ng-template mlFormItem="qObject.file1">
       <div class="px-4 py-1 h-10">

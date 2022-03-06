@@ -48,6 +48,9 @@ export class SimpleFormComponent extends FormRef implements OnInit, OnChanges, A
   @Input("mlSize")
   override controlSize: NzSizeLDSType = "default";
 
+  @Input("mlHiddenItemWhenDisabled")
+  override hiddenItemWhenDisabled: boolean = false;
+
   @ContentChildren(FormItemDirective) override customItems?: QueryList<FormItemDirective>;
 
 

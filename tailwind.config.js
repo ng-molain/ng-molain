@@ -12,8 +12,8 @@ module.exports = {
   purge: {
     enabled: false,
     content: [
-      './apps/**/src/**/*.html',
-      './libs/**/src/**/*.html'
+      './apps/**/src/**/*.(html|ts)',
+      './libs/**/src/**/*.(html|ts)',
     ]
   },
   theme: {

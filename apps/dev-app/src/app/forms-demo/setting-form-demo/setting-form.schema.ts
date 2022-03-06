@@ -77,7 +77,7 @@ export const uiSchema: FormUISchema = {
       },
       elements: [
         {type: 'control', $ref: 'qType', controlType: 'limitInDuration'},
-        {type: 'control', $ref: 'qIsSwitch', controlType: 'password'},
+        {type: 'control', $ref: 'qIsSwitch', controlType: 'password', options: {itemStyleClass: 'bg-gray-100', secondary: true}},
       ]
     },
     {

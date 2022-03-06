@@ -80,6 +80,14 @@ export class FormItemComponent implements OnInit {
     return this.get('ui.options.tip', null)
   }
 
+  get itemStyleClass(): string {
+    return this.get('ui.options.itemStyleClass', '');
+  }
+
+  get isSecondary(): boolean {
+    return this.get('ui.options.secondary', false);
+  }
+
   get(key: string | string[], defaultValue?: any): any {
     return get(this.fieldSchema, key, defaultValue);
   }

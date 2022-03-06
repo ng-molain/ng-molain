@@ -1,8 +1,10 @@
 <!--<ng-container *ngIf="formMode === 'setting'; else defaultItemTpl">-->
 <!--  <ng-container *ngTemplateOutlet="settingFormItemTpl"></ng-container>-->
 <!--</ng-container>-->
-<ng-container *ngIf="customTemplate; else (formMode === 'setting' ? settingFormItemTpl : defaultItemTpl)">
-  <ng-container *ngTemplateOutlet="customTemplate; context: {$implicit: implicit}"></ng-container>
+<ng-container *ngIf="!(formRef.hiddenItemWhenDisabled && formControl.disabled)">
+  <ng-container *ngIf="customTemplate; else (formMode === 'setting' ? settingFormItemTpl : defaultItemTpl)">
+    <ng-container *ngTemplateOutlet="customTemplate; context: {$implicit: implicit}"></ng-container>
+  </ng-container>
 </ng-container>
 
 <ng-template #defaultItemTpl>
@@ -23,8 +25,9 @@
 </ng-template>
 
 <ng-template #settingFormItemTpl>
-  <div class="border-b">
-    <div class="flex items-center justify-between py-1 px-4 h-10">
+  <div class="border-b" [class]="itemStyleClass" [ngClass]="{'bg-gray-100': isSecondary}">
+    <div class="flex items-center justify-between px-4"
+         [ngClass]="{'py-1 h-10': formRef.isSmall, 'py-3 h-14': !formRef.isSmall}">
       <div *ngIf="label">
         <span>{{label}}</span>
         <ng-container *ngIf="tip && formRef.controlSize != 'small'">
@@ -48,7 +51,8 @@
         <ng-container *ngTemplateOutlet="controlRendererTpl"></ng-container>
       </div>
     </div>
-    <div *ngIf="safeExtra" [innerHTML]="safeExtra" class="px-4 pb-1 text-gray-400"></div>
+    <div *ngIf="safeExtra" [innerHTML]="safeExtra" class="px-4 text-gray-400"
+         [ngClass]="{'pb-1': formRef.isSmall, 'pb-3': !formRef.isSmall}"></div>
   </div>
 
 <!--  TODO && not custom control-->
