@@ -53,6 +53,8 @@ export class SimpleFormComponent extends FormRef implements OnInit, OnChanges, A
 
   @ContentChildren(FormItemDirective) override customItems?: QueryList<FormItemDirective>;
 
+  @Input("customItems") _customItems?: FormItemDirective[] = [];
+
 
   constructor(protected override readonly fb: FormBuilder,
               private ngZone: NgZone) {
@@ -105,6 +107,11 @@ export class SimpleFormComponent extends FormRef implements OnInit, OnChanges, A
           this.customItemTemplates.set(item.key, item.templateRef);
         })
     //   })
+    }
+    if (this._customItems) {
+      this._customItems.forEach(item => {
+        this.customItemTemplates.set(item.key, item.templateRef);
+      })
     }
   }
 
