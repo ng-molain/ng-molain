@@ -37,10 +37,10 @@ export class SimpleFormComponent extends FormRef implements OnInit, OnChanges, A
 
   // formGroup: FormGroup;
 
-  // @Input() uiSchema!: FormUISchema;
-  // @Input() formSchema!: FormSchema;
-  @Input()
-  schema!: { uiSchema?: FormUISchema, formSchema: FormSchema };
+  @Input("uiSchema") _uiSchema!: FormUISchema;
+  @Input("formSchema") _formSchema!: FormSchema;
+  // @Input()
+  // schema!: { uiSchema?: FormUISchema, formSchema: FormSchema };
 
   @Input("mlMode")
   override mode: 'setting' | 'simple' | 'search' = 'simple';
@@ -60,7 +60,9 @@ export class SimpleFormComponent extends FormRef implements OnInit, OnChanges, A
   }
 
   ngOnInit(): void {
-    let {uiSchema, formSchema} = this.schema;
+    // let {uiSchema, formSchema} = this.schema;
+    let uiSchema = this._uiSchema;
+    const formSchema = this._formSchema;
 
     if (!uiSchema) {
       uiSchema = generateUiSchema(formSchema, []) as any;

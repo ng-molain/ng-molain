@@ -1,6 +1,8 @@
 
 export * from './form-components.module';
 
+export * from './abstract-control-value-accessor';
+
 export * from './color-picker/color-picker.module';
 export * from './color-picker/color-picker.component';
 

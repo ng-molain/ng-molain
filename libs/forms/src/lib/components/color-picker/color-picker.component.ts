@@ -2,7 +2,7 @@ import {Component, forwardRef, Input, OnInit, TemplateRef} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 import {COLOR_OPTIONS} from "./color-options.data";
 import {SelectionModel} from "@angular/cdk/collections";
-import {get} from "lodash-es";
+import {get, isEqual} from "lodash-es";
 import {NzSizeLDSType} from "ng-zorro-antd/core/types";
 
 @Component({
@@ -49,7 +49,8 @@ export class ColorPickerComponent implements OnInit, ControlValueAccessor {
   }
 
   writeValue(obj: any): void {
-    this.value = obj || '#FFFFFF';
+    const option = this.colorOptions.find(it => isEqual(obj, it));
+    this.value = option || '#FFFFFF';
     this.selection.select(this.value);
   }
 

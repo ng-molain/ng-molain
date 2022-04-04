@@ -9,7 +9,10 @@
 
 <div class=" py-6  "
      [ngClass]="{'w-72 bg-white border shadow-lg': size === 'small'}">
-  <ml-simple-form #demoForm [schema]="schema"
+<!--  <ml-simple-form #demoForm [schema]="schema"-->
+  <ml-simple-form #demoForm
+                  [formSchema]="formSchema"
+                  [uiSchema]="uiSchema"
                   [mlMode]="'setting'"
                   [mlSize]="size"
                   [(value)]="value"

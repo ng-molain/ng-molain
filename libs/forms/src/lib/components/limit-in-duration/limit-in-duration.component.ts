@@ -2,6 +2,7 @@ import {Component, forwardRef, Input, OnInit} from '@angular/core';
 import {NzSizeLDSType} from "ng-zorro-antd/core/types";
 import {ControlValueAccessor, FormBuilder, FormGroup, NG_VALUE_ACCESSOR} from "@angular/forms";
 import {AbstractControlValueAccessor} from "../abstract-control-value-accessor";
+import {get, isEqual} from "lodash-es";
 
 export const DURATION_OPTIONS = [
   {label: '只能', value: 'unlimited'},
@@ -55,8 +56,9 @@ export class LimitInDurationComponent extends AbstractControlValueAccessor imple
   }
 
   override writeValue(obj: any): void {
-    super.writeValue(obj);
-    this.formGroup.reset(obj || {}, {emitEvent: false});
+    const option = this.durationOptions.map(it => it.value).find(it => isEqual(get(obj, 'duration'), it));
+    super.writeValue(Object.assign({}, obj, option ? {duration: option} : {}));
+    this.formGroup.reset(this.initialValue, {emitEvent: false});
   }
 
 }
