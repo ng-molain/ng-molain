@@ -27,8 +27,8 @@
           class="truncate"
           style="margin: -2px 0; padding: 2px 0;"
         >
-          <i class="text-blue-500 fas fa-folder"></i>
-          <span>{{ node.name }}</span>
+          <i class="text-orange-500 fal fa-folder fa-fw"></i>
+          <span class="ml-1">{{ node.name }}</span>
         </nz-tree-node-option>
       </nz-tree-node>
 
@@ -57,10 +57,10 @@
           <!--      (dblclick)="treeControl.toggle(node)"-->
           <!--    >-->
 
-          <i class="text-blue-500 fas w-4"
+          <i class="text-orange-500 fal fa-fw"
              [ngClass]="{'fa-folder': !treeControl.isExpanded(node), 'fa-folder-open': treeControl.isExpanded(node)}"
              [class]="node.type ? 'node-type__' + node.type : ''"></i>
-          <span>{{ node.name }}</span>
+          <span class="ml-1">{{ node.name }}</span>
         </nz-tree-node-option>
       </nz-tree-node>
 
