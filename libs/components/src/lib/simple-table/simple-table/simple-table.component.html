@@ -34,8 +34,8 @@
       [ngClass]="{'bg-blue-100': selection?.isSelected(row)}"
       (click)="onRowClick($event, row)"
   >
-    <td *ngIf="showRowNumber" class="text-right" nzLeft
-        [ngClass]="{'bg-blue-100': selection?.isSelected(row)}">
+    <td *ngIf="showRowNumber" class="text-right bg-gray-50 text-gray-500 border-r" nzLeft >
+<!--        [ngClass]="{'bg-blue-100': selection?.isSelected(row)}">-->
       {{rowNumberOffset + index + 1}}
     </td>
     <td *ngIf="showSelectCol" class="text-center" nzLeft
@@ -48,7 +48,10 @@
         [nzRight]="col.pinRight || false"
         [ngClass]="{'bg-blue-100': selection?.isSelected(row)}"
     >
-      <ng-container mlCellValue #cellValue="mlCellValue" [mlCellValueCol]="col" [mlCellValueRow]="row">
+      <ng-container *ngIf="colTplMap.has(col.name)">
+        <ng-container *ngTemplateOutlet="colTplMap.get(col.name); context: {$implicit: row}"></ng-container>
+      </ng-container>
+      <ng-container *ngIf="!colTplMap.has(col.name)" mlCellValue #cellValue="mlCellValue" [mlCellValueCol]="col" [mlCellValueRow]="row">
         <ng-container *ngIf="cellValue.isTag; else plainTextCell">
           <nz-tag *ngIf="cellValue.hasText" [nzColor]="cellValue.color || 'default'">{{cellValue.text}}</nz-tag>
         </ng-container>

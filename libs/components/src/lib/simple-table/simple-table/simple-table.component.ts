@@ -13,7 +13,7 @@ import {get, isEmpty, isFunction, some, isNumber, isString, has, isArray, omit} 
 import {SelectionModel} from "@angular/cdk/collections";
 import {NzModalService} from "ng-zorro-antd/modal";
 import {ColTplDirective} from "../col-tpl.directive";
-import {CellContent} from "../simple-table.typings";
+import {CellContent, ColumnDef} from "../simple-table.typings";
 import {Pageable, Pagination} from "../../pagination";
 
 @Component({
@@ -22,7 +22,7 @@ import {Pageable, Pagination} from "../../pagination";
   styleUrls: ['./simple-table.component.scss']
 })
 export class SimpleTableComponent implements OnInit, AfterContentInit {
-  @Input() columns: any[] = [];
+  @Input() columns: ColumnDef[] = [];
   @Input() loading: boolean = false;
   @Input("data") _data: any[] | Pagination<any> = [];
 
@@ -77,7 +77,7 @@ export class SimpleTableComponent implements OnInit, AfterContentInit {
     return some(this.data, it => !this.selection?.isSelected(it))
   }
 
-  get displayCols(): any[] {
+  get displayCols(): ColumnDef[] {
     return this.columns.filter(it => !it.hidden);
   }
 
@@ -95,7 +95,7 @@ export class SimpleTableComponent implements OnInit, AfterContentInit {
     }
   }
 
-  titleColTpl(col: any) {
+  titleColTpl(col: ColumnDef) {
     const {name} = col;
     let titleTpl = null;
     // TODO 从contentChildren读取
@@ -105,7 +105,7 @@ export class SimpleTableComponent implements OnInit, AfterContentInit {
     }
   }
 
-  cellTpl(col: any, row: any) {
+  cellTpl(col: ColumnDef, row: any) {
     let cellTpl = null;
     // TODO 从contentChildren读取
     if (!cellTpl) {
