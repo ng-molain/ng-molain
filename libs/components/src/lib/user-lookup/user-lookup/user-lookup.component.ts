@@ -1,14 +1,28 @@
-import { Component, OnInit, Input, TemplateRef, HostBinding, HostListener, Renderer2, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  TemplateRef,
+  HostBinding,
+  HostListener,
+  Renderer2,
+  ElementRef,
+  forwardRef
+} from '@angular/core';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { UserLookupService } from '../user-lookup.service';
 import { isEmpty as _isEmpty } from "lodash-es";
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 
 @Component({
   selector: 'ml-user-lookup',
   templateUrl: './user-lookup.component.html',
-  styleUrls: ['./user-lookup.component.scss']
+  styleUrls: ['./user-lookup.component.scss'],
+  providers: [{
+    provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => UserLookupComponent), multi: true
+  }]
 })
-export class UserLookupComponent implements OnInit {
+export class UserLookupComponent implements OnInit, ControlValueAccessor {
 
   @Input() isMultiple: boolean = false;
   @Input() allowClear: boolean = false;
@@ -101,5 +115,18 @@ export class UserLookupComponent implements OnInit {
 
   removeSelected(item: any, b: boolean, $event: MouseEvent) {
 
+  }
+
+  registerOnChange(fn: any): void {
+  }
+
+  registerOnTouched(fn: any): void {
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+  }
+
+  writeValue(obj: any): void {
   }
 }

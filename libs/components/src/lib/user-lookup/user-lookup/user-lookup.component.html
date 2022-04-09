@@ -1,4 +1,4 @@
-<div class="ant-select-selection" [class.ant-select-selection--single]="!isMultiple"
+<div class="selector ant-select-selection border rounded-sm bg-white py-1 px-3 " [class.ant-select-selection--single]="!isMultiple"
     [class.ant-select-selection--multiple]="isMultiple" tabindex="0">
     <ng-container *ngIf="!isMultiple">
         <div class="ant-select-selection__rendered">
@@ -39,13 +39,17 @@
         </ul>
     </ng-container>
 
-    <span class="ant-select-arrow">
-        <i nz-icon nzType="file-search" nzTheme="outline"></i>
-    </span>
+  <span class="ant-select-arrow">
+    <i class="fal fa-user"></i>
+  </span>
 </div>
 
 <ng-template #placeholderTpl>
-    <div *ngIf="placeholder && isEmpty" class="ant-select-selection__placeholder" [class.d-none]="!isEmpty">
+    <div *ngIf="placeholder && isEmpty" class="ant-select-selection__placeholder truncate text-gray-400" [class.d-none]="!isEmpty">
         {{placeholder}}
     </div>
 </ng-template>
+
+<div style="display: none;">
+  <nz-select></nz-select>
+</div>

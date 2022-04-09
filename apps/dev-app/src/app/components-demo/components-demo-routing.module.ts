@@ -8,6 +8,10 @@ const routes: Routes = [
       {
         path: 'orgUnit',
         loadChildren: () => import('./org-unit-demo/org-unit-demo.module').then(m => m.OrgUnitDemoModule)
+      },
+      {
+        path: 'simpleTable',
+        loadChildren: () => import('./simple-table-demo/simple-table-demo.module').then(m => m.SimpleTableDemoModule)
       }
     ]
   },

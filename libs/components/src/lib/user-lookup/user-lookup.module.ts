@@ -14,19 +14,21 @@ import {NzLayoutModule} from "ng-zorro-antd/layout";
 import {NzTreeModule} from "ng-zorro-antd/tree";
 import {NzModalModule} from "ng-zorro-antd/modal";
 import {UserLookupService} from "./user-lookup.service";
+import {NzSelectModule} from "ng-zorro-antd/select";
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    NzTabsModule,
-    NzInputModule,
-    NzButtonModule,
-    NzAlertModule,
-    NzLayoutModule,
-    NzTreeModule,
-    NzModalModule,
-  ],
+    imports: [
+        CommonModule,
+        NzTabsModule,
+        NzInputModule,
+        NzButtonModule,
+        NzAlertModule,
+        NzLayoutModule,
+        NzTreeModule,
+        NzModalModule,
+        NzSelectModule,
+    ],
   declarations: [
     UserLookupComponent,
     UserLookupDialogComponent,

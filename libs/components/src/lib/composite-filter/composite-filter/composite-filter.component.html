@@ -1,0 +1,36 @@
+<form [formGroup]="controlForm" (ngSubmit)="submitControl(controlForm, $event)" class="flex items-center space-x-2">
+  <div>
+    <nz-select formControlName="filter" style="min-width: 8rem;">
+<!--      <nz-option-group></nz-option-group> -->
+      <nz-option *ngFor="let item of filters" [nzValue]="item" [nzLabel]="item.name" nzCustomContent>
+        <span class="inline-block w-6 text-center -ml-1">
+          <i class="fal" [ngClass]="{'fa-filter text-gray-300': !availableItems.has(item), 'fa-check text-primay': availableItems.has(item)}"></i>
+        </span>
+        <span>{{item.name}}</span>
+      </nz-option>
+    </nz-select>
+  </div>
+<!--  <div>-->
+<!--&lt;!&ndash;    操作符&ndash;&gt;-->
+<!--    <nz-select #filter style="min-width: 8rem;"></nz-select>-->
+<!--  </div>-->
+  <div class="control-wrapper">
+    <ng-container *ngIf="filterItemMeta">
+      <ml-widget-renderer [widgetMeta]="filterItemMeta"></ml-widget-renderer>
+    </ng-container>
+  </div>
+  <button type="submit" nz-button nzType="primary">确定</button>
+</form>
+
+<ng-template #defaultFilterItems let-items>
+  <div *ngIf="items && items.size > 0" class="mt-3 flex flex-wrap gap-3">
+    <ng-container *ngFor="let item of items">
+      <div class="border rounded-sm flex items-stretch">
+        <div class="py-1 px-2 cursor-pointer" (click)="switchToFilter(item)">{{item.prettyText}}</div>
+        <div class="py-1 px-2 cursor-pointer border-l text-center" (click)="removeFilter(item)">
+          <i class="fal fa-times"></i>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</ng-template>

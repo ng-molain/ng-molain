@@ -1,0 +1,39 @@
+
+<ng-container *ngIf="page">
+  <ng-container *ngTemplateOutlet="defaultTpl; context: {$implicit: page}"></ng-container>
+</ng-container>
+
+<ng-template #defaultTpl>
+  <div class="flex items-center space-x-1 ">
+    <div>共 <span>{{page?.totalElements}}</span> 条记录，</div>
+    <button type="button" nz-button (click)="toFirstPage()" [disabled]="page?.first">
+      <i class="fal fa-angle-double-left"></i>
+    </button>
+    <button type="button" nz-button (click)="toPrevPage()" [disabled]="page?.first">
+      <i class="fal fa-angle-left"></i>
+    </button>
+
+    <div>
+      <nz-input-number name="inputPageNumber"
+                       [ngModel]="(page?.number || 0) + 1"
+                       [nzMax]="page?.totalPages || 1"
+                       [nzMin]="1"
+                       (ngModelChange)="toPage($event)"
+      ></nz-input-number>
+    </div>
+    <div>/ {{page?.totalPages}}</div>
+
+    <button type="button" nz-button (click)="toNextPage()" [disabled]="page?.last">
+      <i class="fal fa-angle-right"></i>
+    </button>
+    <button type="button" nz-button (click)="toLastPage()" [disabled]="page?.last">
+      <i class="fal fa-angle-double-right"></i>
+    </button>
+
+    <div *ngIf="sizeOptions.length > 0">
+      <nz-select [ngModel]="page?.size" (ngModelChange)="setPageSize($event)">
+        <nz-option *ngFor="let item of sizeOptions" [nzValue]="item" [nzLabel]="item + ' /页'"></nz-option>
+      </nz-select>
+    </div>
+  </div>
+</ng-template>

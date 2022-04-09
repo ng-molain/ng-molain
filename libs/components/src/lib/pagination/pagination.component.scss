@@ -1,0 +1,8 @@
+
+nz-input-number {
+  @apply w-20;
+
+  &::ng-deep input.ant-input-number-input {
+    @apply text-center;
+  }
+}

@@ -1,0 +1,105 @@
+<div class="flex items-center p-2 bg-white">
+  <div class="flex items-center">
+    <ml-composite-filter #compositeFilter [filters]="filters"></ml-composite-filter>
+    <nz-divider nzType="vertical"></nz-divider>
+    <nz-select [nzPlaceHolder]="'保存的视图'" class="w-32">
+      <nz-option-group [nzLabel]="'默认视图'">
+        <nz-option [nzValue]="'primary'" [nzLabel]="'主视图'"></nz-option>
+        <nz-option [nzValue]="'primary2'" [nzLabel]="'已过期的用户'"></nz-option>
+      </nz-option-group>
+    </nz-select>
+
+    <nz-radio-group [ngModel]="'list'" class="ml-2">
+      <label nz-radio-button [nzValue]="'list'" class="px-2"><i class="fal fa-list"></i></label>
+      <label nz-radio-button [nzValue]="'details'" class="px-2"><i class="fal fa-list-alt"></i></label>
+<!--      <label nz-radio-button></label>-->
+    </nz-radio-group>
+    <nz-divider nzType="vertical"></nz-divider>
+    <button type="button" nz-button nz-dropdown [nzDropdownMenu]="actionsMenu">
+      <span>操作</span>
+      <i class="far fa-angle-down ml-1"></i>
+    </button>
+    <nz-dropdown-menu #actionsMenu>
+      <ul nz-menu>
+        <li nz-menu-item (click)="dataTable.openCustomCols($event, 'modal')">
+          <i class="fal fa-line-columns fa-fw mr-1"></i>
+          <span>自定义显示列</span>
+        </li>
+        <li nz-menu-divider></li>
+        <li nz-menu-item>
+          <i class="fal fa-filter fa-fw mr-1"></i>
+          <span>筛选</span>
+        </li>
+        <li nz-menu-item>
+          <i class="fal fa-filter fa-fw mr-1"></i>
+          <span>管理保存的筛选</span>
+        </li>
+<!--        <li nz-submenu [nzTitle]="savedFilterMenuTitle">-->
+<!--          <ng-template #savedFilterMenuTitle>-->
+<!--            <i class="fal fa-filter fa-fw mr-1"></i>-->
+<!--            <span>保存的筛选</span>-->
+<!--          </ng-template>-->
+<!--          <ul>-->
+<!--            <li nz-menu-item><span>7天内注册的用户</span></li>-->
+<!--            <li nz-menu-item><span>已锁定的用户</span></li>-->
+<!--            <li nz-menu-item><span>未激活的用户</span></li>-->
+<!--            <li nz-menu-divider></li>-->
+<!--            <li nz-menu-item>-->
+<!--              <i class="fal fa-filter fa-fw mr-1"></i>-->
+<!--              <span>全部保存的筛选 ...</span>-->
+<!--            </li>-->
+<!--            <li nz-menu-item class="text-primary">-->
+<!--              <i class="fal fa-cog fa-fw mr-1"></i>-->
+<!--              <span>管理保存的筛选 ...</span>-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--        </li>-->
+        <li nz-menu-divider></li>
+        <li nz-menu-item>
+          <i class="fal fa-download fa-fw mr-1"></i>
+          <span>下载</span>
+        </li>
+        <li nz-menu-item>
+          <i class="fal fa-envelope fa-fw mr-1"></i>
+          <span>订阅</span>
+        </li>
+        <li nz-menu-divider></li>
+        <li nz-menu-item>
+          <i class="fal fa-question-circle fa-fw mr-1"></i>
+          <span>帮助</span>
+        </li>
+      </ul>
+    </nz-dropdown-menu>
+  </div>
+  <div class="ml-auto flex gap-2">
+    <button type="button" nz-button nzType="primary">主要操作</button>
+    <button type="button" nz-button nzType="default">次操作一</button>
+    <button type="button" nz-button nzType="default">次操作二</button>
+  </div>
+</div>
+
+<div *ngIf="compositeFilter.availableItems && compositeFilter.availableItems.size > 0"
+     class="p-2 bg-white border-t">
+  <div class="flex flex-wrap gap-3">
+    <ng-container *ngFor="let item of compositeFilter.availableItems">
+      <div class="border rounded-sm flex items-stretch bg-white">
+        <div class="py-1 px-2 cursor-pointer" (click)="compositeFilter.switchToFilter(item)">{{item.prettyText}}</div>
+        <div class="py-1 px-2 cursor-pointer border-l text-center" (click)="compositeFilter.removeFilter(item)">
+          <i class="fal fa-times"></i>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<ml-simple-table #dataTable [columns]="columns" [data]="data || []">
+  <ng-template #rowActions>
+    <button type="button" nz-button nzType="link" class="p-0">编辑</button>
+    <nz-divider nzType="vertical"></nz-divider>
+    <button type="button" nz-button nzType="link" class="p-0">删除</button>
+  </ng-template>
+
+  <ng-template #groupActions>
+    <button type="button" nz-button>批量删除</button>
+  </ng-template>
+</ml-simple-table>

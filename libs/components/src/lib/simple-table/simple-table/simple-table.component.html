@@ -1,0 +1,139 @@
+<nz-table #nzTable
+          [nzData]="data || []"
+          nzSize="small"
+          [nzFrontPagination]="false"
+          [nzShowPagination]="false"
+          [nzLoading]="loading"
+          [nzScroll]="{x: '720px'}"
+          [nzNoResult]="noResultTpl || defaultNoResultTpl"
+          [ngClass]="{'hidden': hiddenWhenEmpty && (!data || data.length == 0)}"
+>
+  <thead>
+  <tr>
+    <th *ngIf="showRowNumber" nzLeft class="w-12 text-right" style="text-align: right;">
+      {{rowNumberTitle}}
+    </th>
+    <th *ngIf="showSelectCol" nzLeft class="w-12 text-center" style="text-align: center;">
+      <ng-container *ngTemplateOutlet="selectTitleCol"></ng-container>
+    </th>
+
+    <th *ngFor="let col of displayCols"
+        [nzLeft]="col.pinLeft || false"
+        [nzRight]="col.pinRight || false"
+    >
+      {{col.title}}
+    </th>
+
+    <th *ngIf="rowActionsTpl" nzRight class="text-right" style="text-align: right">
+      {{rowActionsTitle}}
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let row of nzTable.data; index as index"
+      [ngClass]="{'bg-blue-100': selection?.isSelected(row)}"
+      (click)="onRowClick($event, row)"
+  >
+    <td *ngIf="showRowNumber" class="text-right" nzLeft
+        [ngClass]="{'bg-blue-100': selection?.isSelected(row)}">
+      {{rowNumberOffset + index + 1}}
+    </td>
+    <td *ngIf="showSelectCol" class="text-center" nzLeft
+        [ngClass]="{'bg-blue-100': selection?.isSelected(row)}">
+      <ng-container *ngTemplateOutlet="selectCellCol; context: {$implicit: row}"></ng-container>
+    </td>
+
+    <td *ngFor="let col of displayCols"
+        [nzLeft]="col.pinLeft || false"
+        [nzRight]="col.pinRight || false"
+        [ngClass]="{'bg-blue-100': selection?.isSelected(row)}"
+    >
+      <ng-container mlCellValue #cellValue="mlCellValue" [mlCellValueCol]="col" [mlCellValueRow]="row">
+        <ng-container *ngIf="cellValue.isTag; else plainTextCell">
+          <nz-tag *ngIf="cellValue.hasText" [nzColor]="cellValue.color || 'default'">{{cellValue.text}}</nz-tag>
+        </ng-container>
+        <ng-template #plainTextCell>
+          <div *ngIf="cellValue.hasText" [style.color]="cellValue.color">{{cellValue.text}}</div>
+        </ng-template>
+      </ng-container>
+    </td>
+
+    <td *ngIf="rowActionsTpl" nzRight
+        class="text-right"
+        [ngClass]="{'bg-blue-100': selection?.isSelected(row)}"
+    >
+      <ng-container *ngTemplateOutlet="rowActionsTpl; context: {$implicit: row}"></ng-container>
+    </td>
+  </tr>
+  </tbody>
+<!--  <tfoot>-->
+  <!--  可以显示一些统计信息-->
+<!--  </tfoot>-->
+</nz-table>
+
+<div *ngIf="!(hiddenWhenEmpty && isEmpty)" class="table-setting-tools-wrapper">
+  <div *ngIf="showTableSettingTools" class="table-setting-tools">
+    <button type="button" nz-button nzSize="small" nzType="text" nz-tooltip nzTooltipTitle="自定义列"
+            (click)="openCustomCols()">
+      <i class="far fa-cog"></i>
+    </button>
+  </div>
+</div>
+
+<ng-container *ngIf="hiddenWhenEmpty && isEmpty" [ngTemplateOutlet]="noResultTpl || defaultNoResultTpl"></ng-container>
+
+<div *ngIf="!(hiddenWhenEmpty && isEmpty)" class="table-footer flex items-center py-2">
+  <div>
+    <ng-container *ngIf="groupActionsTpl">
+      <ng-container *ngTemplateOutlet="groupActionsTpl"></ng-container>
+    </ng-container>
+  </div>
+  <div class="ml-auto">
+    <ng-container *ngIf="pageInfo">
+      <ml-pagination [page]="pageInfo" (switchPage)="switchPage.emit($event)"></ml-pagination>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #selectTitleCol>
+  <ng-container *ngIf="selectionMultiple">
+    <label nz-checkbox [nzChecked]="allChecked" [nzIndeterminate]="indeterminateChecked"
+           (nzCheckedChange)="$event ? selectAll() : clearSelection()"></label>
+  </ng-container>
+  <ng-container *ngIf="!selectionMultiple">
+    {{selectTitle}}
+  </ng-container>
+</ng-template>
+
+<ng-template #selectCellCol let-row>
+  <ng-container *ngIf="selectionMultiple">
+    <label nz-checkbox [nzChecked]="selection?.isSelected(row)"
+           (nzCheckedChange)="onCheckboxChange($event, row)"></label>
+  </ng-container>
+  <ng-container *ngIf="!selectionMultiple">
+    <label nz-radio [ngModel]="selection?.isSelected(row)" (ngModelChange)="onRadioChange(row)"></label>
+  </ng-container>
+</ng-template>
+
+<ng-template #displayColsModalContentTpl>
+  <ul>
+    <li *ngFor="let col of columns">
+      <div class="flex items-center" [ngClass]="{'text-primary': !col.hidden, 'text-gray-500': col.hidden}">
+        <label nz-checkbox [nzChecked]="!col.hidden"
+               [nzDisabled]="col.pinLeft || col.pinRight"
+               (nzCheckedChange)="col.hidden = !$event"
+        >
+          {{col.title}}
+        </label>
+      </div>
+    </li>
+  </ul>
+</ng-template>
+
+<ng-template #defaultNoResultTpl>
+  <nz-empty
+    [nzNotFoundContent]="noResultContentTpl"
+    [nzNotFoundFooter]="noResultFooterTpl"
+  >
+  </nz-empty>
+</ng-template>

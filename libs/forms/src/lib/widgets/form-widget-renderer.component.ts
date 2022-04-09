@@ -15,7 +15,7 @@ import {FormRef} from "../form-ref";
 let nextUniqueId = 0;
 
 @Component({
-  selector: 'ml-widget-renderer',
+  selector: 'ml-form-widget-renderer',
   template: `
     <ng-template #outletContainer></ng-template>
     <ng-content></ng-content>

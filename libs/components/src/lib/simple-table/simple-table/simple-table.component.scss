@@ -1,0 +1,16 @@
+:host {
+  display: block;
+  position: relative;
+
+  .table-setting-tools-wrapper {
+    @apply  absolute top-3 -right-5 overflow-hidden;
+
+    .table-setting-tools {
+      @apply border py-1 rounded-r bg-white shadow transition delay-100 duration-300 -translate-x-3;
+
+      &:hover {
+        @apply translate-x-0;
+      }
+    }
+  }
+}

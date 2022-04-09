@@ -8,7 +8,7 @@
   </div>
   <div [ngClass]="{'bg-white rounded-sm shadow-lg': !hasChildGroup}" class="mb-6">
     <ng-container *ngFor="let item of elements">
-      <ml-widget-renderer [uiSchema]="item"></ml-widget-renderer>
+      <ml-form-widget-renderer [uiSchema]="item"></ml-form-widget-renderer>
     </ng-container>
   </div>
 </ng-template>
@@ -29,7 +29,7 @@
   <div class="items-wrapper overflow-hidden bg-gray-100" [ngClass]="{'h-0': !expanded}">
     <div class="flex flex-col bg-white bg-opacity-50">
       <ng-container *ngFor="let item of elements">
-        <ml-widget-renderer [uiSchema]="item"></ml-widget-renderer>
+        <ml-form-widget-renderer [uiSchema]="item"></ml-form-widget-renderer>
       </ng-container>
     </div>
   </div>
