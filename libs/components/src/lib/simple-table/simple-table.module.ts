@@ -12,6 +12,8 @@ import {ColTplDirective} from "./col-tpl.directive";
 import {CellValueDirective} from "./cell-value.directive";
 import {NzTagModule} from "ng-zorro-antd/tag";
 import {PaginationModule} from "../pagination";
+import {NzModalModule} from "ng-zorro-antd/modal";
+import {NzMessageModule} from "ng-zorro-antd/message";
 
 
 
@@ -31,7 +33,9 @@ import {PaginationModule} from "../pagination";
     FormsModule,
     NzEmptyModule,
     NzTagModule,
-    PaginationModule
+    PaginationModule,
+    NzModalModule,
+    NzMessageModule,
   ],
   exports: [
     SimpleTableComponent,
