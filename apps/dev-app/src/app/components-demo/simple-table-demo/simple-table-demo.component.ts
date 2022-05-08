@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {enumTransformer} from "../../../../../../libs/components/src/lib/simple-table/simple-table.typings";
-import {Page, Pagination} from "@ng-molain/components";
+import {booleanTransformer, enumTransformer, Page, Pagination} from "@ng-molain/components";
 
 @Component({
   selector: 'ng-molain-simple-table-demo',
@@ -21,6 +20,7 @@ export class SimpleTableDemoComponent implements OnInit {
         LOCKED: {text: '已锁定', color: 'red'}
       })
     },
+    {title: '是否内置', name: 'inbuilt', render: booleanTransformer({truly: '是的', falsely: '不是的'})}
   ];
 
   filters: any[] = [
@@ -33,8 +33,8 @@ export class SimpleTableDemoComponent implements OnInit {
   ];
 
   dataContent = [
-    {id: '1', username: 'user001', displayName: 'User 001', status: 'ACTIVE'},
-    {id: '2', username: 'user002', displayName: 'User 001',},
+    {id: '1', username: 'user001', displayName: 'User 001', status: 'ACTIVE', inbuilt: false},
+    {id: '2', username: 'user002', displayName: 'User 001', inbuilt: true},
     {id: '3', username: 'user003', displayName: 'User 001', status: 'LOCKED'},
   ];
 

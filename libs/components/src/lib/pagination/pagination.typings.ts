@@ -44,6 +44,10 @@ export class Page<T = any> implements Pagination {
     return new Page<T>(number, _size, _totalElements, _content);
   }
 
+  static noop<T = any>(): Page<T> {
+    return Page.of(0, 10, 0);
+  }
+
   get empty(): boolean {
     return !(this.totalElements > 0);
   }

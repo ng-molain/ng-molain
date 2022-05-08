@@ -12,20 +12,30 @@ export interface ColumnDef {
   sortable?: boolean;
 }
 
-export type RenderFn = (row: any, col: ColumnDef) => number | string | CellContent;
-
 export interface CellContent {
   isTag?: boolean;
   text: number | string | boolean;
   color?: string;
 }
 
+export type CellValue = number | string | CellContent;
+
+export type RenderFn = (row: any, col: ColumnDef) => CellValue;
+
 
 // TODO BOOLEAN map
-export function enumTransformer(enumeration: {[key: string]: number | string | CellContent}): RenderFn {
+export function enumTransformer(enumeration: {[key: string]: CellValue}): RenderFn {
   return (row: any, col: ColumnDef) => {
     const {name} = col;
     const cellValue = get(row, name);
     return get(enumeration, cellValue, cellValue);
+  }
+}
+
+export function booleanTransformer(valueMapping: {truly: CellValue, falsely: CellValue}) {
+  return (row: any, col: ColumnDef) => {
+    const {name, defaultValue} = col;
+    const cellValue = get(row, name) ? 'truly' : 'falsely';
+    return get(valueMapping, cellValue, defaultValue || cellValue);
   }
 }
