@@ -1,13 +1,22 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Optional, Output} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Inject,
+  Input,
+  OnDestroy,
+  OnInit,
+  Optional,
+  Output
+} from '@angular/core';
 import {SelectionModel} from "@angular/cdk/collections";
-import {OrgUnitFlatNode, OrgUnitNode, transformer} from "../org-unit.typings";
+import {ORG_UNIT_LOADER, OrgUnitFlatNode, OrgUnitLoader, OrgUnitNode, transformer} from "../org-unit.typings";
 import {FlatTreeControl} from "@angular/cdk/tree";
-import {NzTreeFlatDataSource, NzTreeFlattener} from "ng-zorro-antd/tree-view";
-import {EMPTY, interval, Subject} from "rxjs";
+import {NzTreeFlattener} from "ng-zorro-antd/tree-view";
+import {interval, Subject} from "rxjs";
 import {throttle} from "rxjs/operators";
 import {OrgUnitDataSource, OrgUnitLoadChildrenFn} from "./org-unit-data-source";
-import {OUS} from "../ou.data";
-import {OrgUnitLoader} from "../org-unit-loader";
+import {DefaultOrgUnitLoader} from "../default-org-unit-loader.service";
 import {isEmpty} from "lodash-es";
 
 @Component({
@@ -59,7 +68,11 @@ export class OrgUnitTreeComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() keepSelection: boolean = false;
   @Input() searchVisible: boolean = false;
 
-  constructor(@Optional() private orgUnitLoader: OrgUnitLoader) {
+  constructor(@Inject(ORG_UNIT_LOADER) @Optional() private orgUnitLoader: OrgUnitLoader,
+              private defaultOrgUnitLoader: DefaultOrgUnitLoader) {
+    if (!orgUnitLoader) {
+      this.orgUnitLoader = defaultOrgUnitLoader;
+    }
     this._updateSelectionMode(false);
   }
 

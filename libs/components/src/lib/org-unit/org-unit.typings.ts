@@ -1,3 +1,11 @@
+import {OrgUnitLoadChildrenFn} from "./org-unit-tree/org-unit-data-source";
+import {InjectionToken} from "@angular/core";
+
+export interface OrgUnitLoader {
+  loadChildren: OrgUnitLoadChildrenFn;
+}
+
+export const ORG_UNIT_LOADER = new InjectionToken<OrgUnitLoader>("ORG_UNIT_LOADER");
 
 export interface OrgUnitNode {
   id: string;

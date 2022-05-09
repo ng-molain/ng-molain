@@ -24,7 +24,7 @@ import {
   UnorderedListOutline
 } from "@ant-design/icons-angular/icons";
 import {IconDefinition} from "@ant-design/icons-angular";
-import {OrgUnitLoader} from "./org-unit-loader";
+import {DefaultOrgUnitLoader} from "./default-org-unit-loader.service";
 import {OrgUnitLookupService} from "./org-unit-lookup.service";
 import {NzModalModule} from "ng-zorro-antd/modal";
 
@@ -73,7 +73,7 @@ const icons: IconDefinition[] = [
     OrgUnitLookupDialogComponent
   ],
   providers: [
-    OrgUnitLoader,
+    DefaultOrgUnitLoader,
     OrgUnitLookupService
   ]
 })

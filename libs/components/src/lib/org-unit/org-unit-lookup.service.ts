@@ -4,7 +4,7 @@ import {OrgUnitLookupDialogComponent} from "./org-unit-lookup-dialog/org-unit-lo
 import {OnClickCallback} from "ng-zorro-antd/modal/modal-types";
 import {NzSafeAny} from "ng-zorro-antd/core/types";
 import {isEmpty, isFunction} from "lodash-es";
-import {OrgUnitLoader} from "./org-unit-loader";
+import {OrgUnitLoader} from "./org-unit.typings";
 
 export interface OrgUnitLookupOptions<T = NzSafeAny> {
   title?: string | TemplateRef<{}>;

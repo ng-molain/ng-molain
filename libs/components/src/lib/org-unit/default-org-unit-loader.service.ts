@@ -3,10 +3,10 @@ import {map} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import { OrgUnitLoadChildrenFn } from "./org-unit-tree/org-unit-data-source";
-import { OrgUnitNode } from "./org-unit.typings";
+import {OrgUnitLoader, OrgUnitNode} from "./org-unit.typings";
 
 @Injectable()
-export class OrgUnitLoader {
+export class DefaultOrgUnitLoader implements OrgUnitLoader {
 
   constructor(private http: HttpClient) {
   }
