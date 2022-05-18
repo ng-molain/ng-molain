@@ -12,6 +12,9 @@ import {get, has, isArray, isEmpty, isFunction} from "lodash-es";
 export class ViewFrameworkProductComponent implements OnInit, OnDestroy {
 
   menus: any[] = [];
+  title?: string;
+
+  private _collapsed: boolean = false;
 
   constructor(
     @Optional() private translateService: TranslateService,
@@ -21,6 +24,14 @@ export class ViewFrameworkProductComponent implements OnInit, OnDestroy {
     // if (!vfService) {
     // console.log("must provide ViewFrameworkProductService")
     // }
+  }
+
+  get collapsed(): boolean {
+    if (this.vfService) {
+      return this.vfService.collapsed;
+    } else {
+      return this._collapsed;
+    }
   }
 
   ngOnInit() {
@@ -38,6 +49,8 @@ export class ViewFrameworkProductComponent implements OnInit, OnDestroy {
       if (!isEmpty(menus)) {
         this._parseMenu(menus);
       }
+
+      this.title = get(this.vfService, 'title') || get(data, 'title');
     });
 
     // TODO： 在routeData中设置回调函数，不过意义可能不大，操作性不强，需要手动把一些参数传入回调函数，如（injector）
@@ -57,11 +70,26 @@ export class ViewFrameworkProductComponent implements OnInit, OnDestroy {
       it.name = !!it.i18n && this.translateService.instant(it.i18n) !== it.i18n ? (this.translateService.instant(it.i18n)) : it.text;
       it.route = it.link;
       it.level = level;
-      it.type = it.group ? 'group' : (has(it, 'children') ? 'submenu' : 'menuitem')
+      it.type = it.group ? 'group' : (has(it, 'children') ? 'submenu' : 'menuitem');
+        const {link}: {link: string} = it;
+        it.isRouterLink = link && !(link.startsWith('//') || link.indexOf('://') > 0);
     });
     this.menus = menus;
   }
 
+  onItemActiveChange($event: boolean, menu: any, parent?: any) {
+    if ($event && parent) {
+      parent.open = true;
+    }
+  }
+
+  toggleCollapsed() {
+    if (this.vfService) {
+      this.vfService.collapsed = !this.vfService.collapsed;
+    } else {
+      this._collapsed = !this._collapsed;
+    }
+  }
 }
 
 function visit(nodes: any[], callback: (node: any, level: number) => void = () => { }, level: number = 0, deepInBy: string = 'children') {

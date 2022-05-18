@@ -4,7 +4,7 @@ import {OrgUnitLookupDialogComponent} from "./org-unit-lookup-dialog/org-unit-lo
 import {OnClickCallback} from "ng-zorro-antd/modal/modal-types";
 import {NzSafeAny} from "ng-zorro-antd/core/types";
 import {isEmpty, isFunction} from "lodash-es";
-import {OrgUnitLoader} from "./org-unit.typings";
+// import {OrgUnitLoader} from "./org-unit.typings";
 
 export interface OrgUnitLookupOptions<T = NzSafeAny> {
   title?: string | TemplateRef<{}>;
@@ -23,7 +23,7 @@ export class OrgUnitLookupService {
 
   constructor(
     private readonly modalService: NzModalService,
-    private readonly orgUnitLoader: OrgUnitLoader
+    // private readonly orgUnitLoader: OrgUnitLoader
   ) {
   }
 
@@ -53,7 +53,7 @@ export class OrgUnitLookupService {
       nzContent: OrgUnitLookupDialogComponent,
       nzComponentParams: {
         multipleSelect: options.isMultiple,
-        loadChildrenFn: this.orgUnitLoader.loadChildren
+        // loadChildrenFn: this.orgUnitLoader.loadChildren
       },
       nzWidth: 720,
       nzMaskClosable: false,

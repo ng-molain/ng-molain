@@ -1,8 +1,16 @@
 <nz-layout class="layout-container">
-  <nz-sider class="layout-sider" nzTheme="light">
+  <nz-sider class="layout-sider" nzTheme="light" [nzWidth]="collapsed ? 0 : 200">
     <!--        <ml-sidenav [navItems]="menus"></ml-sidenav>-->
+    <div *ngIf="title" class="px-6 py-3 bg-gray-50 text-gray-600 font-light">
+      {{title}}
+    </div>
     <ng-container *ngTemplateOutlet="sidenav; context: {$implicit: menus}"></ng-container>
   </nz-sider>
+  <div class="layout-splider">
+    <div class="collapse-handler flex items-center justify-center" (click)="toggleCollapsed()">
+      <i class="far fa-rotate-180" [ngClass]="{'fa-indent': !collapsed, 'fa-outdent': collapsed}"></i>
+    </div>
+  </div>
   <nz-content class="layout-content">
       <router-outlet></router-outlet>
   </nz-content>
@@ -15,14 +23,14 @@
     <ng-container *ngTemplateOutlet="menuTpl; context: {$implicit: navItems}"></ng-container>
     <!-- 递归生成菜单，需要手动指定 nzPaddingLeft，仅在 nzMode 为 inline 的模式，且 nzInlineCollapsed 为 false 的情况下有效。 -->
     <!-- 追踪 Issue：https://github.com/angular/angular/issues/14842 -->
-    <ng-template #menuTpl let-menus>
+    <ng-template #menuTpl let-menus let-parent="parent">
       <ng-container *ngFor="let menu of menus">
         <ng-container [ngSwitch]="menu.type">
           <ng-template ngSwitchCase="submenu">
             <ng-container *ngIf="!!menu.children && menu.children.length > 0">
               <li nz-submenu [nzTitle]="menu.name" [nzOpen]="menu.open" [nzPaddingLeft]="(menu.level + 1) * 24">
                 <ul>
-                  <ng-container *ngTemplateOutlet="menuTpl; context: {$implicit: menu.children}"></ng-container>
+                  <ng-container *ngTemplateOutlet="menuTpl; context: {$implicit: menu.children, parent: menu}"></ng-container>
                 </ul>
               </li>
             </ng-container>
@@ -37,9 +45,19 @@
             </ng-container>
           </ng-template>
           <ng-template ngSwitchDefault>
-            <li nz-menu-item [nzPaddingLeft]="(menu.level + 1) * 24">
-              <a [routerLink]="menu.route" routerLinkActive="router-link-active">{{menu.name}}</a>
+            <li *ngIf="menu.isRouterLink; else hrefLinkTpl" nz-menu-item [nzPaddingLeft]="(menu.level + 1) * 24" [nzSelected]="rla.isActive">
+              <a [routerLink]="menu.route" routerLinkActive #rla="routerLinkActive" (isActiveChange)="onItemActiveChange($event, menu, parent)">{{menu.name}}</a>
             </li>
+            <ng-template #hrefLinkTpl>
+              <li nz-menu-item [nzPaddingLeft]="(menu.level + 1) * 24" >
+                <a [href]="menu.link" [target]="menu.target || '_blank'" class="block flex items-center flex-1" style="flex: 1">
+                  <span>{{menu.name}}</span>
+                  <span class="ml-auto">
+                    <i class="far fa-external-link"></i>
+                  </span>
+                </a>
+              </li>
+            </ng-template>
           </ng-template>
         </ng-container>
       </ng-container>

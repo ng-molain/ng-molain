@@ -2,6 +2,8 @@ import {InjectionToken} from '@angular/core';
 
 export interface ViewFrameworkProductService {
   collapsed: boolean;
+  title?: boolean;
+  iconBaseClassName?: string;
 
   getMenus(): any[];
 
