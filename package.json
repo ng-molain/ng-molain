@@ -1,6 +1,6 @@
 {
   "name": "ng-molain",
-  "version": "0.13.28",
+  "version": "0.13.30",
   "license": "Apache License",
   "scripts": {
     "ng": "nx",
@@ -26,7 +26,7 @@
     "@angular/platform-browser": "~13.2.0",
     "@angular/platform-browser-dynamic": "~13.2.0",
     "@angular/router": "~13.2.0",
-    "@ngx-translate/core": "^13.0.0",
+    "@ngx-translate/core": "^14.0.0",
     "@nrwl/angular": "13.7.2",
     "echarts": "^5.3.0",
     "fontawesome-web": "^5.15.1",
