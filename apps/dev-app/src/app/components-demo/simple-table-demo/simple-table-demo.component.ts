@@ -20,7 +20,8 @@ export class SimpleTableDemoComponent implements OnInit {
         LOCKED: {text: '已锁定', color: 'red'}
       })
     },
-    {title: '是否内置', name: 'inbuilt', render: booleanTransformer({truly: '是的', falsely: '不是的'})}
+    {title: '是否内置', name: 'inbuilt', render: booleanTransformer({truly: '是的', falsely: '不是的'})},
+    {title: '登录次数', name: 'loginCount'},
   ];
 
   filters: any[] = [
@@ -33,9 +34,9 @@ export class SimpleTableDemoComponent implements OnInit {
   ];
 
   dataContent = [
-    {id: '1', username: 'user001', displayName: 'User 001', status: 'ACTIVE', inbuilt: false},
-    {id: '2', username: 'user002', displayName: 'User 001', inbuilt: true},
-    {id: '3', username: 'user003', displayName: 'User 001', status: 'LOCKED'},
+    {id: '1', username: 'user001', displayName: 'User 001', status: 'ACTIVE', inbuilt: false, loginCount: 10},
+    {id: '2', username: 'user002', displayName: 'User 001', inbuilt: true, loginCount: 1233},
+    {id: '3', username: 'user003', displayName: 'User 001', status: 'LOCKED', loginCount: 1233422},
   ];
 
   data: Pagination = Page.of(0, 10, 109, this.dataContent);

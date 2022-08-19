@@ -1,6 +1,6 @@
 import {Directive, Input, OnInit} from "@angular/core";
 import {CellContent, ColumnDef} from "./simple-table.typings";
-import {get, has, isBoolean, isEmpty, isFunction} from "lodash-es";
+import {get, has, isBoolean, isEmpty, isFunction, isNumber} from "lodash-es";
 
 @Directive({
   selector: '[mlCellValue]',
@@ -25,7 +25,7 @@ export class CellValueDirective implements OnInit {
   }
 
   get hasText(): any {
-    return !isEmpty(this.text);
+    return !isEmpty(this.text) || isNumber(this.text);
   }
 
   get color(): string | undefined | null {
