@@ -2,7 +2,7 @@ import {NzSizeLDSType} from "ng-zorro-antd/core/types";
 import {NzSelectModeType} from "ng-zorro-antd/select/select.types";
 import {NzSelectSizeType} from "ng-zorro-antd/select/select.component";
 
-export interface InputProps {
+export class InputProps {
   addonBefore?: string;
   addonAfter?: string;
   prefix?: string;
@@ -13,21 +13,39 @@ export interface InputProps {
   placeholder?: string;
   size?: NzSizeLDSType; // formily provided enum: ['large', 'small', 'middle', null]
 
+  constructor(props: Partial<InputProps>) {
+    if (props) {
+      Object.assign(this, props);
+    }
+  }
 }
 
-export interface TextAreaProps {
+export class TextAreaProps {
   bordered?: boolean;
   maxLength?: number;
   placeholder?: string;
   autoSize?: boolean;
   showCount?: boolean;
+
+  constructor(props: Partial<TextAreaProps>) {
+  if (props) {
+  Object.assign(this, props);
+}
+}
 }
 
-export interface PasswordProps extends InputProps {
+export class PasswordProps extends InputProps {
   checkStrength?: boolean;
+
+  constructor(props: Partial<PasswordProps>) {
+    super(props)
+    if (props) {
+      Object.assign(this, props);
+    }
+  }
 }
 
-export interface SelectProps {
+export class SelectProps {
   mode?: NzSelectModeType; // formily provided enum: ['multiple', 'tags', null]
   allowClear?: boolean;
   autoClearSearchValue?: boolean;
@@ -49,14 +67,20 @@ export interface SelectProps {
   notFoundContent?: string;
   placeholder?: string;
   size?: NzSelectSizeType;
+
+  constructor(props: Partial<SelectProps>) {
+    if (props) {
+      Object.assign(this, props);
+    }
+  }
 }
 
-export interface InputNumberProps {
+export class InputNumberProps {
   decimalSeparator?: string;
   precision?: number;
-  max: number;
-  min: number;
-  step: number;
+  max!: number;
+  min!: number;
+  step!: number;
   placeholder?: string;
   size?: NzSizeLDSType; // enum: ['large', 'small', 'middle', null],
   formatter?: any; // EXPRESSION
@@ -64,9 +88,15 @@ export interface InputNumberProps {
   stringMode?: boolean;
   bordered?: boolean;
   keyboard?: boolean;
+
+  constructor(props: Partial<InputProps>) {
+    if (props) {
+      Object.assign(this, props);
+    }
+  }
 }
 
-export interface TreeSelectProps {
+export class TreeSelectProps {
   allowClear?: boolean;
   autoClearSearchValue?: boolean;
   autoFocus?: boolean;
@@ -87,9 +117,15 @@ export interface TreeSelectProps {
   listHeight?: number;
   placeholder?: string;
   size?: NzSizeLDSType; // enum: ['large', 'small', 'middle', null],
+
+  constructor(props: Partial<TreeSelectProps>) {
+    if (props) {
+      Object.assign(this, props);
+    }
+  }
 }
 
-interface CommonDatePickerProps {
+abstract class CommonDatePickerProps {
   allowClear?: boolean;
   autoFocus?: boolean;
   bordered?: boolean;
@@ -99,22 +135,42 @@ interface CommonDatePickerProps {
   placeholder?: string;
   size?: NzSizeLDSType;  // enum: ['large', 'small', 'middle', null],
   format?: string;  // Default 'YYYY-MM-DD'
+
+  constructor(props: Partial<CommonTimePickerProps>) {
+    if (props) {
+      Object.assign(this, props);
+    }
+  }
 }
 
-export interface DatepickerProps extends CommonDatePickerProps {
+export class DatepickerProps extends CommonDatePickerProps {
   picker?: string; // enum: ['time', 'date', 'month', 'year', 'quarter', 'decade'],
   showNow?: boolean;
   showTime?: boolean;
   showToday?: boolean;
+
+  constructor(props: Partial<DatepickerProps>) {
+    super(props)
+    if (props) {
+      Object.assign(this, props);
+    }
+  }
 }
 
-export interface RangePickerProps extends CommonDatePickerProps {
+export class RangePickerProps extends CommonDatePickerProps {
   picker?: string; // enum: ['time', 'date', 'month', 'year', 'decade'],
   showTime?: boolean;
+
+  constructor(props: Partial<RangePickerProps>) {
+    super(props);
+    if (props) {
+      Object.assign(this, props);
+    }
+  }
 }
 
 
-interface CommonTimePickerProps {
+abstract class CommonTimePickerProps {
   allowClear?: boolean;
   autoFocus?: boolean;
   bordered?: boolean;
@@ -132,10 +188,120 @@ interface CommonTimePickerProps {
   placeholder?: string;
   size?: NzSizeLDSType; // enum: ['large', 'small', 'middle', null],
   format?: string; // default 'YYYY-MM-DD'
+
+  constructor(props: Partial<CommonTimePickerProps>) {
+    if (props) {
+      Object.assign(this, props);
+    }
+  }
 }
 
-export interface TimePickerProps extends CommonTimePickerProps {
+export class TimePickerProps extends CommonTimePickerProps {
 }
 
-export interface TimeRangePickerProps extends  CommonTimePickerProps {
+export class TimeRangePickerProps extends  CommonTimePickerProps {
 }
+
+export class TransferProps {
+  oneWay?: boolean;
+  showSearch?: boolean;
+  showSearchAll?: boolean; // default true
+  filterOption?: string; // EXPRESSION
+  operations?: string; // EXPRESSION
+  titles?: string; // EXPRESSION
+
+  constructor(props: Partial<TreeSelectProps>) {
+    if (props) {
+      Object.assign(this, props);
+    }
+  }
+}
+
+export class CascaderProps {
+  allowClear?: boolean; // default true;
+  changeOnSelect?: boolean;
+  autoFocus?: boolean;
+  bordered?: boolean; // default true
+  displayRender?: string; // EXPRESSION
+  fieldNames?: string; // EXPRESSION
+  showSearch?: boolean;
+  notFoundContent?: string; // default value 'Not Found'
+  placeholder?: string;
+  size?: NzSizeLDSType; // provide enum: ['large', 'small', 'middle', null],
+
+  constructor(props: Partial<CascaderProps>) {
+    if (props) {
+      Object.assign(this, props);
+    }
+  }
+}
+
+export class RadioProps {
+  autoFocus?: boolean;
+
+  constructor(props: Partial<RadioProps>) {
+    if (props) {
+      Object.assign(this, props);
+    }
+  }
+}
+
+export class RadioGroupProps {
+  optionType?: string; // provide enum: ['default', 'button'],
+  buttonStyle?: string; // provide enum: ['outline', 'solid'],
+
+  constructor(props: Partial<RadioGroupProps>) {
+    if (props) {
+      Object.assign(this, props);
+    }
+  }
+}
+
+export class CheckboxProps {
+  autoFocus?: boolean;
+
+  constructor(props: Partial<CheckboxProps>) {
+    if (props) {
+      Object.assign(this, props);
+    }
+  }
+}
+
+export class CheckboxGroupProps {}
+
+export class UploadProps {
+  textContent?:string;
+  accept?: string;
+  action?: any; // include: ['TEXT', 'EXPRESSION'],
+  name?: string; // default 'file'
+  maxCount?: number;
+  method?: string; // enum: ['POST', 'PUT', 'GET'], default 'POST'
+  data?: string; // EXPRESSION
+  headers?: string; // EXPRESSION
+  listType?: string; //  enum: ['text', 'picture', 'picture-card'], default 'text'
+  directory?: boolean;
+  multiple?: boolean;
+  openFileDialogOnClick?: boolean; // default true
+  showUploadList?:boolean; // default true
+  withCredentials?: boolean;
+
+  constructor(props: Partial<UploadProps>) {
+    if (props) {
+      Object.assign(this, props);
+    }
+  }
+}
+
+export class UploadDraggerProps extends UploadProps{}
+
+export class SwitchProps {
+  autoFocus?: boolean;
+  size?: NzSizeLDSType; // enum: ['large', 'small', 'default', ''],
+
+  constructor(props: Partial<SwitchProps>) {
+    if (props) {
+      Object.assign(this, props);
+    }
+  }
+}
+
