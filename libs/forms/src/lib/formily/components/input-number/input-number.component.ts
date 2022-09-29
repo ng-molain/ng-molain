@@ -1,7 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {COMPONENT_PROPS, FieldRef, InputNumberProps, SelectProps} from "@ng-molain/forms";
 import {Field} from "@formily/core";
 import {isNil} from "lodash-es";
+import {COMPONENT_PROPS, FieldRef} from "../../types";
+import {InputNumberProps} from "../types";
 
 @Component({
   selector: 'ml-input-number',

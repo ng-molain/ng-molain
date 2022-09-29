@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {COMPONENT_PROPS, DatepickerProps, FieldRef, TreeSelectProps} from "@ng-molain/forms";
+import {DatepickerProps} from "../types";
 import {Field} from "@formily/core";
+import {COMPONENT_PROPS, FieldRef} from "../../types";
 
 @Component({
   selector: 'ml-date-picker',

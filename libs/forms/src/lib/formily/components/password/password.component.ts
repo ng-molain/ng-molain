@@ -1,8 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {COMPONENT_PROPS, FieldRef} from "@ng-molain/forms";
 import {Field} from "@formily/core";
 import {getStrength} from "./password-strength";
 import {PasswordProps} from "../types";
+import {COMPONENT_PROPS, FieldRef} from "../../types";
 
 @Component({
   selector: 'ml-password',

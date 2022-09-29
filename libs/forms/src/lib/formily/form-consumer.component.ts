@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormRef2} from "@ng-molain/forms";
+import {FormRef2} from "./types";
 
 @Component({
   selector: 'ml-form-consumer',

@@ -1,7 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {COMPONENT_PROPS, FieldRef, InputNumberProps, TreeSelectProps} from "@ng-molain/forms";
 import {Field} from "@formily/core";
 import {NzTreeNodeOptions} from "ng-zorro-antd/tree";
+import {COMPONENT_PROPS, FieldRef} from "../../types";
+import {TreeSelectProps} from "../types";
 
 @Component({
   selector: 'ml-tree-select',

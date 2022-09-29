@@ -7,6 +7,7 @@ export * from './field.component';
 export * from './array-field.component';
 export * from './object-field.component';
 export * from './void-field.component';
+export * from './reactive-field.component';
 
 export * from './schema-field.component';
 export * from './markup-field.component';

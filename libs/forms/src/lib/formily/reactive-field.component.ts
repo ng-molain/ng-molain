@@ -10,9 +10,9 @@ import {
   ViewChild
 } from '@angular/core';
 import {FormPath, GeneralField} from "@formily/core";
-import {COMPONENT_PROPS, DECORATOR_PROPS, FormRef2, SchemaContext} from "@ng-molain/forms";
 import {CdkPortalOutlet, ComponentPortal} from "@angular/cdk/portal";
 import {get} from "lodash-es";
+import {COMPONENT_PROPS, DECORATOR_PROPS, FormRef2, SchemaContext} from "./types";
 
 function isValidComponent(target: any) {
   // return (target: any) =>

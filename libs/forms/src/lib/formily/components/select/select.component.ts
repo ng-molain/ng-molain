@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {COMPONENT_PROPS, FieldRef} from "@ng-molain/forms";
 import {SelectProps} from "../types";
 import {Field} from "@formily/core";
+import {COMPONENT_PROPS, FieldRef} from "../../types";
 
 @Component({
   selector: 'ml-select',

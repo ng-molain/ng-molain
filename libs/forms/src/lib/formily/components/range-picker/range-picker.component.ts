@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {COMPONENT_PROPS, FieldRef, RangePickerProps, TreeSelectProps} from "@ng-molain/forms";
 import {Field} from "@formily/core";
+import {COMPONENT_PROPS, FieldRef} from "../../types";
+import {RangePickerProps} from "../types";
 
 @Component({
   selector: 'ml-range-picker',
