@@ -1,0 +1,102 @@
+<h1 class="text-red-500 text-xl mb-8">formily-markup-demo</h1>
+
+<div class="p-6">
+  <form nz-form [formGroup]="formGroup" [mlFormProvider]="form">
+    <fieldset>
+      <legend>Field</legend>
+      <ml-field [props]="{
+      name: 'input',
+      component: [Input, {prefix: '￥'}],
+      decorator: [FormItem, {label: 'Input'}]
+      }"></ml-field>
+      <ml-field [props]="{
+      name: 'textarea',
+      component: [TextArea, {showCount: true, maxLength: 100}],
+      decorator: [FormItem, {label: 'TextArea'}]
+      }"></ml-field>
+      <ml-field [props]="{
+      name: 'password',
+      component: [Password, {checkStrength: true}],
+      decorator: [FormItem, {label: 'Password'}]
+      }"></ml-field>
+      <ml-field [props]="{
+      name: 'select',
+      component: [Select, {mode: 'default'}],
+      decorator: [FormItem, {label: 'Select'}]
+      }"></ml-field>
+      <ml-field [props]="{
+      name: 'tree-select',
+      component: [TreeSelect, {}],
+      decorator: [FormItem, {label: 'TreeSelect'}]
+      }"></ml-field>
+
+      <ml-field [props]="{
+      name: 'NumberPicker',
+      component: [NumberPicker, {}],
+      decorator: [FormItem, {label: 'NumberPicker'}]
+      }"></ml-field>
+
+    </fieldset>
+
+    <fieldset>
+      <legend>Array Field</legend>
+      <ml-array-field #arrayField [props]="{name: 'arr'}">
+        <ng-container *ngFor="let item of arrayField.field?.value; index as index">
+          <div class="flex items-center space-x-3">
+            <ml-field [props]="{name: index + '.value', component: [Input]}"></ml-field>
+            <button type="button" nz-button (click)="arrayField.field?.moveUp(index)">UP</button>
+            <button type="button" nz-button (click)="arrayField.field?.moveDown(index)">Down</button>
+            <button type="button" nz-button (click)="arrayField.field?.remove(index)">Remove</button>
+          </div>
+        </ng-container>
+        <div>
+          <button type="button" nz-button (click)="arrayField.field?.push({id: now(), value: ''})">Add</button>
+        </div>
+      </ml-array-field>
+    </fieldset>
+
+    <fieldset>
+      <legend>Object Field</legend>
+      <ml-object-field #objectField [props]="{name: 'obj'}">
+        <ng-container *ngFor="let item of objectField.keys">
+          <div class="flex items-center space-x-3">
+            <div>{{item}}</div>
+            <ml-field [props]="{name: item, component: [Input, {placeholder: '请输入' + item}]}"></ml-field>
+            <button type="button" nz-button (click)="objectField.field?.removeProperty(item)">Remove</button>
+          </div>
+        </ng-container>
+
+        <div class="flex items-center space-x-3">
+          <ml-field [props]="{
+          name: '_propertyName',
+          basePath: '',
+          required: true,
+          component: [Input, {placeholder: '属性名称'}]
+          }"></ml-field>
+          <button type="button" nz-button (click)="onObjectFieldAdd(objectField.field)">Add</button>
+        </div>
+      </ml-object-field>
+    </fieldset>
+
+    <fieldset>
+      <legend>Void Field</legend>
+      <ml-void-field [props]="{name: 'layout'}">
+        <ml-field [props]="{name: 'input', component: [Input]}"></ml-field>
+      </ml-void-field>
+
+      <div>
+        <button type="button" nz-button (click)="switchLayoutVisible()">
+          {{form.query('layout').get('visible') ? 'Hide': 'Show'}}
+        </button>
+      </div>
+    </fieldset>
+
+    <div class="bg-gray-200 p-6">
+      <ml-form-consumer></ml-form-consumer>
+    </div>
+  </form>
+</div>
+
+<div class="bg-white p-6">
+  this is markup demo without schema.
+</div>

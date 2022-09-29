@@ -3,18 +3,22 @@ import { CommonModule } from '@angular/common';
 
 import { FormsDemoRoutingModule } from './forms-demo-routing.module';
 import { SimpleFormDemoComponent } from './simple-form-demo/simple-form-demo.component';
-import {NgMolainFormsModule} from "@ng-molain/forms";
+import {FormilyModule, NgMolainFormsModule} from "@ng-molain/forms";
 import {NzButtonModule} from "ng-zorro-antd/button";
 import { SettingFormDemoComponent } from './setting-form-demo/setting-form-demo.component';
 import {NzRadioModule} from "ng-zorro-antd/radio";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { FormilyMarkupDemoComponent } from './formily-markup-demo/formily-markup-demo.component';
+import { FormilySchemaDemoComponent } from './formily-schema-demo/formily-schema-demo.component';
 
 
 @NgModule({
   declarations: [
 
     SimpleFormDemoComponent,
-     SettingFormDemoComponent
+     SettingFormDemoComponent,
+     FormilyMarkupDemoComponent,
+     FormilySchemaDemoComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +26,9 @@ import {FormsModule} from "@angular/forms";
     NgMolainFormsModule,
     NzButtonModule,
     NzRadioModule,
-    FormsModule
+    FormsModule,
+    FormilyModule,
+    ReactiveFormsModule
   ]
 })
 export class FormsDemoModule { }

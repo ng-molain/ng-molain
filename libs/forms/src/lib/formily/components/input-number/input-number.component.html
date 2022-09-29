@@ -1,0 +1,16 @@
+<nz-input-number
+  [(ngModel)]="field.value"
+  [nzPrecision]="props.precision"
+  [nzMax]="props.max"
+  [nzMin]="props.min"
+  [nzStep]="props.step??1"
+  [nzPlaceHolder]="props.placeholder??''"
+  [nzSize]="props.size ?? 'default'"
+  [nzDisabled]="field.disabled"
+></nz-input-number>
+<!--  [nzFormatter]=""-->
+<!--  [nzParser]=""-->
+<!--nzAutoFocus-->
+<!--nzId=""-->
+<!--nzInputMode=""-->
+<!--nzPrecisionMode=""-->

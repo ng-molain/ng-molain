@@ -1,0 +1,25 @@
+
+<ng-container *ngIf="props.showCount && props.maxLength; else textAreaTpl">
+  <nz-textarea-count [nzMaxCharacterCount]="props.maxLength">
+      <textarea nz-input
+                [(ngModel)]="field.value"
+                [nzBorderless]="props.bordered === false"
+                [nzAutosize]="props.autoSize !== false"
+                [maxlength]="props.maxLength ?? null"
+                [maxLength]="props.maxLength"
+                [placeholder]="props.placeholder??''"
+                [disabled]="field.disabled"
+      ></textarea>
+  </nz-textarea-count>
+</ng-container>
+
+<ng-template #textAreaTpl>
+  <textarea nz-input
+            [(ngModel)]="field.value"
+            [nzBorderless]="props.bordered === false"
+            [nzAutosize]="!!props.autoSize"
+            [maxlength]="props.maxLength ?? null"
+            [placeholder]="props.placeholder??''"
+            [disabled]="field.disabled"
+  ></textarea>
+</ng-template>

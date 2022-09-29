@@ -8,13 +8,17 @@ import {
 } from "@ng-molain/components";
 import {SimpleFormDemoComponent} from "./simple-form-demo/simple-form-demo.component";
 import {SettingFormDemoComponent} from "./setting-form-demo/setting-form-demo.component";
+import {FormilyMarkupDemoComponent} from "./formily-markup-demo/formily-markup-demo.component";
+import {FormilySchemaDemoComponent} from "./formily-schema-demo/formily-schema-demo.component";
 
 const routes: Routes = [
   {
     path: '', component: ViewFrameworkProductComponent, children: [
       {path: '', redirectTo: 'simple-form', pathMatch: 'full'},
       {path: 'simple-form', component: SimpleFormDemoComponent},
-      {path: 'setting-form', component: SettingFormDemoComponent}
+      {path: 'setting-form', component: SettingFormDemoComponent},
+      {path: 'formily-markup', component: FormilyMarkupDemoComponent},
+      {path: 'formily-schema', component: FormilySchemaDemoComponent}
       ]
   }
 

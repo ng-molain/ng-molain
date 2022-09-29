@@ -1,0 +1,30 @@
+
+<ng-container *ngIf="useInputGroup; else inputTpl">
+  <nz-input-group
+    [nzAddOnBefore]="props.addonBefore"
+    [nzAddOnAfter]="props.addonAfter"
+    [nzPrefix]="props.prefix"
+    [nzSuffix]="props.suffix"
+    [nzSize]="props.size??'default'"
+  >
+    <ng-container *ngTemplateOutlet="inputTpl"></ng-container>
+  </nz-input-group>
+</ng-container>
+
+<ng-template #inputTpl>
+  <input type="text"
+         nz-input
+         [(ngModel)]="field.value"
+         [nzSize]="props.size??'default'"
+         [nzBorderless]="props.bordered === false"
+         [maxlength]="props.maxLength ?? null"
+         [maxLength]="props.maxLength"
+         [placeholder]="props.placeholder??''"
+         [disabled]="field.disabled"
+  >
+</ng-template>
+
+<ng-template #clearIcon>
+  <!-- *ngIf="props.allowClear" -->
+  <span nz-icon nzType="close-circle" nzTheme="fill" (click)="field.value = null" class="cursor-pointer opacity-50 hover:opacity-90"></span>
+</ng-template>

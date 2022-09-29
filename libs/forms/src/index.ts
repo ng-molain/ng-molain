@@ -11,3 +11,5 @@ export * from './lib/widgets/index';
 export * from './lib/controls/index';
 export * from './lib/components/index';
 
+export * from './lib/formily/index';
+

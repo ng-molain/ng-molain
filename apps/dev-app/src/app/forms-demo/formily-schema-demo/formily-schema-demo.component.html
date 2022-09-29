@@ -1,0 +1,29 @@
+<h1 class="text-red-500 text-xl mb-8">formily-schema-demo works!</h1>
+
+<form [mlFormProvider]="form">
+
+  <ml-schema-field [props]="{
+  components: components
+  }">
+    <ml-markup-field [props]="{
+    type: 'string',
+    name: 'input',
+    'x-component': 'Input'
+    }"></ml-markup-field>
+
+    <ml-markup-field [props]="{
+    type: 'string',
+    name: 'select',
+    'x-component': 'Input',
+    'x-component-props': {
+      style: {width: 200, marginTop: 20}
+    }
+    }"></ml-markup-field>
+
+  </ml-schema-field>
+
+  <div class="p-6 border">
+    {{form.values | json}}
+  </div>
+
+</form>

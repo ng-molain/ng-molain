@@ -1,0 +1,9 @@
+<!--form-item works!-->
+<nz-form-item>
+  <nz-form-label>{{label}}</nz-form-label>
+  <nz-form-control>
+<!--    <ng-template [cdkPortalOutlet]="childPortal"></ng-template>-->
+    <ng-content></ng-content>
+    <ng-template cdkPortalOutlet></ng-template>
+  </nz-form-control>
+</nz-form-item>

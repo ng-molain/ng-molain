@@ -1,0 +1,39 @@
+<nz-select
+  [(ngModel)]="field.props"
+  [nzMode]="props.mode ?? 'default'"
+  [nzSize]="props.size??'default'"
+  [nzAllowClear]="props.allowClear"
+  [nzAutoClearSearchValue]="props.autoClearSearchValue"
+  [nzDropdownMatchSelectWidth]="props.dropdownMatchSelectWidth !== false"
+  [nzAutoFocus]="props.autoFocus"
+  [nzBorderless]="props.bordered === false"
+  [nzOpen]="props.defaultOpen"
+  [nzShowArrow]="props.showArrow !== false"
+  [nzShowSearch]="props.showSearch === true"
+  [nzMaxTagCount]="props.maxTagCount ?? 3"
+  [nzMaxTagPlaceholder]="maxTagPlaceholder"
+  [nzMaxMultipleCount]="props.maxTagCount ?? 3"
+  [nzNotFoundContent]="props.notFoundContent"
+  [nzPlaceHolder]="props.placeholder ?? ''"
+  [nzLoading]="field.loading"
+  [nzDisabled]="field.disabled"
+>
+  <ng-container *ngFor="let item of field.dataSource">
+    <nz-option-group *ngIf="item.children && item.children.length > 0">
+      <nz-option *ngFor="let ii of item.children"
+                 [nzValue]="ii.value || ii.key || ii"
+                 [nzLabel]="ii.label || ii.text || ii.title"
+                 [nzDisabled]="ii['disabled']"></nz-option>
+    </nz-option-group>
+    <nz-option *ngIf="!item.children || item.children.length <= 0"
+               [nzValue]="item.value || item.key || item"
+               [nzLabel]="item.label || item.text || item.title"
+               [nzDisabled]="item['disabled']"></nz-option>
+  </ng-container>
+</nz-select>
+
+<ng-template #maxTagPlaceholder>
+  <ng-container *ngIf="props.maxTagPlaceholder">
+    {{props.maxTagPlaceholder}}
+  </ng-container>
+</ng-template>
