@@ -7,7 +7,9 @@
     "@angular/forms": "^13.2.0",
     "@angular/router": "^13.2.0",
     "rxjs": "^7.4.0",
-    "@angular/platform-browser": "^13.2.0"
+    "@angular/platform-browser": "^13.2.0",
+    "@formily/core": "^2.2.5",
+    "@formily/json-schema": "^2.2.5"
   },
   "dependencies": {
     "tslib": "^2.3.0"
