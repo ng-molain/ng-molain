@@ -10,17 +10,22 @@ export interface ColumnDef {
   defaultValue?: any;
 
   sortable?: boolean;
+  linkTo?: LinkFn
 }
 
 export interface CellContent {
   isTag?: boolean;
   text: number | string | boolean;
   color?: string;
+  link?: any[] | string | null;
+  linkTarget?: string;
 }
 
 export type CellValue = number | string | CellContent;
 
 export type RenderFn = (row: any, col: ColumnDef) => CellValue;
+
+export type LinkFn = (row: any, col: ColumnDef) => string | any[] | undefined | null;
 
 
 // TODO BOOLEAN map

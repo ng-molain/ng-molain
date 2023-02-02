@@ -14,6 +14,7 @@ import {NzTagModule} from "ng-zorro-antd/tag";
 import {PaginationModule} from "../pagination";
 import {NzModalModule} from "ng-zorro-antd/modal";
 import {NzMessageModule} from "ng-zorro-antd/message";
+import {RouterModule} from "@angular/router";
 
 
 
@@ -23,20 +24,21 @@ import {NzMessageModule} from "ng-zorro-antd/message";
     ColTplDirective,
     CellValueDirective,
   ],
-  imports: [
-    CommonModule,
-    NzTableModule,
-    NzCheckboxModule,
-    NzButtonModule,
-    NzToolTipModule,
-    NzRadioModule,
-    FormsModule,
-    NzEmptyModule,
-    NzTagModule,
-    PaginationModule,
-    NzModalModule,
-    NzMessageModule,
-  ],
+    imports: [
+        CommonModule,
+        NzTableModule,
+        NzCheckboxModule,
+        NzButtonModule,
+        NzToolTipModule,
+        NzRadioModule,
+        FormsModule,
+        NzEmptyModule,
+        NzTagModule,
+        PaginationModule,
+        NzModalModule,
+        NzMessageModule,
+        RouterModule,
+    ],
   exports: [
     SimpleTableComponent,
     ColTplDirective,

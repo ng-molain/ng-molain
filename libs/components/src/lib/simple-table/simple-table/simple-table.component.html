@@ -52,11 +52,25 @@
         <ng-container *ngTemplateOutlet="colTplMap!.get(col.name)!; context: {$implicit: row}"></ng-container>
       </ng-container>
       <ng-container *ngIf="!colTplMap?.has(col.name)" mlCellValue #cellValue="mlCellValue" [mlCellValueCol]="col" [mlCellValueRow]="row">
-        <ng-container *ngIf="cellValue.isTag; else plainTextCell">
-          <nz-tag *ngIf="cellValue.hasText" [nzColor]="cellValue.color || 'default'">{{cellValue.text}}</nz-tag>
+        <ng-container *ngIf="cellValue.isLink; else cellValueTpl">
+          <ng-container *ngIf="cellValue.isHrefLink">
+            <a [href]="cellValue.link" [attr.target]="cellValue.linkTarget">
+              <ng-container *ngTemplateOutlet="cellValueTpl"></ng-container>
+            </a>
+          </ng-container>
+          <ng-container *ngIf="cellValue.isRouterLink">
+            <a [routerLink]="cellValue.link" [attr.target]="cellValue.linkTarget">
+              <ng-container *ngTemplateOutlet="cellValueTpl"></ng-container>
+            </a>
+          </ng-container>
         </ng-container>
-        <ng-template #plainTextCell>
-          <div *ngIf="cellValue.hasText" [style.color]="cellValue.color">{{cellValue.text}}</div>
+        <ng-template #cellValueTpl>
+          <ng-container *ngIf="cellValue.isTag; else plainTextCell">
+            <nz-tag *ngIf="cellValue.hasText" [nzColor]="cellValue.color || 'default'">{{cellValue.text}}</nz-tag>
+          </ng-container>
+          <ng-template #plainTextCell>
+            <div *ngIf="cellValue.hasText" [style.color]="cellValue.color">{{cellValue.text}}</div>
+          </ng-template>
         </ng-template>
       </ng-container>
     </td>

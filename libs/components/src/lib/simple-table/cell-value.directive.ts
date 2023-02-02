@@ -1,6 +1,6 @@
 import {Directive, Input, OnInit} from "@angular/core";
 import {CellContent, ColumnDef} from "./simple-table.typings";
-import {get, has, isBoolean, isEmpty, isFunction, isNumber} from "lodash-es";
+import {get, has, isBoolean, isEmpty, isFunction, isNumber, isString} from "lodash-es";
 
 @Directive({
   selector: '[mlCellValue]',
@@ -18,6 +18,28 @@ export class CellValueDirective implements OnInit {
 
   get isTag(): boolean {
     return get(this.value, 'isTag', false);
+  }
+
+  get isLink(): boolean {
+    return this.isHrefLink || this.isRouterLink;
+  }
+
+  get isRouterLink(): boolean {
+    const link = get(this.value, 'link');
+    return !!link && (Array.isArray(link) || isString(link)) && !this.isHrefLink;
+  }
+
+  get isHrefLink(): boolean {
+    const link = get(this.value, 'link');
+    return !!link && isString(link) && (link.startsWith('//') || link.startsWith('http'));
+  }
+
+  get link(): any[] | string {
+    return get(this.value, 'link')!;
+  }
+
+  get linkTarget(): string | undefined {
+    return get(this.value, 'linkTarget');
   }
 
   get text(): any {
@@ -39,8 +61,8 @@ export class CellValueDirective implements OnInit {
     this._text = this.cellValue(this.col, this.row);
   }
 
-  private cellValue(col: any, row: any): CellContent | null {
-    const {name, defaultValue, render} = col;
+  private cellValue(col: ColumnDef, row: any): CellContent | null {
+    const {name, defaultValue, render, linkTo} = col;
     if (!name && !render) {
       return null;
     }
@@ -53,18 +75,32 @@ export class CellValueDirective implements OnInit {
       value = get(row, name, defaultValue);
     }
 
+    let link = null;
+    if (isFunction(linkTo)) {
+      link = linkTo(row, col);
+    }
+
     if (isBoolean(value)) {
       return {
-        text: value ? '是' : '否'
+        text: value ? '是' : '否',
+        link
       };
     }
 
     if (has(value, 'text')) {
-      return value;
+      if (has(value, 'link')) {
+        return value;
+      } else {
+        return {
+          ...value,
+          link
+        }
+      }
     }
 
     return {
-      text: value
+      text: value,
+      link
     };
   }
 }

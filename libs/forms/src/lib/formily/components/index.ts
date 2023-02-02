@@ -1,5 +1,6 @@
 export * from './formily-components.module';
 export * from './types';
+export * from './components';
 
 export * from './form-layout/form-layout.module';
 export * from './form-layout/form-layout.component';

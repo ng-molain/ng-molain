@@ -28,12 +28,16 @@
         <ng-container [ngSwitch]="menu.type">
           <ng-template ngSwitchCase="submenu">
             <ng-container *ngIf="!!menu.children && menu.children.length > 0">
-              <li nz-submenu [nzTitle]="menu.name" [nzOpen]="menu.open" [nzPaddingLeft]="(menu.level + 1) * 24">
+              <li nz-submenu [nzTitle]="subMenuTitle" [nzOpen]="menu.open" [nzPaddingLeft]="(menu.level + 1) * 24">
                 <ul>
                   <ng-container *ngTemplateOutlet="menuTpl; context: {$implicit: menu.children, parent: menu}"></ng-container>
                 </ul>
               </li>
             </ng-container>
+            <ng-template #subMenuTitle>
+              <i class="fa-fw mr-2" [ngClass]="menu.icon" *ngIf="menu.icon && menu.icon.length > 0"></i>
+              <span>{{menu.name}}</span>
+            </ng-template>
           </ng-template>
           <ng-template ngSwitchCase="group">
             <ng-container *ngIf="!!menu.children && menu.children.length > 0">

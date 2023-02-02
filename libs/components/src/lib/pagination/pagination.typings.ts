@@ -1,4 +1,4 @@
-import {isNumber} from "lodash-es";
+import {fill, isNumber} from "lodash-es";
 
 export interface Pagination<T = any> {
   content?: T[] | undefined;
@@ -44,8 +44,12 @@ export class Page<T = any> implements Pagination {
     return new Page<T>(number, _size, _totalElements, _content);
   }
 
-  static noop<T = any>(): Page<T> {
-    return Page.of(0, 10, 0);
+  static noop<T = any>(mockContentSize: number = 0): Page<T> {
+    let content: any[] = [];
+    if (mockContentSize > 0) {
+      content = fill(Array(mockContentSize), {id: '1'});
+    }
+    return Page.of(0, 10, 0, content);
   }
 
   get empty(): boolean {
