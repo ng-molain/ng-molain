@@ -20,11 +20,12 @@
     <th *ngFor="let col of displayCols"
         [nzLeft]="col.pinLeft || false"
         [nzRight]="col.pinRight || false"
+        [nzWidth]="col.width ?? null"
     >
       {{col.title}}
     </th>
 
-    <th *ngIf="rowActionsTpl" nzRight class="text-right" style="text-align: right">
+    <th *ngIf="rowActionsTpl" nzRight class="text-right" style="text-align: right" [nzWidth]="rowActionsWith ?? null">
       {{rowActionsTitle}}
     </th>
   </tr>

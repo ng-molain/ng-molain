@@ -36,6 +36,7 @@ export class SimpleTableComponent implements OnInit, AfterContentInit {
 
   @ContentChild("rowActions") rowActionsTpl?: TemplateRef<any>;
   @Input() rowActionsTitle?: string = '操作';
+  @Input() rowActionsWith?: string;
 
   @ViewChild("displayColsModalContentTpl", {static: true}) displayColsModalContentTpl!: TemplateRef<any>;
   @Input()showTableSettingTools: boolean = true;

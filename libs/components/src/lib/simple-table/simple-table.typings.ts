@@ -10,7 +10,9 @@ export interface ColumnDef {
   defaultValue?: any;
 
   sortable?: boolean;
-  linkTo?: LinkFn
+  linkTo?: LinkFn,
+
+  width?: string;
 }
 
 export interface CellContent {
