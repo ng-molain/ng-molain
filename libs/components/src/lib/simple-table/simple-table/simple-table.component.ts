@@ -148,6 +148,10 @@ export class SimpleTableComponent implements OnInit, AfterContentInit {
     this.selection?.clear();
   }
 
+  getSelected(): any[] {
+    return this.selection?.selected ?? [];
+  }
+
   openCustomCols(mouseEvent?: MouseEvent, mode: 'modal' | 'popover' = 'popover') {
     if (mode === 'popover' && mouseEvent) {
 
