@@ -15,7 +15,7 @@ export const DEFAULT_SEQ_LABEL_OPTIONS: SequenceLabelOptions = {
 }
 
 @Pipe({
-  name: 'sequenceLabel, seqLabel'
+  name: 'sequenceLabel'
 })
 export class SequenceLabelPipe implements PipeTransform {
 
