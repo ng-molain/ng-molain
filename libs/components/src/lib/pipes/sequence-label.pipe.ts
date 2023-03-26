@@ -33,7 +33,7 @@ export class SequenceLabelPipe implements PipeTransform {
         label = `${value}`;
     }
 
-    return `${prefix}${label}${suffix}`;
+    return `${prefix ?? ''}${label}${suffix ?? ''}`;
   }
 
   private getAZLabel(value: number) {
