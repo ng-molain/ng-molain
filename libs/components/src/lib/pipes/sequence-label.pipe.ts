@@ -3,7 +3,7 @@ import {merge} from "lodash-es";
 import {seqToChar} from "../utils";
 
 export interface SequenceLabelOptions {
-  type: 'A..Z' | 'a..z';
+  type: 'A..Z' | 'a..z' | '1..9';
   offset?: number; // default 0
   prefix?: string;
   suffix?: string;
@@ -29,8 +29,12 @@ export class SequenceLabelPipe implements PipeTransform {
       case "A..Z":
         label = this.getAZLabel(value);
         break;
+      case "a..z":
+        label = this.getAZLabel(value).toLowerCase();
+        break;
+      case "1..9":
       default:
-        label = `${value}`;
+        label = `${value + 1}`;
     }
 
     return `${prefix ?? ''}${label}${suffix ?? ''}`;
