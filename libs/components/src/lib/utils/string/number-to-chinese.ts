@@ -4,13 +4,13 @@ export function numberToChinese(num: number) {
   const chnUnitSection = ["","万","亿","万亿","亿亿"]
   const chnUnitChar = ["","十","百","千"]
 
-  let str = ''
+  let result = ''
   let unitPos = 0
 
   while (num > 0) {
     let section = num % 10000
     if (unitPos === 0 && section < 1000) {
-      str += chnNumChar[0]
+      result += chnNumChar[0]
     }
     let secStr = ''
     let zeroFlag = true
@@ -30,10 +30,15 @@ export function numberToChinese(num: number) {
     if (secStr !== '') {
       secStr += chnUnitSection[unitPos]
     }
-    str = secStr + str
+    result = secStr + result
     unitPos++
     num = Math.floor(num / 10000)
   }
 
-  return str;
+  if (result.length > 1 && result.substring(0, 1) == '零') {
+    // 清理最前面的 “零”
+    result = result.substring(1);
+  }
+
+  return result;
 }
