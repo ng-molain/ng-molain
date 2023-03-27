@@ -1,9 +1,10 @@
 import {Pipe, PipeTransform} from '@angular/core';
 import {merge} from "lodash-es";
 import {seqToChar} from "../utils";
+import {numberToChinese} from "../utils/string/number-to-chinese";
 
 export interface SequenceLabelOptions {
-  type: 'A..Z' | 'a..z' | '1..9';
+  type: 'A..Z' | 'a..z' | '1..9' | '一..九';
   offset?: number; // default 0
   prefix?: string;
   suffix?: string;
@@ -31,6 +32,9 @@ export class SequenceLabelPipe implements PipeTransform {
         break;
       case "a..z":
         label = this.getAZLabel(value).toLowerCase();
+        break;
+      case '一..九':
+        label = numberToChinese(value + 1);
         break;
       case "1..9":
       default:
