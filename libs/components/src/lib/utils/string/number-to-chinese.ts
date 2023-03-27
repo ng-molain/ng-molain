@@ -1,44 +1,40 @@
 
+// https://blog.csdn.net/weixin_44727080/article/details/113977267
 export function numberToChinese(num: number) {
-  const chnNumChar = ["零","一","二","三","四","五","六","七","八","九"]
-  const chnUnitSection = ["","万","亿","万亿","亿亿"]
-  const chnUnitChar = ["","十","百","千"]
-
-  let result = ''
-  let unitPos = 0
-
-  while (num > 0) {
-    let section = num % 10000
-    if (unitPos === 0 && section < 1000) {
-      result += chnNumChar[0]
-    }
-    let secStr = ''
-    let zeroFlag = true
-    for (let i = 0; i < 4; i++) {
-      const digit = section % 10
-      if (digit === 0) {
-        if (!zeroFlag) {
-          zeroFlag = true
-          secStr = chnNumChar[digit] + secStr
+  const changeNum = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']
+  const unit = ['', '十', '百', '千', '万']
+  num = parseInt(String(num))
+  const getWan = (temp: number | string) => {
+    const strArr = temp.toString().split('').reverse()
+    let newNum = ''
+    const newArr: string[] = [];
+    strArr.forEach((item: string, index: string | number) => {
+      newArr.unshift(item === '0' ? changeNum[item] : changeNum[+item] + unit[+index])
+    })
+    const numArr: number[] = []
+    newArr.forEach((m, n) => {
+      if (m !== '零') numArr.push(n)
+    })
+    if (newArr.length > 1) {
+      newArr.forEach((m, n) => {
+        if (newArr[newArr.length - 1] === '零') {
+          if (n <= numArr[numArr.length - 1]) {
+            newNum += m
+          }
+        } else {
+          newNum += m
         }
-      } else {
-        zeroFlag = false
-        secStr = chnNumChar[digit] + chnUnitChar[i] + secStr
-      }
-      section = Math.floor(section / 10)
+      })
+    } else {
+      newNum = newArr[0]
     }
-    if (secStr !== '') {
-      secStr += chnUnitSection[unitPos]
-    }
-    result = secStr + result
-    unitPos++
-    num = Math.floor(num / 10000)
-  }
 
-  if (result.length > 1 && result.substring(0, 1) == '零') {
-    // 清理最前面的 “零”
-    result = result.substring(1);
+    return newNum
   }
-
-  return result;
+  const overWan = Math.floor(num / 10000)
+  let noWan: string | number = num % 10000
+  if (noWan.toString().length < 4) {
+    noWan = '0' + noWan
+  }
+  return overWan ? getWan(overWan) + '万' + getWan(noWan) : getWan(num)
 }
