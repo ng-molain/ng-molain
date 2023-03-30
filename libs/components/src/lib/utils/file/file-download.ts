@@ -13,6 +13,6 @@ export function download(response: HttpResponse<Blob>) {
   const blob = response.body;
   const fileName = response.headers.get('downloadName') ?? Math.random().toString();
   if (blob) {
-    saveAs(blob, fileName);
+    saveAs(blob, decodeURI(fileName));
   }
 }
