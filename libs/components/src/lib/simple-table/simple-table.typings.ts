@@ -1,4 +1,5 @@
 import {get} from "lodash-es";
+import {TemplateRef} from "@angular/core";
 
 export interface ColumnDef {
   title: string | null,
@@ -13,6 +14,8 @@ export interface ColumnDef {
   linkTo?: LinkFn,
 
   width?: string;
+
+  tooltip?: string | TemplateRef<any>;
 }
 
 export interface CellContent {
