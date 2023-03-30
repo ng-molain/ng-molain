@@ -12,3 +12,6 @@ export * from './lib/composite-filter/index';
 
 export * from './lib/widgets/index';
 export * from './lib/forms/index';
+
+
+export * from './lib/utils/index';
