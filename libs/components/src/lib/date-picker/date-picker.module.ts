@@ -14,6 +14,9 @@ import {ReactiveFormsModule} from "@angular/forms";
     CommonModule,
     NzDatePickerModule,
     ReactiveFormsModule
+  ],
+  exports: [
+    DateRangePickerComponent
   ]
 })
 export class DatePickerModule { }
