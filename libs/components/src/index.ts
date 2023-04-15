@@ -9,7 +9,7 @@ export * from './lib/text-array/index';
 export * from './lib/simple-table/index';
 export * from './lib/pagination/index';
 export * from './lib/composite-filter/index';
-
+export * from './lib/date-picker/index';
 export * from './lib/widgets/index';
 export * from './lib/forms/index';
 

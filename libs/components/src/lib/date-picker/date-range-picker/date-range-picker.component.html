@@ -1,0 +1,20 @@
+<nz-date-picker
+  #startPicker
+  [formControl]="startCtrl"
+  [nzDisabledDate]="startDisabledDate"
+  [nzShowTime]="nzShowTime"
+  [nzFormat]="nzFormat"
+  [nzPlaceHolder]="startPlaceholder"
+  (nzOnOpenChange)="onStartOpenChange($event)"
+  style="margin-right: 0.5rem;"
+></nz-date-picker>
+
+<nz-date-picker
+  #endPicker
+  [formControl]="endCtrl"
+  [nzDisabledDate]="endDisabledDate"
+  [nzShowTime]="nzShowTime"
+  [nzFormat]="nzFormat"
+  [nzPlaceHolder]="endPlaceholder"
+  (nzOnOpenChange)="onEndOpenChange($event)"
+></nz-date-picker>
