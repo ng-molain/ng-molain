@@ -12,7 +12,7 @@ import {FormControl} from "@angular/forms";
 export class DateRangePickerComponent implements OnInit {
 
   @Input() nzShowTime: SupportTimeOptions | boolean = false;
-  @Input() nzFormat?: string; // = 'yyyy-MM-dd';
+  @Input() nzFormat: string = 'yyyy-MM-dd';
   @Input() nzPlaceHolder: string | string[] = [];
 
   @ViewChild("endPicker") endPicker!: NzDatePickerComponent;
