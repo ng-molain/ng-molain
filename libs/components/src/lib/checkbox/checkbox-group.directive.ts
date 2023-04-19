@@ -1,6 +1,15 @@
-import {Directive, ElementRef, forwardRef, Renderer2} from '@angular/core';
+import {
+  AfterContentInit,
+  ContentChildren,
+  Directive,
+  ElementRef,
+  forwardRef,
+  QueryList,
+  Renderer2
+} from '@angular/core';
 import {NzCheckboxComponent, NzCheckboxWrapperComponent} from "ng-zorro-antd/checkbox";
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
+import {zip} from "rxjs";
 
 @Directive({
   selector: '[mlCheckboxGroup]',
@@ -8,25 +17,22 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
     provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => CheckboxGroupDirective), multi: true
   }]
 })
-export class CheckboxGroupDirective extends NzCheckboxWrapperComponent implements ControlValueAccessor {
+export class CheckboxGroupDirective implements ControlValueAccessor, AfterContentInit {
 
-  private _checkboxList: NzCheckboxComponent[] = [];
+  @ContentChildren(NzCheckboxComponent) _checkboxList!: QueryList<NzCheckboxComponent>;
 
   _onChange = (v: any) => undefined;
   onTouched = () => undefined;
 
-  constructor(renderer: Renderer2, elementRef: ElementRef) {
-    super(renderer, elementRef);
+  constructor() {
   }
 
-  override addCheckbox(value: NzCheckboxComponent) {
-    super.addCheckbox(value);
-    this._checkboxList.push(value);
-  }
-
-  override removeCheckbox(value: NzCheckboxComponent) {
-    super.removeCheckbox(value);
-    this._checkboxList.splice(this._checkboxList.indexOf(value), 1);
+  ngAfterContentInit() {
+    zip(this._checkboxList.map(it => it.nzCheckedChange)).subscribe({
+      next: value => {
+        this.onChange();
+      }
+    })
   }
 
   registerOnChange(fn: any): void {
@@ -54,9 +60,7 @@ export class CheckboxGroupDirective extends NzCheckboxWrapperComponent implement
     });
   }
 
-  override onChange() {
-    super.onChange();
-
+  onChange() {
     const listOfCheckedValue = this._checkboxList.filter(item => item.nzChecked).map(item => item.nzValue);
     this._onChange(listOfCheckedValue);
   }
