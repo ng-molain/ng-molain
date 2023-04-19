@@ -68,6 +68,6 @@ export class CheckboxGroupDirective extends AbstractControlValueAccessor impleme
 
   _onChange() {
     const listOfCheckedValue = this._checkboxList.filter(item => item.nzChecked).map(item => item.nzValue);
-    this.onChange(listOfCheckedValue);
+    // this.onChange(listOfCheckedValue);
   }
 }
