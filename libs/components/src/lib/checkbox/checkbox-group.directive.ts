@@ -20,8 +20,9 @@ import {AbstractControlValueAccessor} from "@ng-molain/forms";
 })
 export class CheckboxGroupDirective extends AbstractControlValueAccessor implements ControlValueAccessor, AfterContentInit {
 
-  @ContentChildren(NzCheckboxComponent) _checkboxList!: QueryList<NzCheckboxComponent>;
+  @ContentChildren(NzCheckboxComponent, {descendants: true}) _checkboxList!: QueryList<NzCheckboxComponent>;
   constructor() {
+    super();
   }
 
   ngAfterContentInit() {
