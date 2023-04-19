@@ -18,17 +18,16 @@ export class CheckboxGroupDirective extends AbstractControlValueAccessor impleme
   }
 
   ngAfterContentInit() {
-    console.log(">>>>", this._checkboxList);
     merge(this._checkboxList.map(it => it.nzCheckedChange)).subscribe({
       next: value => {
         this._onChange();
       }
     });
 
-    setTimeout(() => {
-      this.updateValue();
-      this.updateDisabledState();
-    }, 100);
+    // setTimeout(() => {
+    //   this.updateValue();
+    //   this.updateDisabledState();
+    // }, 100);
   }
 
   override setDisabledState(isDisabled: boolean): void {
