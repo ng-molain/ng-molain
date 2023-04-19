@@ -1,15 +1,7 @@
-import {
-  AfterContentInit,
-  ContentChildren,
-  Directive,
-  ElementRef,
-  forwardRef,
-  QueryList,
-  Renderer2
-} from '@angular/core';
-import {NzCheckboxComponent, NzCheckboxWrapperComponent} from "ng-zorro-antd/checkbox";
+import {AfterContentInit, ContentChildren, Directive, forwardRef, QueryList} from '@angular/core';
+import {NzCheckboxComponent} from "ng-zorro-antd/checkbox";
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
-import {zip} from "rxjs";
+import {debounceTime, merge} from "rxjs";
 import {AbstractControlValueAccessor} from "@ng-molain/forms";
 
 @Directive({
@@ -26,7 +18,7 @@ export class CheckboxGroupDirective extends AbstractControlValueAccessor impleme
   }
 
   ngAfterContentInit() {
-    zip(this._checkboxList.map(it => it.nzCheckedChange)).subscribe({
+    merge(this._checkboxList.map(it => it.nzCheckedChange)).subscribe({
       next: value => {
         this._onChange();
       }
