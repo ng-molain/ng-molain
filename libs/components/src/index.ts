@@ -12,6 +12,7 @@ export * from './lib/composite-filter/index';
 export * from './lib/date-picker/index';
 export * from './lib/widgets/index';
 export * from './lib/forms/index';
+export * from './lib/radio-group/index';
 
 
 export * from './lib/utils/index';

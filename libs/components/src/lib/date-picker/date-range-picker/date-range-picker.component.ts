@@ -1,5 +1,4 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {NzShowSearchOptions} from "ng-zorro-antd/cascader";
 import {NzDatePickerComponent, SupportTimeOptions} from "ng-zorro-antd/date-picker";
 import {get} from "lodash-es";
 import {FormControl} from "@angular/forms";
@@ -20,7 +19,8 @@ export class DateRangePickerComponent implements OnInit {
   @Input() startCtrl = new FormControl();
   @Input() endCtrl = new FormControl();
 
-  constructor() { }
+  constructor() {
+  }
 
   get startPlaceholder() {
     return Array.isArray(this.nzPlaceHolder)
