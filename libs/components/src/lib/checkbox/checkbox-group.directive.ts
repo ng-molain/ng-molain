@@ -10,6 +10,7 @@ import {
 import {NzCheckboxComponent, NzCheckboxWrapperComponent} from "ng-zorro-antd/checkbox";
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 import {zip} from "rxjs";
+import {AbstractControlValueAccessor} from "@ng-molain/forms";
 
 @Directive({
   selector: '[mlCheckboxGroup]',
@@ -17,51 +18,60 @@ import {zip} from "rxjs";
     provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => CheckboxGroupDirective), multi: true
   }]
 })
-export class CheckboxGroupDirective implements ControlValueAccessor, AfterContentInit {
+export class CheckboxGroupDirective extends AbstractControlValueAccessor implements ControlValueAccessor, AfterContentInit {
 
   @ContentChildren(NzCheckboxComponent) _checkboxList!: QueryList<NzCheckboxComponent>;
-
-  _onChange = (v: any) => undefined;
-  onTouched = () => undefined;
-
   constructor() {
   }
 
   ngAfterContentInit() {
+    this.updateValue();
+    this.updateDisabledState();
     zip(this._checkboxList.map(it => it.nzCheckedChange)).subscribe({
       next: value => {
-        this.onChange();
+        this._onChange();
       }
     })
   }
 
-  registerOnChange(fn: any): void {
-    this._onChange = fn;
+  override setDisabledState(isDisabled: boolean): void {
+    super.setDisabledState(isDisabled);
+    this.updateDisabledState();
   }
 
-  registerOnTouched(fn: any): void {
-    this.onTouched = fn
+  override writeValue(obj: any): void {
+    super.writeValue(obj);
+    this.updateValue();
   }
 
-  setDisabledState(isDisabled: boolean): void {
+  updateDisabledState() {
+    if (!this._checkboxList) {
+      return;
+    }
+    const isDisabled = this.disabled;
     this._checkboxList.forEach(it => {
       it.setDisabledState(isDisabled);
-    })
+    });
   }
 
-  writeValue(obj: any): void {
-    if (!Array.isArray(obj)) {
+  updateValue() {
+    if (!this._checkboxList) {
+      return;
+    }
+
+    const value = this.initialValue;
+    if (!Array.isArray(value)) {
       this._checkboxList.forEach(it => it.nzChecked = false);
       return ;
     }
 
     this._checkboxList.forEach(it => {
-      it.nzChecked = obj.includes(it.nzValue);
+      it.nzChecked = value.includes(it.nzValue);
     });
   }
 
-  onChange() {
+  _onChange() {
     const listOfCheckedValue = this._checkboxList.filter(item => item.nzChecked).map(item => item.nzValue);
-    this._onChange(listOfCheckedValue);
+    this.onChange(listOfCheckedValue);
   }
 }
