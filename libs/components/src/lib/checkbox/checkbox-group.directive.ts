@@ -27,7 +27,7 @@ export class CheckboxGroupDirective extends AbstractControlValueAccessor impleme
     setTimeout(() => {
       this.updateValue();
       this.updateDisabledState();
-    }, 10);
+    }, 100);
   }
 
   override setDisabledState(isDisabled: boolean): void {
