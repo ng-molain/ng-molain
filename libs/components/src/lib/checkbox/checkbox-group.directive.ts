@@ -32,12 +32,12 @@ export class CheckboxGroupDirective extends AbstractControlValueAccessor impleme
 
   override setDisabledState(isDisabled: boolean): void {
     super.setDisabledState(isDisabled);
-    this.updateDisabledState();
+    // this.updateDisabledState();
   }
 
   override writeValue(obj: any): void {
     super.writeValue(obj);
-    this.updateValue();
+    // this.updateValue();
   }
 
   updateDisabledState() {
