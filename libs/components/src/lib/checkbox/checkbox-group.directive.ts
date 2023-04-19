@@ -18,6 +18,7 @@ export class CheckboxGroupDirective extends AbstractControlValueAccessor impleme
   }
 
   ngAfterContentInit() {
+    console.log(">>>>", this._checkboxList);
     merge(this._checkboxList.map(it => it.nzCheckedChange)).subscribe({
       next: value => {
         this._onChange();
@@ -51,7 +52,7 @@ export class CheckboxGroupDirective extends AbstractControlValueAccessor impleme
   }
 
   updateValue() {
-    if (!this._checkboxList) {
+    if (!this._checkboxList || !this.initialValue) {
       return;
     }
 
