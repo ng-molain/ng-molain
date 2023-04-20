@@ -3,6 +3,7 @@ import {NzCheckboxComponent} from "ng-zorro-antd/checkbox";
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 import {debounceTime, merge} from "rxjs";
 import {AbstractControlValueAccessor} from "@ng-molain/forms";
+import {tap} from "rxjs/operators";
 
 @Directive({
   selector: '[mlCheckboxGroup]',
@@ -18,7 +19,11 @@ export class CheckboxGroupDirective extends AbstractControlValueAccessor impleme
   }
 
   ngAfterContentInit() {
-    merge(this._checkboxList.map(it => it.nzCheckedChange)).subscribe({
+    merge(this._checkboxList.map(it => it.nzCheckedChange.asObservable().pipe(tap({
+      next: value => {
+        console.log('item value', value)
+      }
+    })))).subscribe({
       next: value => {
         console.log("changed", value)
         this._onChange();
