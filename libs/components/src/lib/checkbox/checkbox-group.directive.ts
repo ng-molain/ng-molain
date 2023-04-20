@@ -19,31 +19,26 @@ export class CheckboxGroupDirective extends AbstractControlValueAccessor impleme
   }
 
   ngAfterContentInit() {
-    merge(this._checkboxList.map(it => it.nzCheckedChange.asObservable().pipe(tap({
+    merge(...this._checkboxList.map(it => it.nzCheckedChange.asObservable())).subscribe({
       next: value => {
-        console.log('item value', value)
-      }
-    })))).subscribe({
-      next: value => {
-        console.log("changed", value)
         this._onChange();
       }
     });
 
-    // setTimeout(() => {
-    //   this.updateValue();
-    //   this.updateDisabledState();
-    // }, 100);
+    setTimeout(() => {
+      this.updateValue();
+      this.updateDisabledState();
+    }, 10);
   }
 
   override setDisabledState(isDisabled: boolean): void {
     super.setDisabledState(isDisabled);
-    // this.updateDisabledState();
+    this.updateDisabledState();
   }
 
   override writeValue(obj: any): void {
     super.writeValue(obj);
-    // this.updateValue();
+    this.updateValue();
   }
 
   updateDisabledState() {
@@ -74,6 +69,6 @@ export class CheckboxGroupDirective extends AbstractControlValueAccessor impleme
 
   _onChange() {
     const listOfCheckedValue = this._checkboxList.filter(item => item.nzChecked).map(item => item.nzValue);
-    // this.onChange(listOfCheckedValue);
+    this.onChange(listOfCheckedValue);
   }
 }
