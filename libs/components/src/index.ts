@@ -15,6 +15,7 @@ export * from './lib/forms/index';
 export * from './lib/radio-group/index';
 export * from './lib/checkbox/index';
 export * from './lib/network-online/index';
+export * from './lib/web-camera/index';
 
 
 export * from './lib/utils/index';
