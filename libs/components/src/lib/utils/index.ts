@@ -1,4 +1,5 @@
 export * from './string/seq-to-char';
+export * from './string/number-to-chinese';
 
 export * from './file/file-download';
 
