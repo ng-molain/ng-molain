@@ -48,7 +48,7 @@ export class OrgUnitLookupComponent implements OnInit, OnChanges, ControlValueAc
   private _disabled: boolean = false;
 
   _initialValue: any;
-  selection = new SelectionModel<any>(false);
+  selection!: SelectionModel<any>; // = new SelectionModel<any>(false);
 
   private _modalRef?: NzModalRef;
 
