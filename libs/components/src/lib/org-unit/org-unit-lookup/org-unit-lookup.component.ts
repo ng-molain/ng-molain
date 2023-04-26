@@ -116,8 +116,10 @@ export class OrgUnitLookupComponent implements OnInit, OnChanges, ControlValueAc
       return ;
     }
     this.selection = new SelectionModel<any>(this.isMultiple);
-    this.selection.select(...preSelection.selected);
-    preSelection.changed.complete();
+    if (preSelection) {
+      this.selection.select(...preSelection.selected);
+      preSelection.changed.complete();
+    }
 
     this.selection.changed.subscribe(
       (selectionChange) => {
