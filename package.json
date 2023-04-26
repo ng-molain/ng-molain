@@ -14,7 +14,7 @@
     "forms:build": "ng build forms --prod",
     "libs:build": "npm run common:build && npm run components:build && npm run forms:build",
     "libs:publish": "tools/publish/libs.publish.sh",
-    "release": "npm run version patch && npm run libs:build && npm run libs:publish"
+    "release": "npm version patch && npm run libs:build && npm run libs:publish"
   },
   "private": false,
   "dependencies": {
