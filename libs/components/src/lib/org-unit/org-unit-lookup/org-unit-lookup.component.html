@@ -52,7 +52,7 @@
     <!--      <i class="fal fa-file-search"></i> 么有-->
       <i class="fal fa-folder-tree"></i>
     </span>
-  <span class="ant-select-clear" (click)="selection.clear()">
+  <span class="ant-select-clear" (click)="selection.clear(); $event.stopPropagation();">
     <i class="fab fa-times"></i>
   </span>
 </div>
