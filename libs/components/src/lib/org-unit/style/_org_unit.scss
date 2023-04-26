@@ -1,5 +1,5 @@
 .org-unit-lookup {
-  @apply bg-white;
+  @apply bg-white w-full;
 
   &.ng-dirty.ng-invalid {
     .selector, .selector:hover {
