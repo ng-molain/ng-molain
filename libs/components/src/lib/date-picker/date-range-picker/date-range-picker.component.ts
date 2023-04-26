@@ -1,6 +1,6 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {NzDatePickerComponent, SupportTimeOptions} from "ng-zorro-antd/date-picker";
-import {get} from "lodash-es";
+import {get, isDate, isNumber} from "lodash-es";
 import {FormControl} from "@angular/forms";
 
 @Component({
@@ -41,14 +41,16 @@ export class DateRangePickerComponent implements OnInit {
     if (!value || !this.endCtrl.value) {
       return false;
     }
-    return value.getTime() > this.endCtrl.value.getTime();
+    const endTime = isDate(this.endCtrl.value) ? this.endCtrl.value.getTime() : this.endCtrl.value;
+    return value.getTime() > endTime;
   }
 
   endDisabledDate = (value: Date) => {
     if (!value || !this.startCtrl.value) {
       return false;
     }
-    return value.getTime() < this.startCtrl.value.getTime();
+    const startTime = isDate(this.startCtrl.value) ? this.startCtrl.value.getTime() : this.startCtrl.value;
+    return value.getTime() < startTime;
   }
 
   onStartOpenChange(open: boolean) {
