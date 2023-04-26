@@ -61,6 +61,9 @@ export interface OidcClientModuleConfig {
     RouterModule.forChild([
       {path: 'auth', component: OidcCallbackComponent}
     ])
+  ],
+  exports: [
+    OidcCallbackComponent
   ]
 })
 export class OidcClientModule {

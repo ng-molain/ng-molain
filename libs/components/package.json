@@ -9,7 +9,8 @@
     "@angular/platform-browser": "^13.2.0",
     "rxjs": "^7.4.0",
     "moment": "^2.29.1",
-    "@ngx-translate/core": "^14.0.0"
+    "@ngx-translate/core": "^14.0.0",
+    "oidc-client-ts": "^2.2.3"
   },
   "dependencies": {
     "tslib": "^2.3.0"

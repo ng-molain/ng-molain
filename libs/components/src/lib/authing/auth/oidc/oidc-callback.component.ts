@@ -9,9 +9,9 @@ interface Message {
 }
 
 @Component({
-  selector: 'qmc-oidc-callback',
+  selector: 'ml-oidc-callback',
   template: `
-    <nz-alert nzBanner [nzType]="" [nzMessage]=""></nz-alert>
+    <nz-alert nzBanner [nzType]="message.type" [nzMessage]="message.message"></nz-alert>
   `
 })
 export class OidcCallbackComponent implements OnInit {
