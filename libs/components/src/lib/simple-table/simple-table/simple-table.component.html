@@ -31,7 +31,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let row of nzTable.data; index as index"
+  <tr *ngFor="let row of nzTable.data; index as index; first as first; last as last"
       [ngClass]="{'bg-blue-100': selection?.isSelected(row)}"
       (click)="onRowClick($event, row)"
   >
@@ -50,7 +50,7 @@
         [ngClass]="{'bg-blue-100': selection?.isSelected(row)}"
     >
       <ng-container *ngIf="colTplMap?.has(col.name)">
-        <ng-container *ngTemplateOutlet="colTplMap!.get(col.name)!; context: {$implicit: row, index: index}"></ng-container>
+        <ng-container *ngTemplateOutlet="colTplMap!.get(col.name)!; context: {$implicit: row, index: index, first: first, last: last}"></ng-container>
       </ng-container>
       <ng-container *ngIf="!colTplMap?.has(col.name)" mlCellValue #cellValue="mlCellValue" [mlCellValueCol]="col" [mlCellValueRow]="row">
         <ng-container *ngIf="cellValue.isLink; else cellValueTpl">
@@ -80,7 +80,7 @@
         class="text-right"
         [ngClass]="{'bg-blue-100': selection?.isSelected(row)}"
     >
-      <ng-container *ngTemplateOutlet="rowActionsTpl; context: {$implicit: row, index: index}"></ng-container>
+      <ng-container *ngTemplateOutlet="rowActionsTpl; context: {$implicit: row, index: index, first: first, last: last}"></ng-container>
     </td>
   </tr>
   </tbody>
