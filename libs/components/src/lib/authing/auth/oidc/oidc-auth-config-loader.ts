@@ -3,7 +3,7 @@ import {Observable, of} from "rxjs";
 import {InjectionToken} from "@angular/core";
 import {tap} from "rxjs/operators";
 import {HttpClient, HttpContext} from "@angular/common/http";
-import {merge} from "lodash-es";
+import {mapKeys, merge, snakeCase} from "lodash-es";
 import {ANONYMOUS} from "../auth.typings";
 
 export interface OidcAuthConfig {
@@ -72,6 +72,8 @@ export class HttpOidcAuthConfigLoader implements OidcAuthConfigLoader {
       context: new HttpContext().set(ANONYMOUS, true)
     }).pipe(
       tap(value => {
+        const {settings} = value;
+        value.settings = mapKeys(settings, (v, k) => snakeCase(k)) as any;
         const overrides = this.options.overrides;
         if (!overrides) {
           return ;
