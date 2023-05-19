@@ -1,10 +1,12 @@
-<div [formGroup]="form">
+<div [formGroup]="form" class="space-y-3">
   <ng-container formArrayName="formArray">
-    <div *ngFor="let item of formArray.controls; index as i" class="flex w-full">
+    <div *ngFor="let item of formArray.controls; index as i" class="flex w-full space-x-3">
       <input type="text" nz-input [formControlName]="i" placeholder="">
-      <a (click)="remove(i)"><i class="far fa-trash-alt"></i></a>
+      <a (click)="remove(i)" nz-button nzType="text">
+        <i class="far fa-trash-alt"></i>
+      </a>
     </div>
-    <button nz-button nzType="dashed" nzBlock (click)="add()">
+    <button type="button" nz-button nzType="dashed" nzBlock (click)="add()">
       <i class="far fa-plus"></i>
     </button>
   </ng-container>
