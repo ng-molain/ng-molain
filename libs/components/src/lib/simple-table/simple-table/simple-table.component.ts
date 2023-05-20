@@ -135,7 +135,8 @@ export class SimpleTableComponent implements OnInit, AfterContentInit, OnChanges
     }
 
     const target = $event.target as (Element & EventTarget);
-    if (target.nodeName.toLowerCase() === 'a' || target.nodeName.toLowerCase() === 'button') {
+    if (target.nodeName.toLowerCase() === 'a' || target.nodeName.toLowerCase() === 'button' ||
+      target.parentNode?.nodeName.toLowerCase() === 'a' || target.parentNode?.nodeName.toLowerCase() === 'button') {
       return;
     }
 
