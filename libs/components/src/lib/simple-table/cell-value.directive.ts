@@ -21,7 +21,7 @@ export class CellValueDirective implements OnInit {
   }
 
   get isLink(): boolean {
-    return this.isHrefLink || this.isRouterLink;
+    return this.isHrefLink || this.isRouterLink || this.isOnClickLink;
   }
 
   get isRouterLink(): boolean {
@@ -34,8 +34,15 @@ export class CellValueDirective implements OnInit {
     return !!link && isString(link) && (link.startsWith('//') || link.startsWith('http'));
   }
 
+  get isOnClickLink(): boolean {
+    if (this.isRouterLink || this.isHrefLink) {
+      return false;
+    }
+    return isFunction(get(this.col, 'onClick'));
+  }
+
   get link(): any[] | string {
-    return get(this.value, 'link')!;
+    return get(this.value, 'link') as (any[] | string);
   }
 
   get linkTarget(): string | undefined {

@@ -64,6 +64,11 @@
               <ng-container *ngTemplateOutlet="cellValueTpl"></ng-container>
             </a>
           </ng-container>
+          <ng-container *ngIf="cellValue.isOnClickLink">
+            <a (click)="col.onClick(row, col, cellValue.value, $event)">
+              <ng-container *ngTemplateOutlet="cellValueTpl"></ng-container>
+            </a>
+          </ng-container>
         </ng-container>
         <ng-template #cellValueTpl>
           <ng-container *ngIf="cellValue.isTag; else plainTextCell">

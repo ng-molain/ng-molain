@@ -11,7 +11,8 @@ export interface ColumnDef {
   defaultValue?: any;
 
   sortable?: boolean;
-  linkTo?: LinkFn,
+  linkTo?: LinkFn;
+  onClick?: OnClickFn;
 
   width?: string;
 
@@ -31,6 +32,8 @@ export type CellValue = number | string | CellContent;
 export type RenderFn = (row: any, col: ColumnDef) => CellValue;
 
 export type LinkFn = (row: any, col: ColumnDef) => string | any[] | undefined | null;
+
+export type OnClickFn = (row: any, col: ColumnDef, cellValue: CellContent | null | undefined, event: MouseEvent) => void;
 
 
 // TODO BOOLEAN map
