@@ -65,7 +65,7 @@
             </a>
           </ng-container>
           <ng-container *ngIf="cellValue.isOnClickLink">
-            <a (click)="col.onClick(row, col, cellValue.value, $event)">
+            <a (click)="col.onClick ? col.onClick(row, col, cellValue.value, $event) : null">
               <ng-container *ngTemplateOutlet="cellValueTpl"></ng-container>
             </a>
           </ng-container>
