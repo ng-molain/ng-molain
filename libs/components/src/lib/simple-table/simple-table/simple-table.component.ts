@@ -3,9 +3,9 @@ import {
   Component,
   ContentChild,
   ContentChildren, EventEmitter,
-  Input,
+  Input, OnChanges,
   OnInit, Output,
-  QueryList,
+  QueryList, SimpleChanges,
   TemplateRef,
   ViewChild
 } from '@angular/core';
@@ -21,7 +21,7 @@ import {Pageable, Pagination} from "../../pagination";
   templateUrl: './simple-table.component.html',
   styleUrls: ['./simple-table.component.scss']
 })
-export class SimpleTableComponent implements OnInit, AfterContentInit {
+export class SimpleTableComponent implements OnInit, AfterContentInit, OnChanges {
   @Input() columns: ColumnDef[] = [];
   @Input() loading: boolean = false;
   @Input("data") _data: any[] | Pagination<any> = [];
@@ -33,6 +33,7 @@ export class SimpleTableComponent implements OnInit, AfterContentInit {
   @Input() showRowNumber: boolean = true;
   @Input() rowNumberTitle?: string = '序号'; // TODO 支持 TemplateRef
   @Input() rowNumberOffset: number = 0;
+  @Input() keepSelection = false;
 
   @ContentChild("rowActions") rowActionsTpl?: TemplateRef<any>;
   @Input() rowActionsTitle?: string = '操作';
@@ -96,6 +97,15 @@ export class SimpleTableComponent implements OnInit, AfterContentInit {
     }
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    const {_data: dataChange} = changes;
+    if (dataChange) {
+      if (this.selection?.hasValue() && !this.keepSelection) {
+        this.clearSelection();
+      }
+    }
+  }
+
   titleColTpl(col: ColumnDef) {
     const {name} = col;
     let titleTpl = null;
@@ -122,6 +132,11 @@ export class SimpleTableComponent implements OnInit, AfterContentInit {
     if ($event.ctrlKey && this.selection?.isMultipleSelection()) {
       this.selection?.toggle(row);
       return ;
+    }
+
+    const target = $event.target as (Element & EventTarget);
+    if (target.nodeName.toLowerCase() === 'a' || target.nodeName.toLowerCase() === 'button') {
+      return;
     }
 
     this.selection?.clear();
