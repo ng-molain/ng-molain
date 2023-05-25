@@ -1,6 +1,6 @@
 {
   "name": "ng-molain",
-  "version": "0.13.122",
+  "version": "0.13.123",
   "license": "Apache License",
   "scripts": {
     "ng": "nx",
