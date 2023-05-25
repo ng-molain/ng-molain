@@ -10,7 +10,7 @@ import {
 import {debounceTime, fromEvent, mergeMap, Observable, Subscription} from "rxjs";
 import {HttpEvent, HttpEventType} from "@angular/common/http";
 import {NzNotificationRef, NzNotificationService} from "ng-zorro-antd/notification";
-import {downloadFile, tryGetFilename} from "@ng-molain/components";
+import {downloadFile, tryGetFilename} from "../utils";
 import {CdkPortalOutlet, ComponentPortal} from "@angular/cdk/portal";
 import {DownloadProgressComponent} from "./download-progress/download-progress.component";
 
