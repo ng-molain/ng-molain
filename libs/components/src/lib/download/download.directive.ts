@@ -51,7 +51,7 @@ export class DownloadDirective implements OnInit, OnDestroy {
           }
           if (event.type === HttpEventType.DownloadProgress) {
             // console.log(event.total, event.loaded);
-            const data = {name: this.filename, percent: event.total ? (event.loaded / event.total) : 0};
+            const data = {name: this.filename, percent: event.total ? (event.loaded * 100 / event.total) : 0};
             if (this.data) {
               Object.assign(this.data, data);
             } else {
