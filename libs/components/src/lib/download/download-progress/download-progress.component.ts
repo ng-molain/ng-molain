@@ -21,5 +21,5 @@ import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 })
 export class DownloadProgressComponent {
   @ViewChild("progressTpl") progressTpl!: TemplateRef<any>;
-  // TODO 速率
+  // TODO 速率、进度条颜色
 }

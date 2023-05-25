@@ -18,5 +18,6 @@ export * from './lib/network-online/index';
 export * from './lib/web-camera/index';
 export * from './lib/authing/auth/index';
 export * from './lib/download/index';
+export * from './lib/clipboard/index';
 
 export * from './lib/utils/index';
