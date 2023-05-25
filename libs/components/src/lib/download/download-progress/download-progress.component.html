@@ -1,0 +1,6 @@
+<ng-template #progressTpl let-data>
+  <div>
+    <div>{{data.name}}</div>
+    <nz-progress [nzPercent]="data?.percent" [nzShowInfo]="false"></nz-progress>
+  </div>
+</ng-template>
