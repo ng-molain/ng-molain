@@ -59,7 +59,7 @@ export class DownloadDirective implements OnInit, OnDestroy {
             }
             // TODO 显示文件大小
             if (!this.notifyRef) {
-              this.notifyRef = this.notificationService.template(templateRef, {
+              this.notifyRef = this.notificationService.template(componentRef.instance.progressTpl, {
                 nzData: this.data
               })
             }
