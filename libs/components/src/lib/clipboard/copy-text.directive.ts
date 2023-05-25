@@ -18,7 +18,7 @@ export class CopyTextDirective implements OnInit, OnDestroy {
 
   ngOnInit() {
     fromEvent(this.el.nativeElement, 'click').pipe(
-      debounceTime(1000),
+      debounceTime(200),
       mergeMap(() => fromPromise(copyTextToClipboard(this.text)))
     ).subscribe({
         next: value => {
