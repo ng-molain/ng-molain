@@ -4,7 +4,7 @@ import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
   template: `
     <ng-template #progressTpl let-data="data">
       <div>
-        <div class="text-base font-light">下载文件</div>
+        <div class="text-base font-light mb-2">下载文件</div>
         <div>{{data.name}}</div>
         <nz-progress *ngIf="data.total" [nzPercent]="data?.percent" [nzShowInfo]="false"></nz-progress>
         <div class="space-x-3">
