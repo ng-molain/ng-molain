@@ -2,7 +2,7 @@ import {Directive, ElementRef, Input, OnDestroy, OnInit} from '@angular/core';
 import {debounceTime, fromEvent, mergeMap, Subscription} from "rxjs";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {fromPromise} from "rxjs/internal/observable/innerFrom";
-import {copyTextToClipboard} from "@ng-molain/components";
+import {copyTextToClipboard} from "../utils";
 
 @Directive({
   selector: '[mlCopyText]'
