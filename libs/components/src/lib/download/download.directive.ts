@@ -51,7 +51,12 @@ export class DownloadDirective implements OnInit, OnDestroy {
           }
           if (event.type === HttpEventType.DownloadProgress) {
             // console.log(event.total, event.loaded);
-            this.data = {name: this.filename, percent: event.total ? (event.loaded / event.total) : 0};
+            const data = {name: this.filename, percent: event.total ? (event.loaded / event.total) : 0};
+            if (this.data) {
+              Object.assign(this.data, data);
+            } else {
+              this.data = data;
+            }
             // TODO 显示文件大小
             if (!this.notifyRef) {
               this.notifyRef = this.notificationService.template(templateRef, {
