@@ -22,4 +22,4 @@ import {NzProgressModule} from "ng-zorro-antd/progress";
     DownloadProgressComponent
   ]
 })
-export class DownloadModule { }
+export class MlDownloadModule { }
