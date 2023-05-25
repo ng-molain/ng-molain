@@ -10,7 +10,12 @@ export function saveAs(blob: Blob, fileName: string) {
 }
 
 // https://blog.csdn.net/qq_40044912/article/details/110475876
+// https://www.coder.work/article/1190933
 export function download(response: HttpResponse<Blob>) {
+  downloadFile(response);
+}
+
+export function downloadFile(response: HttpResponse<Blob>) {
   const blob = response.body;
   const fileName = tryGetFilename(response.headers);
   if (blob) {
