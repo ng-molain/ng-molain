@@ -37,7 +37,6 @@ export class DownloadDirective implements OnInit, OnDestroy {
   ngOnInit() {
     const componentPortal = new ComponentPortal(DownloadProgressComponent);
     const componentRef = this.portalOutlet.attachComponentPortal(componentPortal);
-    const templateRef = componentRef.instance.progressTpl;
 
     this.subscription = fromEvent(this.el.nativeElement, 'click')
       .pipe(
@@ -51,7 +50,12 @@ export class DownloadDirective implements OnInit, OnDestroy {
           }
           if (event.type === HttpEventType.DownloadProgress) {
             // console.log(event.total, event.loaded);
-            const data = {name: this.filename, percent: event.total ? (event.loaded * 100 / event.total) : 0};
+            const data = {
+              name: this.filename,
+              loaded: event.loaded,
+              total: event.total,
+              percent: event.total ? (event.loaded * 100 / event.total) : undefined
+            };
             if (this.data) {
               Object.assign(this.data, data);
             } else {
@@ -60,13 +64,18 @@ export class DownloadDirective implements OnInit, OnDestroy {
             // TODO 显示文件大小
             if (!this.notifyRef) {
               this.notifyRef = this.notificationService.template(componentRef.instance.progressTpl, {
+                nzDuration: 0,
                 nzData: this.data
-              })
+              });
             }
           }
           if (event.type === HttpEventType.Response) {
             downloadFile(event);
             this.data = undefined;
+            const msgId = this.notifyRef?.messageId;
+            setTimeout(() => {
+              this.notificationService.remove(msgId);
+            }, 2000);
             this.notifyRef = undefined;
           }
         },

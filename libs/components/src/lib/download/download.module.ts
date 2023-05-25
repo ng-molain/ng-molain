@@ -4,6 +4,7 @@ import { DownloadDirective } from './download.directive';
 import {NzNotificationModule} from "ng-zorro-antd/notification";
 import { DownloadProgressComponent } from './download-progress/download-progress.component';
 import {NzProgressModule} from "ng-zorro-antd/progress";
+import {NzPipesModule} from "ng-zorro-antd/pipes";
 
 
 
@@ -16,6 +17,7 @@ import {NzProgressModule} from "ng-zorro-antd/progress";
     CommonModule,
     NzNotificationModule,
     NzProgressModule,
+    NzPipesModule,
   ],
   exports: [
     DownloadDirective,
