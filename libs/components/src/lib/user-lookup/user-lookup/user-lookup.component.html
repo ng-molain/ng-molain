@@ -19,8 +19,8 @@
                     [class.ant-select-selection__choice__disabled]="item.isDisabled">
                     <span class="ant-select-selection__choice__content">{{ displayWith(item) }}</span>
                     <span *ngIf="!item.isDisabled" class="ant-select-selection__choice__remove"
-                        (mousedown)="$event.preventDefault()" (click)="removeSelected(item, true, $event)">
-                        <i nz-icon nzType="close" class="ant-select-remove-icon"></i>
+                        (mousedown)="$event.stopPropagation()" (click)="removeSelected(item, true, $event)">
+                        <i class="fal fa-times-circle"></i>
                     </span>
                 </li>
             </ng-container>

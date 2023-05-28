@@ -34,6 +34,15 @@
     }
   }
 
+  .ant-select-selection__rendered {
+    @apply flex items-center flex-wrap gap-1;
+
+    .ant-select-selection__choice {
+      @apply bg-gray-50 rounded-sm px-0.5;
+    }
+  }
+
+
   .ant-select-arrow {
     font-size: 14px;
     color: gray;
