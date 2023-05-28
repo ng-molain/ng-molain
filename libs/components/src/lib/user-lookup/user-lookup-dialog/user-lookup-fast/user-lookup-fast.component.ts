@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from "@ng-molain/components";
+import {User} from "../../user-lookup.typings";
 
 @Component({
   selector: 'ml-user-lookup-fast',
