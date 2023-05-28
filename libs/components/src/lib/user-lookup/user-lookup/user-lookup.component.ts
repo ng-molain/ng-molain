@@ -7,7 +7,7 @@ import {
   HostListener,
   Renderer2,
   ElementRef,
-  forwardRef
+  forwardRef, ViewEncapsulation
 } from '@angular/core';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { UserLookupService } from '../user-lookup.service';
@@ -23,7 +23,8 @@ import {SelectionModel} from "@angular/cdk/collections";
   styleUrls: ['./user-lookup.component.scss'],
   providers: [{
     provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => UserLookupComponent), multi: true
-  }]
+  }],
+  encapsulation: ViewEncapsulation.None
 })
 export class UserLookupComponent extends AbstractControlValueAccessor implements OnInit, ControlValueAccessor {
   @HostBinding('class.user-lookup')
