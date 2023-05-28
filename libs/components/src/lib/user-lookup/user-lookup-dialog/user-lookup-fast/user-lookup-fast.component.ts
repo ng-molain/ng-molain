@@ -22,7 +22,7 @@ export class UserLookupFastComponent implements OnInit {
   }
 
   getSelected(): User[] {
-    return [];
+    return this.usernameVerifiedSuccess.map(it => it.userInfo);
   }
 
   verifyUsernames() {
