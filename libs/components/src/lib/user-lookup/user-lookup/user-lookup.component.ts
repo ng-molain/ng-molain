@@ -72,7 +72,7 @@ export class UserLookupComponent extends AbstractControlValueAccessor implements
   }
 
   get isEmpty(): boolean {
-    return _isEmpty(this.selected);
+    return this.selection.isEmpty();
   }
 
 
@@ -125,7 +125,7 @@ export class UserLookupComponent extends AbstractControlValueAccessor implements
       if (!Array.isArray(result) || result.length === 0) {
         return ;
       } else {
-        this.selected.push(...result);
+        this.selection.select(...result);
       }
     });
   }
