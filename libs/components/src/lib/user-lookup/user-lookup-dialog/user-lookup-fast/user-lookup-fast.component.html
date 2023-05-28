@@ -15,7 +15,7 @@
     </ng-template>
 </nz-alert>
 
-<div *ngIf="usernameVerifiedResults?.length > 0">
+<div *ngIf="usernameVerifiedResults.length > 0">
   <div>
     <h5 class="text-green-500 mb-3"><i class="far fa-check-circle"></i> <span>正确的用户</span></h5>
     <nz-tag *ngFor="let item of usernameVerifiedSuccess" [nzColor]="'green'">{{item.username}}</nz-tag>
