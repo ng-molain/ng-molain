@@ -15,20 +15,30 @@ import {NzTreeModule} from "ng-zorro-antd/tree";
 import {NzModalModule} from "ng-zorro-antd/modal";
 import {UserLookupService} from "./user-lookup.service";
 import {NzSelectModule} from "ng-zorro-antd/select";
+import {OrgUnitModule} from "../org-unit";
+import {ReactiveFormsModule} from "@angular/forms";
+import {NzFormModule} from "ng-zorro-antd/form";
+import {NzCheckboxModule} from "ng-zorro-antd/checkbox";
+import {SimpleTableModule} from "../simple-table";
 
 
 @NgModule({
-    imports: [
-        CommonModule,
-        NzTabsModule,
-        NzInputModule,
-        NzButtonModule,
-        NzAlertModule,
-        NzLayoutModule,
-        NzTreeModule,
-        NzModalModule,
-        NzSelectModule,
-    ],
+  imports: [
+    CommonModule,
+    NzTabsModule,
+    NzInputModule,
+    NzButtonModule,
+    NzAlertModule,
+    NzLayoutModule,
+    NzTreeModule,
+    NzModalModule,
+    NzSelectModule,
+    OrgUnitModule,
+    ReactiveFormsModule,
+    NzFormModule,
+    NzCheckboxModule,
+    SimpleTableModule,
+  ],
   declarations: [
     UserLookupComponent,
     UserLookupDialogComponent,

@@ -5,8 +5,8 @@
             <ng-container [ngTemplateOutlet]="placeholderTpl"></ng-container>
 
             <div *ngIf="!isEmpty" class="ant-select-selection-selected-value"
-                [attr.title]="displayWith(selectedNodes[0])">
-                {{displayWith(selectedNodes[0])}}
+                [attr.title]="displayWith(selected[0])">
+                {{displayWith(selected[0])}}
             </div>
         </div>
     </ng-container>
@@ -14,7 +14,7 @@
         <ul class="ant-select-selection__rendered">
             <ng-container [ngTemplateOutlet]="placeholderTpl"></ng-container>
 
-            <ng-container *ngFor="let item of selectedNodes | slice: 0 : maxTagCount; trackBy: trackNode">
+            <ng-container *ngFor="let item of selected | slice: 0 : maxTagCount; trackBy: trackNode">
                 <li [attr.title]="displayWith(item)" class="ant-select-selection__choice"
                     [class.ant-select-selection__choice__disabled]="item.isDisabled">
                     <span class="ant-select-selection__choice__content">{{ displayWith(item) }}</span>
@@ -24,15 +24,15 @@
                     </span>
                 </li>
             </ng-container>
-            <li [@zoomMotion] *ngIf="selectedNodes.length > maxTagCount" class="ant-select-selection__choice">
+            <li [@zoomMotion] *ngIf="selected.length > maxTagCount" class="ant-select-selection__choice">
                 <div class="ant-select-selection__choice__content">
                     <ng-container *ngIf="maxTagPlaceholder">
                         <ng-template [ngTemplateOutlet]="maxTagPlaceholder"
-                            [ngTemplateOutletContext]="{ $implicit: selectedNodes | slice: maxTagCount}">
+                            [ngTemplateOutletContext]="{ $implicit: selected | slice: maxTagCount}">
                         </ng-template>
                     </ng-container>
                     <ng-container *ngIf="!maxTagPlaceholder">
-                        + {{ selectedNodes.length - maxTagCount }} ...
+                        + {{ selected.length - maxTagCount }} ...
                     </ng-container>
                 </div>
             </li>

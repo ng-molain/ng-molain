@@ -5,27 +5,46 @@
     color: gray;
 }
 
-:host.ant-select {
-    
-    &.ant-select-lg {
-        
+.user-lookup {
+  @apply bg-white w-full;
+
+  &.ng-dirty.ng-invalid {
+    .selector, .selector:hover {
+      @apply border-red-500;
     }
-    
-    &.ant-select-sm {
+  }
 
-    }
+  .selector {
+    @apply border py-1 px-3 rounded-sm;
 
-    &.ant-select-enabled {
-
-    }
-
-    &.ant-select-disabled {
-        
+    &:hover {
+      @apply border-primary;
     }
 
-    &.ant-select-allow-clear {
+    &.selector-single {
 
     }
 
-    &.ant-select-open {}
+    &.selector-multiple {
+
+    }
+
+    .placeholder {
+      @apply text-gray-400;
+    }
+  }
+
+  .ant-select-arrow {
+    font-size: 14px;
+    color: gray;
+  }
+
+  &.ant-select-allow-clear:hover {
+    .ant-select-arrow {
+      display: none;
+    }
+    .ant-select-clear {
+      display: flex;
+    }
+  }
 }
