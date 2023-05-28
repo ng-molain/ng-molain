@@ -157,7 +157,7 @@ export class OrgUnitLookupComponent implements OnInit, OnChanges, ControlValueAc
   }
 
   removeSelected(item: any, b: boolean, $event: MouseEvent) {
-
+    this.selection.deselect(item);
   }
 
   registerOnChange(fn: any): void {

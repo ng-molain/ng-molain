@@ -18,7 +18,7 @@
                 <li [attr.title]="displayWith(item)" class="ant-select-selection__choice"
                     [class.ant-select-selection__choice__disabled]="item.isDisabled">
                     <span class="ant-select-selection__choice__content">{{ displayWith(item) }}</span>
-                    <span *ngIf="!item.isDisabled" class="ant-select-selection__choice__remove"
+                    <span *ngIf="!item.isDisabled" class="ant-select-selection__choice__remove ml-1"
                           (click)="removeSelected(item, true, $event); $event.stopPropagation();">
                         <i class="fal fa-times-circle"></i>
                     </span>
