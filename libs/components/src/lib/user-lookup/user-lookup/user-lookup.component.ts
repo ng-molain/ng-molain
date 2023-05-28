@@ -33,7 +33,7 @@ export class UserLookupComponent extends AbstractControlValueAccessor implements
   @Input() isMultiple: boolean = false;
   @Input() allowClear: boolean = false;
   @Input() size: 'large' | 'small' = 'small';
-  @Input() maxTagCount: number = 3;
+  @Input() maxTagCount: number = 10;
   @Input() maxTagPlaceholder?: TemplateRef<{$implicit: any[]}>;
   @Input() placeholder: string = "请选择用户";
 
