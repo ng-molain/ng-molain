@@ -23,7 +23,7 @@ export class UserLookupFindComponent implements OnInit, AfterViewInit {
     {title: '用户名', name: 'username'},
     {title: '姓名', name: 'name'},
     {title: '邮箱', name: 'email'},
-    {title: '所属组织', name: 'orgName'},
+    // {title: '所属组织', name: 'orgName'},
   ];
   pageList: Pagination<any> = Page.noop();
   fetching = false;

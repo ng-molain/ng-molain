@@ -1,7 +1,8 @@
+
 <textarea nz-input [nzAutosize]="{minRows: 3, maxRows: 8}" placeholder="请输入一组用户名，点击‘开始校验’"></textarea>
 
 <div class="my-3">
-    <button nz-button nzType="primary">开始校验</button>
+    <button nz-button nzType="primary" [nzLoading]="verifyLoading" (click)="verifyUsernames()">开始校验</button>
 </div>
 <!-- 延迟自动校验 -->
 
@@ -13,6 +14,17 @@
         </p>
     </ng-template>
 </nz-alert>
+
+<div *ngIf="usernameVerifiedResults?.length > 0">
+  <div>
+    <h5 class="text-green-500 mb-3"><i class="far fa-check-circle"></i> <span>正确的用户</span></h5>
+    <nz-tag *ngFor="let item of usernameVerifiedSuccess" [nzColor]="'green'">{{item.username}}</nz-tag>
+  </div>
+  <div class="mt-4">
+    <h5 class="text-red-500 mb-3"><i class="far fa-times-circle"></i> 错误的用户</h5>
+    <nz-tag *ngFor="let item of usernameVerifiedError" [nzColor]="'red'">{{item.username}}</nz-tag>
+  </div>
+</div>
 
 <nz-alert nzType="warning" nzShowIcon [nzMessage]="warningMessageTpl" class="mt-3">
     <ng-template #warningMessageTpl>

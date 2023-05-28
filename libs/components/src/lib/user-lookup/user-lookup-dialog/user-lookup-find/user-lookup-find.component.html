@@ -17,7 +17,7 @@
         <form [formGroup]="searchForm" nz-form nzLayout="inline" (ngSubmit)="fetchList({page: 0})">
           <nz-form-item>
             <nz-form-control>
-              <input formControlName="searchText" [placeholder]="'输入用户名、姓名或邮箱搜索'">
+              <input formControlName="searchText" nz-input [placeholder]="'输入用户名、姓名或邮箱搜索'">
             </nz-form-control>
           </nz-form-item>
           <nz-form-item>
@@ -32,6 +32,7 @@
       </div>
 
       <ml-simple-table [columns]="tableColumns" [data]="pageList" [loading]="fetching"
+                       [showRowNumber]="false" [showTableSettingTools]="false"
       (switchPage)="fetchList($event)"
       ></ml-simple-table>
     </nz-content>

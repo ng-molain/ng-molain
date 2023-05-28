@@ -20,6 +20,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {NzFormModule} from "ng-zorro-antd/form";
 import {NzCheckboxModule} from "ng-zorro-antd/checkbox";
 import {SimpleTableModule} from "../simple-table";
+import {NzTagModule} from "ng-zorro-antd/tag";
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import {SimpleTableModule} from "../simple-table";
     NzFormModule,
     NzCheckboxModule,
     SimpleTableModule,
+    NzTagModule,
   ],
   declarations: [
     UserLookupComponent,

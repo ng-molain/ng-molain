@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {User} from "../../user-lookup.typings";
+import {Component, Inject, OnInit, Optional} from '@angular/core';
+import {UnameFindItem, User, USER_LOADER, UserLoader} from "../../user-lookup.typings";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'ml-user-lookup-fast',
@@ -8,7 +9,14 @@ import {User} from "../../user-lookup.typings";
 })
 export class UserLookupFastComponent implements OnInit {
 
-  constructor() { }
+  inputCtrl = new FormControl();
+  verifyLoading = false;
+
+  usernameVerifiedResults: UnameFindItem[] = [];
+  usernameVerifiedSuccess: UnameFindItem[] = [];
+  usernameVerifiedError: UnameFindItem[] = [];
+
+  constructor(@Optional() @Inject(USER_LOADER) private userLoader: UserLoader) { }
 
   ngOnInit() {
   }
@@ -17,4 +25,29 @@ export class UserLookupFastComponent implements OnInit {
     return [];
   }
 
+  verifyUsernames() {
+    const inputUsernames = this.inputCtrl.value as string;
+    if (!inputUsernames || inputUsernames.length === 0) {
+      return ;
+    }
+    const usernames = inputUsernames.split(/,|;|:|，|；|：|\n/)
+      .map((it: string) => it.trim()).filter((it: string) => it.length > 0);
+    if (usernames.length === 0) {
+      return;
+    }
+
+    this.verifyLoading = true;
+    this.userLoader.unameFind(usernames).subscribe({
+      next: result => {
+        this.verifyLoading = false;
+
+        this.usernameVerifiedResults = result;
+        this.usernameVerifiedSuccess = result.filter(it => it.result == 'OK');
+        this.usernameVerifiedError = result.filter(it => it.result != 'OK');
+      },
+      error: err => {
+        this.verifyLoading = false;
+      }
+    })
+  }
 }
