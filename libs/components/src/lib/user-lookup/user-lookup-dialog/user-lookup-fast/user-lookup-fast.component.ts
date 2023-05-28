@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {User} from "@ng-molain/components";
 
 @Component({
   selector: 'ml-user-lookup-fast',
@@ -10,6 +11,10 @@ export class UserLookupFastComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  getSelected(): User[] {
+    return [];
   }
 
 }

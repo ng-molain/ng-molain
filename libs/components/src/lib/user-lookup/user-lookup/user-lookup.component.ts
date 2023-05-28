@@ -38,8 +38,6 @@ export class UserLookupComponent extends AbstractControlValueAccessor implements
 
   @Input() override disabled = false;
 
-  private _modalRef?: NzModalRef;
-
   selection = new SelectionModel<any>(false);
 
 
@@ -118,14 +116,11 @@ export class UserLookupComponent extends AbstractControlValueAccessor implements
   }
 
   private _openLookupDialog() {
-    if (this.disabled || (!!this._modalRef)) {
+    if (this.disabled) {
       return;
     }
-    const modalRef = this._modalRef = this.userLookupService.openLookup();
-    modalRef.afterClose.subscribe(() => {
-      this._modalRef = undefined;
-    });
-    firstValueFrom(modalRef.afterClose).then(result => {
+    const result =  this.userLookupService.openLookup();
+    firstValueFrom(result).then(result => {
       if (!Array.isArray(result) || result.length === 0) {
         return ;
       } else {

@@ -3,10 +3,11 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {Page, Pageable, Pagination} from "../../../pagination";
 import {USER_LOADER, UserLoader} from "../../user-lookup.typings";
 import {isNil, omitBy} from "lodash-es";
-import {ColumnDef} from "../../../simple-table";
+import {ColumnDef, SimpleTableComponent} from "../../../simple-table";
 import {OrgUnitTreeComponent} from "../../../org-unit";
 import {startWith} from "rxjs/operators";
 import {debounceTime} from "rxjs";
+import {NzModalRef} from "ng-zorro-antd/modal";
 
 @Component({
   selector: 'ml-user-lookup-find',
@@ -27,7 +28,10 @@ export class UserLookupFindComponent implements OnInit, AfterViewInit {
   pageList: Pagination<any> = Page.noop();
   fetching = false;
 
+  @ViewChild(SimpleTableComponent) tableComponent!: SimpleTableComponent
+
   constructor(fb: FormBuilder,
+              private modalRef: NzModalRef,
               @Optional() @Inject(USER_LOADER) private userLoader?: UserLoader) {
     this.searchForm = fb.group({
       searchText: [],
@@ -82,5 +86,9 @@ export class UserLookupFindComponent implements OnInit, AfterViewInit {
         this.fetching = false;
       }
     });
+  }
+
+  getSelected() {
+    return this.tableComponent.getSelected();
   }
 }
