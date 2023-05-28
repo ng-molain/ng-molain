@@ -1,6 +1,7 @@
-import {OrgUnitFlatNode, Pagination} from "@ng-molain/components";
+import {OrgUnitFlatNode} from "../org-unit";
 import {InjectionToken} from "@angular/core";
 import {Observable} from "rxjs";
+import {Pagination} from "../pagination";
 
 
 export interface UserLoader {
