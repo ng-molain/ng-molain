@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit, Optional, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Inject, OnInit, Optional, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Page, Pageable, Pagination} from "../../../pagination";
 import {USER_LOADER, UserLoader} from "../../user-lookup.typings";
@@ -13,7 +13,7 @@ import {debounceTime} from "rxjs";
   templateUrl: './user-lookup-find.component.html',
   styleUrls: ['./user-lookup-find.component.scss']
 })
-export class UserLookupFindComponent implements OnInit {
+export class UserLookupFindComponent implements OnInit, AfterViewInit {
 
   @ViewChild(OrgUnitTreeComponent) orgUnitTreeComponent!: OrgUnitTreeComponent;
 
@@ -44,15 +44,6 @@ export class UserLookupFindComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.orgUnitTreeComponent.selectionChange.asObservable().subscribe({
-      next: value => {
-        if (!value || Array.isArray(value)) {
-          return ;
-        }
-        this.searchForm.patchValue({scope: value});
-      }
-    });
-
     // this.fetchList();
     this.searchForm.valueChanges.pipe(
       startWith(this.searchForm.value),
@@ -60,6 +51,17 @@ export class UserLookupFindComponent implements OnInit {
     ).subscribe({
       next: value => {
         this.fetchList({page: 0});
+      }
+    });
+  }
+
+  ngAfterViewInit() {
+    this.orgUnitTreeComponent.selectionChange.asObservable().subscribe({
+      next: value => {
+        if (!value || Array.isArray(value)) {
+          return ;
+        }
+        this.searchForm.patchValue({scope: value});
       }
     });
   }
