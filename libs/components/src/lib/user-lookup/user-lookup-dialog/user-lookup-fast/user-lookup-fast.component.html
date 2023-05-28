@@ -1,5 +1,5 @@
 
-<textarea nz-input [nzAutosize]="{minRows: 3, maxRows: 8}" placeholder="请输入一组用户名，点击‘开始校验’"></textarea>
+<textarea nz-input [formControl]="inputCtrl" [nzAutosize]="{minRows: 3, maxRows: 8}" placeholder="请输入一组用户名，点击‘开始校验’"></textarea>
 
 <div class="my-3">
     <button nz-button nzType="primary" [nzLoading]="verifyLoading" (click)="verifyUsernames()">开始校验</button>
