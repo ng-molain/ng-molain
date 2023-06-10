@@ -1,18 +1,18 @@
 import {get} from "lodash-es";
 import {TemplateRef} from "@angular/core";
 
-export interface ColumnDef {
+export interface ColumnDef<T = any> {
   title: string | null,
   name: string;
-  render?: number | string | CellContent | RenderFn;
+  render?: number | string | CellContent | RenderFn<T>;
   hidden?: boolean;
   pinLeft?: boolean;
   pinRight?: boolean;
   defaultValue?: any;
 
   sortable?: boolean;
-  linkTo?: LinkFn;
-  onClick?: OnClickFn;
+  linkTo?: LinkFn<T>;
+  onClick?: OnClickFn<T>;
 
   width?: string;
 
@@ -29,11 +29,11 @@ export interface CellContent {
 
 export type CellValue = number | string | CellContent;
 
-export type RenderFn = (row: any, col: ColumnDef) => CellValue;
+export type RenderFn<T = any> = (row: T, col: ColumnDef) => CellValue;
 
-export type LinkFn = (row: any, col: ColumnDef) => string | any[] | undefined | null;
+export type LinkFn<T = any> = (row: T, col: ColumnDef) => string | any[] | undefined | null;
 
-export type OnClickFn = (row: any, col: ColumnDef, cellValue: CellContent | null | undefined, event: MouseEvent) => void;
+export type OnClickFn<T = any> = (row: T, col: ColumnDef, cellValue: CellContent | null | undefined, event: MouseEvent) => void;
 
 
 // TODO BOOLEAN map
